@@ -1,0 +1,32 @@
+.fandom-comp .season,
+.fandom-comp .episode {
+  border: solid 2px black;
+  border-bottom: none;
+  padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+#last{
+    border: solid 2px black;
+}
+
+.fandom-comp, .review-comp{
+    background-color: grey;
+}
+
+.fandom-comp .season, .fandom-comp .episode{
+border:solid 2px black;
+border-bottom: none;
+padding: 5px;
+}
+
+.personal, .fandom-view{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.create button, .fandom button, .fandom-comp button{
+    display: block;
+    margin: auto;
+}

@@ -1,0 +1,10 @@
+.personal, .fandom, .fandom-view{
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.personal, .fandom-view{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+

@@ -1,0 +1,8 @@
+.create{
+    background-color: lightgray;
+    padding: 20px;
+}
+.create #review{
+    width: 75%;
+    margin-bottom: 20px;
+}

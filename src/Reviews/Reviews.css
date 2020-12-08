@@ -1,0 +1,9 @@
+.review{
+    background-color: lightgrey; 
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.fandom-comp, .review-comp{
+    background-color: grey;
+}

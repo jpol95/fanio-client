@@ -1,0 +1,12 @@
+.create button, .fandom button, .fandom-comp button{
+    display: block;
+    margin: auto;
+}
+
+.fandom #seasons{
+    width: 30px;
+}
+.personal, .fandom, .fandom-view{
+    background-color: lightgray;
+    padding: 20px;
+}

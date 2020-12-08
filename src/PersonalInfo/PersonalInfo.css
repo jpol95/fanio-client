@@ -1,0 +1,26 @@
+.personal, .fandom, .fandom-view{
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.personal{
+   padding-bottom: 300px 
+}
+
+.personal .profile-picture{
+    background-color: grey;
+    display: flex;
+    height:200px;
+}
+
+.personal .profile-picture p{
+    margin: auto;
+}
+
+.personal, .fandom-view{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.personal p{
+    margin-top: 0px;
+}
