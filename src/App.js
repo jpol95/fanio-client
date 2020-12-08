@@ -8,30 +8,39 @@ import CreateFandom from "./CreateFandom/CreateFandom";
 import ReviewMain from "./ReviewMain/ReviewMain";
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
-import dummyStore from './dummy-store'
+import dummyStore from "./dummy-store";
+import FanioContext from "./FanioContext";
 
 class App extends React.Component {
   state = {
-    fandomList: [], 
-    reviews: [], 
-    seasonList: [], 
-    episodeList: [], 
-    tags: []
-  }
-  
-  componentDidMount(){
+    fandomList: [],
+    reviews: [],
+    seasonList: [],
+    episodeList: [],
+    tags: [],
+  };
+
+  componentDidMount() {
     this.state = {
-      fandomList: dummyStore.fandomList, 
-      reviews: dummyStore.reviews, 
-      seasonList: dummyStore.seasonList, 
-      episodeList: dummyStore.episodeList, 
-      tags: dummyStore.tags
-    }
+      fandomList: dummyStore.fandomList,
+      reviews: dummyStore.reviews,
+      seasonList: dummyStore.seasonList,
+      episodeList: dummyStore.episodeList,
+      tags: dummyStore.tags,
+    };
   }
 
   render() {
     return (
-      <>
+      <FanioContext.Provider
+        values={{
+          fandomList: this.state.fandomList,
+          reviews: this.state.reviews,
+          seasonList: this.state.seasonList,
+          episodeList: this.state.episodeList,
+          tags: this.state.tags,
+        }}
+      >
         <NavBar />
         <Profile />
         <CreateReview />
@@ -40,7 +49,7 @@ class App extends React.Component {
         <SignUp />
         <Landing />
         <Footer />
-      </>
+      </FanioContext.Provider>
     );
   }
 }
