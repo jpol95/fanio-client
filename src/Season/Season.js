@@ -1,6 +1,7 @@
 import React from "react";
 import "./Season.css";
 import FanioContext from '../FanioContext'
+import {Link} from 'react-router-dom'
 
 export default class Season extends React.Component {
 
@@ -10,9 +11,9 @@ export default class Season extends React.Component {
     return this.context.episodeList
     .filter(episode => episode.seasonId === this.props.id)
     .map(episode => {
-      return <div className="episode">
+      return <Link className="episode">
       {episode.name} <button>Write Review</button>
-    </div>
+    </Link>
     })
   }
   render() {
@@ -24,8 +25,8 @@ export default class Season extends React.Component {
             {this.getEpisodes()}
           </div>
           <button>Add episode</button>
-          <label htmlFor="add-episode">Add episode</label>
-          <input id="add-episode" type="text" />
+          <label class="hidden" htmlFor="add-episode">Add episode</label>
+          <input class="hidden" id="add-episode " type="text" />
         </div>
       </div>
     );
