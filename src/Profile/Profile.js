@@ -9,12 +9,13 @@ import './Profile.css'
 export default class Profile extends React.Component {
   static contextType = FanioContext
   getFandoms() {
-    console.log(this)
+    console.log(this.context.fandomList)
     return this.context.fandomList.map(fandom => {
       return <Fandom {...fandom} />
     })
   }
   render() {
+    console.log(this.context)
     return (
       <React.Fragment>
         <PersonalInfo />

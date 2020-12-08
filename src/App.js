@@ -21,19 +21,19 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.state = {
+    this.setState({
       fandomList: dummyStore.fandomList,
       reviews: dummyStore.reviews,
       seasonList: dummyStore.seasonList,
       episodeList: dummyStore.episodeList,
       tags: dummyStore.tags,
-    };
+    });
   }
 
   render() {
     return (
       <FanioContext.Provider
-        values={{
+        value={{
           fandomList: this.state.fandomList,
           reviews: this.state.reviews,
           seasonList: this.state.seasonList,
