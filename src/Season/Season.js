@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 export default class Season extends React.Component {
   static contextType = FanioContext;
 
-  getReview() {
-    console.log(this.context);
+  getReview(element) {
     return this.context.reviewList.find(
-      (review) => review.id === this.props.reviewId
+      (review) => review.id === element.reviewId
     );
   }
 
@@ -17,23 +16,26 @@ export default class Season extends React.Component {
     return this.context.episodeList
       .filter((episode) => episode.seasonId === this.props.id)
       .map((episode) => {
+        const epReview = this.getReview(episode)
         return (
           <Link key={episode.id} className="episode">
-            {episode.name} <button>Write Review</button>
+            {episode.name} {epReview ? <p>{epReview.content.substring(0,100)}</p> : <button>Write Review</button> }
           </Link>
         );
       });
   }
   render() {
-    const review = this.getReview();
+    const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
         <div className="season">
           {this.props.name}
           {<br />}
           {review ? (
-            review.content.substring(0, 100) 
+            <React.Fragment>
+              {review.content.substring(0, 100)}
             <button>View Full Review</button>
+            </React.Fragment>
           ) : (
             
             <button>Write Review</button>
