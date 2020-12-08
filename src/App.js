@@ -1,26 +1,48 @@
-import './App.css';
-import Profile from './Profile/Profile'
-import NavBar from './NavBar/NavBar'
-import Footer from './Footer/Footer'
-import CreateReview from './CreateReview/CreateReview'
-import CreateFandom from './CreateFandom/CreateFandom'
-import ReviewMain from './ReviewMain/ReviewMain'
-import SignUp from './SignUp/SignUp'
-import Landing from './Landing/Landing'
+import "./App.css";
+import React from "react";
+import Profile from "./Profile/Profile";
+import NavBar from "./NavBar/NavBar";
+import Footer from "./Footer/Footer";
+import CreateReview from "./CreateReview/CreateReview";
+import CreateFandom from "./CreateFandom/CreateFandom";
+import ReviewMain from "./ReviewMain/ReviewMain";
+import SignUp from "./SignUp/SignUp";
+import Landing from "./Landing/Landing";
+import dummyStore from './dummy-store'
 
-function App() {
-  return (
-    <>
-    <NavBar />
-    <Profile/>
-    <CreateReview />
-    <CreateFandom />
-    <ReviewMain />
-    <SignUp />
-    <Landing />
-    <Footer />
-    </>
-  );
+class App extends React.Component {
+  state = {
+    fandomList: [], 
+    reviews: [], 
+    seasonList: [], 
+    episodeList: [], 
+    tags: []
+  }
+  
+  componentDidMount(){
+    this.state = {
+      fandomList: dummyStore.fandomList, 
+      reviews: dummyStore.reviews, 
+      seasonList: dummyStore.seasonList, 
+      episodeList: dummyStore.episodeList, 
+      tags: dummyStore.tags
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <NavBar />
+        <Profile />
+        <CreateReview />
+        <CreateFandom />
+        <ReviewMain />
+        <SignUp />
+        <Landing />
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default App;

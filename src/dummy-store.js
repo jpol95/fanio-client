@@ -77,3 +77,4 @@ const tags = [
     {id: 12, name: "science fiction", reviewId: 3}, 
 ]
 
+export default {fandomList, reviews, seasonList, episodeList, tags}
