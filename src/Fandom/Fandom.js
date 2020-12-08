@@ -11,7 +11,7 @@ export default class Fandom extends React.Component {
     return this.context.seasonList
     .filter(season => season.fandomId === this.props.id)
     .map(season => {
-      return <Season {...season} />
+      return <Season key={season.id} {...season} />
     })
   }
 

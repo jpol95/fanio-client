@@ -2,10 +2,10 @@ import React from 'react'
 
 const FanioContext = React.createContext({
     fandomList: [], 
-    reviews: [], 
+    reviewList: [], 
     seasonList: [], 
     episodeList: [], 
-    tags: []
+    tagList: []
 })
 
 export default FanioContext

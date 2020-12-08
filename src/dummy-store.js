@@ -5,7 +5,7 @@ const fandomList =  [
     {id: 4, name: 'Buffy the Vampire Slayer', user: "Jesse"}, 
 ]
 
-const reviews = [
+const reviewList = [
     {id: 1, title: `Doctor Who Season 3 Episode 5 Review`, content: `Omg this is the best episode ever!`,  rating: 4},
     {id: 2, title: `Doctor Who Season 4 Episode 7 Review`, content: `Omg this is the worst episode ever!`, rating: 1},
     {id: 3, title: `Supernatural Season 2 Episode 3 Review`, content: `Omg this is the worst episode ever!`, rating: 1},
@@ -46,23 +46,23 @@ const seasonList = [
 const episodeList = [
     {id: 1, name: "Doctor Who s3e5", reviewId: 1, seasonId: 3},
     {id: 2, name: "Doctor Who s4e7", reviewId: 2, seasonId: 4},
-    {id: 3, name: "Supernatural s2e3", reviewId: 3, seasonId: 9},
+    {id: 3, name: "Supernatural s2e3", reviewId: null, seasonId: 9},
     {id: 4, name: "Supernatural s3e4", reviewId: 4, seasonId: 11},
     {id: 5, name: "PR s5e19", reviewId: 5, seasonId: 5},
     {id: 6, name: "PR s3e12", reviewId: 6, seasonId: 10},
     {id: 7, name: "Buffy s2e4", reviewId: 7, seasonId: 7},
-    {id: 8, name: "Buffy s5e9", reviewId: 8, seasonId: 12},
+    {id: 8, name: "Buffy s5e9", reviewId: null, seasonId: 12},
     {id: 9, name: "Doctor Wo s2e9", reviewId: 9, seasonId: 2},
     {id: 10, name: "Doctor Who s1e2", reviewId: 10, seasonId: 1},
-    {id: 11, name: "PR s5e18", reviewId: 11, seasonId: 5},
+    {id: 11, name: "PR s5e18", reviewId: null, seasonId: 5},
     {id: 12, name: "PR s5e17", reviewId: 12, seasonId: 5},
     {id: 13, name: "Supernatural s2e7", reviewId: 13, seasonId: 9},
     {id: 14, name: "Supernatural s1e9", reviewId: 14, seasonId: 8},
     {id: 15, name: "Buffy s1e7", reviewId: 15, seasonId: 6},
-    {id: 16, name: "Buffy s1e9", reviewId: 16, seasonId: 6},
+    {id: 16, name: "Buffy s1e9", reviewId: null, seasonId: 6},
 ]
 
-const tags = [
+const tagList = [
     {id: 1, name: "science fiction", reviewId: 10}, 
     {id: 2, name: "comedy", reviewId: 11}, 
     {id: 3, name: "science fiction", reviewId: 17}, 
@@ -77,4 +77,4 @@ const tags = [
     {id: 12, name: "science fiction", reviewId: 3}, 
 ]
 
-export default {fandomList, reviews, seasonList, episodeList, tags}
+export default {fandomList, reviewList: reviewList, seasonList, episodeList, tagList: tagList}

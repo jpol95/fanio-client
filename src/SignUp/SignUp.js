@@ -5,31 +5,31 @@ export default class Signup extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div class="basic">
+        <div className="basic">
           <p> Basic account information </p>
-          <label for="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input id="username" type="text" />
-          <label for="pw">Password</label>
+          <label htmlFor="pw">Password</label>
           <input id="pw" type="text" />
-          <label for="pw-confirm">Confirm Password</label>
+          <label htmlFor="pw-confirm">Confirm Password</label>
           <input id="pw-confirm" type="text" />
-          <label for="username">Profile Picture</label>
+          <label htmlFor="username">Profile Picture</label>
           <button> Browse </button>
         </div>
 
-        <div class="personal">
+        <div className="personal">
           <p>Tell us about yourself</p>
-          <label for="username">Name</label>
+          <label htmlFor="username">Name</label>
           <input id="username" type="text" />
-          <label for="fandoms">Fandoms</label>
+          <label htmlFor="fandoms">Fandoms</label>
           <input id="fandoms" type="text" />
-          <label for="hobbies">Hobbies</label>
+          <label htmlFor="hobbies">Hobbies</label>
           <input id="hobbies" type="text" />
-          <label for="interests">Interests</label>
+          <label htmlFor="interests">Interests</label>
           <input id="interests" type="text" />
-          <label for="city">City</label>
+          <label htmlFor="city">City</label>
           <input id="city" type="text" />
-          <label for="education">Education</label>
+          <label htmlFor="education">Education</label>
           <input id="education" type="text" />
         </div>
         <button>Create Profile</button>

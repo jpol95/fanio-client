@@ -14,19 +14,19 @@ import FanioContext from "./FanioContext";
 class App extends React.Component {
   state = {
     fandomList: [],
-    reviews: [],
+    reviewList: [],
     seasonList: [],
     episodeList: [],
-    tags: [],
+    tagList: [],
   };
 
   componentDidMount() {
     this.setState({
       fandomList: dummyStore.fandomList,
-      reviews: dummyStore.reviews,
+      reviewList: dummyStore.reviewList,
       seasonList: dummyStore.seasonList,
       episodeList: dummyStore.episodeList,
-      tags: dummyStore.tags,
+      tagList: dummyStore.tagList,
     });
   }
 
@@ -35,10 +35,10 @@ class App extends React.Component {
       <FanioContext.Provider
         value={{
           fandomList: this.state.fandomList,
-          reviews: this.state.reviews,
+          reviewList: this.state.reviewList,
           seasonList: this.state.seasonList,
           episodeList: this.state.episodeList,
-          tags: this.state.tags,
+          tagList: this.state.tagList,
         }}
       >
         <NavBar />
