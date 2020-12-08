@@ -12,7 +12,7 @@ const reviewList = [
     {id: 4, title: `Supernatural Season 3 Episode 4 Review`, content: `Omg this is the best episode ever!`, rating: 2},
     {id: 5, title: `Parks and Recreation Season 5 Episode 19 Review`, content: `Omg this is the worst episode ever!`, rating: 3},
     {id: 6, title: `Parks and Recreation Season 3 Episode 12 Review`, content: `Omg this is the best episode ever!`, rating: 4},
-    {id: 7, title: `Buffy the Vampire Slayer Season 2 Episode 4 Review`, content: `Omg this is the worst episode ever!`, rating: 5},
+    {id: 7, title: `Buffy the Vampire Slayer Season 2 Episode 4 Review`, content: `Inca mummy girl???? More like LAME-KA mummy girl amirite haha im depressed please send meds`, rating: 5},
     {id: 8, title: `Buffy the Vampire Slayer Season 5 Episode 9 Review`, content: `Omg this is the best episode ever!`, rating: 2},
     {id: 9, title: `Doctor Who Season 2 Episode 9 Review`, content: `Omg this is the worst episode ever!`, rating: 4},
     {id: 10, title: `Doctor Who Season 1 Episode 2 Review`, content: `Omg this is the best episode ever!`, rating: 1},

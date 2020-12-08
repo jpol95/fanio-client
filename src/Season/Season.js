@@ -16,10 +16,23 @@ export default class Season extends React.Component {
     return this.context.episodeList
       .filter((episode) => episode.seasonId === this.props.id)
       .map((episode) => {
-        const epReview = this.getReview(episode)
+        const epReview = this.getReview(episode);
         return (
-          <Link key={episode.id} className="episode">
-            {episode.name} {epReview ? <p>{epReview.content.substring(0,100)}</p> : <button>Write Review</button> }
+          <Link
+            to={
+              epReview
+                ? `/users/1/review-main/${epReview.id}`
+                : `/users/1/profile`
+            }
+            key={episode.id}
+            className="episode"
+          >
+            {episode.name}{" "}
+            {epReview ? (
+              <p>{epReview.content.substring(0, 100)}</p>
+            ) : (
+              <button> Write Review</button>
+            )}
           </Link>
         );
       });
@@ -34,10 +47,11 @@ export default class Season extends React.Component {
           {review ? (
             <React.Fragment>
               {review.content.substring(0, 100)}
-            <button>View Full Review</button>
+              <Link className="full-page-link" to={`/users/1/review-main/${review.id}`}>
+                <button>View Full Review</button>
+              </Link>
             </React.Fragment>
           ) : (
-            
             <button>Write Review</button>
           )}
           <div className="episode-list ">{this.getEpisodes()}</div>

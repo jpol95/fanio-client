@@ -1,24 +1,32 @@
 import React from "react";
 import "./ReviewMain.css";
+import FanioContext from '../FanioContext'
 
 export default class ReviewMain extends React.Component {
+  static contextType = FanioContext
+  getReview() {
+    console.log(this.props)
+    return this.context.reviewList.find(review => review.id === Number(this.props.match.params.reviewId))
+  }
+
+  getTags(reviewId) {
+    return this.context.tagList
+    .filter(tag => reviewId === tag.reviewId)
+    .map(tag => <span key={tag.id}>#{tag.name}</span>)
+  }
   render() {
+    const review = this.getReview()
+    if (!review) return null
+    const tags = this.getTags(review.id)
     return (
       <div className="review-full">
-        <h2>Title of the review</h2>
-        <p>Some graphic displaying the number of stars</p>
+        <h2>{review.title}</h2>
+        <p>{review.rating} stars</p>
         <p>
-          #we #have #some #tags #to #describe #what #topics #are #discussed #in
-          #the #article
+          {tags}
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {review.content}
         </p>
         <button>Edit Review</button>
         <button>Delete Review</button>

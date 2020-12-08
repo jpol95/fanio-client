@@ -10,6 +10,7 @@ import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
 import FanioContext from "./FanioContext";
+import {Route} from 'react-router-dom'
 
 class App extends React.Component {
   state = {
@@ -42,12 +43,12 @@ class App extends React.Component {
         }}
       >
         <NavBar />
-        <Profile />
-        <CreateReview />
-        <CreateFandom />
-        <ReviewMain />
-        <SignUp />
-        <Landing />
+        <Route exact path="/users/:userId/profile/" component={Profile} />
+        <Route exact path="/users/:userId/review-form" component={CreateReview} />
+        <Route exact path="/users/:userId/fandom-form" component={CreateFandom} />
+        <Route exact path="/users/:userId/review-main/:reviewId" component={ReviewMain} />
+        <Route exact path="/signup-form" component={SignUp} />
+        <Route exact path="/landing" component={Landing} />
         <Footer />
       </FanioContext.Provider>
     );
