@@ -10,9 +10,9 @@ export default class ReviewMain extends React.Component {
   }
 
   getTags(reviewId) {
-    return this.context.tagList
+    return this.context.reviewTagList
     .filter(tag => reviewId === tag.reviewId)
-    .map(tag => <span key={tag.id}>#{tag.name}</span>)
+    .map(tag => <span key={tag.tagId}>#{this.context.tagList.find(tListTag => tListTag.id === tag.tagId).name}</span>)
   }
   render() {
     const review = this.getReview()

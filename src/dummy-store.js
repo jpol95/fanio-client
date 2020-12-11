@@ -1,9 +1,24 @@
+
 const fandomList =  [
-    {id: 1, name: 'Doctor Who', user: "Jesse"}, 
-    {id: 2, name: 'Supernatural', user: "Jesse"}, 
-    {id: 3, name: 'Parks and Recreation', user: "Jesse"}, 
-    {id: 4, name: 'Buffy the Vampire Slayer', user: "Jesse"}, 
+    {id: 1, name: 'Doctor Who', user: 1}, //fk
+    {id: 2, name: 'Supernatural', user: 1}, 
+    {id: 3, name: 'Parks and Recreation', user: 1}, 
+    {id: 4, name: 'Buffy the Vampire Slayer', user: 1}, 
 ]
+//when someone wants to add a fandom, have a dropdown menu or have them create a new one
+//join fandomList_user table
+//you'd have a join table of users to fandoms 
+
+const installmentList = [
+    {id: 1, title:'Doctor Who', type: 'Show', fandomId: 1},
+    {id: 2, title:'Parks and Rec', type: 'Show', fandomId: 3},
+    {id: 3, title:'Buffy', type: 'Show', fandomId: 4},
+    {id: 4, title:'Buffy comics', type: 'Comics', fandomId: 4},
+    {id: 5, title:'Supernatural', type: 'Show', fandomId: 2},
+    
+]
+
+
 
 const reviewList = [
     {id: 1, title: `Doctor Who Season 3 Episode 5 Review`, content: `Omg this is the best episode ever!`,  rating: 4},
@@ -43,6 +58,15 @@ const seasonList = [
     {id: 12, name: 'Season 5 Buffy', reviewId: 17, fandomId: 4},  
 ]
 
+//fakerjs creates fake data for you
+
+//database normalization, instead of name: season number
+//seeding the data
+//fandom -> Season -> Episode
+//you could combine different media types into one table
+
+
+
 const episodeList = [
     {id: 1, name: "Doctor Who s3e5", reviewId: 1, seasonId: 3},
     {id: 2, name: "Doctor Who s4e7", reviewId: 2, seasonId: 4},
@@ -62,19 +86,35 @@ const episodeList = [
     {id: 16, name: "Buffy s1e9", reviewId: null, seasonId: 6},
 ]
 
+
+
 const tagList = [
-    {id: 1, name: "science fiction", reviewId: 10}, 
-    {id: 2, name: "comedy", reviewId: 11}, 
-    {id: 3, name: "science fiction", reviewId: 17}, 
-    {id: 4, name: "science fiction", reviewId: 12}, 
-    {id: 5, name: "romance", reviewId: 18}, 
-    {id: 6, name: "science fiction", reviewId: 12}, 
-    {id: 7, name: "science fiction", reviewId: 7}, 
-    {id: 8, name: "romance", reviewId: 3}, 
-    {id: 9, name: "science fiction", reviewId: 9}, 
-    {id: 10, name: "comedy", reviewId: 10}, 
-    {id: 11, name: "romance", reviewId: 12}, 
-    {id: 12, name: "science fiction", reviewId: 3}, 
+    {id: 1, name: "science-fiction"}, 
+    {id: 2, name: "comedy"}, 
+    {id: 3, name: "drama"}, 
+    {id: 4, name: "period"}, 
+    {id: 5, name: "romance"}, 
+    {id: 6, name: "historical-fiction"}, 
+    {id: 7, name: "fantasy"}, 
+    {id: 8, name: "raunchy"}, 
+    {id: 9, name: "family"}, 
+    {id: 10, name: "corny"}, 
+    {id: 11, name: "violent"}, 
+    {id: 12, name: "horror"}, 
 ]
 
-export default {fandomList, reviewList: reviewList, seasonList, episodeList, tagList: tagList}
+const reviewTagList = [
+    {tagId: 1, reviewId: 10}, 
+    {tagId: 2, reviewId: 12}, 
+    {tagId: 3, reviewId: 17}, 
+    {tagId: 4, reviewId: 12}, 
+    {tagId: 5, reviewId: 18}, 
+    {tagId: 6, reviewId: 12}, 
+    {tagId: 8, reviewId: 3}, 
+    {tagId: 9, reviewId: 9}, 
+    {tagId: 10, reviewId: 10}, 
+    {tagId: 11, reviewId: 12}, 
+    {tagId: 12, reviewId: 3},    
+]
+
+export default {installmentList, fandomList, reviewList, seasonList, episodeList, tagList, reviewTagList}

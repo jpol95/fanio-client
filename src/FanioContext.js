@@ -5,7 +5,9 @@ const FanioContext = React.createContext({
     reviewList: [], 
     seasonList: [], 
     episodeList: [], 
-    tagList: []
+    tagList: [], 
+    reviewTagList: [], 
+    handleSubmit: () => {}
 })
 
 export default FanioContext

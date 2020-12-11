@@ -2,7 +2,11 @@
     background-color: lightgray;
     padding: 20px;
 }
-.create #review{
+.create #content{
     width: 75%;
     margin-bottom: 20px;
+}
+
+select{
+    margin-bottom: 20px
 }

@@ -31,7 +31,9 @@ export default class Season extends React.Component {
             {epReview ? (
               <p>{epReview.content.substring(0, 100)}</p>
             ) : (
-              <button> Write Review</button>
+              <Link to={`/users/1/review-form/${this.props.id}/episode/`}>
+                <button> Write Review</button>
+              </Link>
             )}
           </Link>
         );
@@ -47,12 +49,17 @@ export default class Season extends React.Component {
           {review ? (
             <React.Fragment>
               {review.content.substring(0, 100)}
-              <Link className="full-page-link" to={`/users/1/review-main/${review.id}`}>
+              <Link
+                className="full-page-link"
+                to={`/users/1/review-main/${review.id}`}
+              >
                 <button>View Full Review</button>
               </Link>
             </React.Fragment>
           ) : (
-            <button>Write Review</button>
+            <Link to={`/users/1/review-form/${this.props.id}`}>
+              <button>Write Review</button>
+            </Link>
           )}
           <div className="episode-list ">{this.getEpisodes()}</div>
           <button>Add episode</button>
