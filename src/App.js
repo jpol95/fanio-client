@@ -19,36 +19,37 @@ class App extends React.Component {
     seasonList: [],
     episodeList: [],
     tagList: [],
-    reviewTagList: []
+    reviewTagList: [],
+    typeList: [],
+    bookList: [],
+    issueList: [],
+    arcList: [],
+    installmentList: [],
   };
 
   componentDidMount() {
+    const { fandomList, reviewList, seasonList, episodeList, tagList, reviewTagList, typeList, bookList, issueList, arcList, installmentList } = dummyStore
+    const seedData = { fandomList, reviewList, seasonList, episodeList, tagList, reviewTagList, typeList, bookList, issueList, arcList, installmentList }
     this.setState({
-      fandomList: dummyStore.fandomList,
-      reviewList: dummyStore.reviewList,
-      seasonList: dummyStore.seasonList,
-      episodeList: dummyStore.episodeList,
-      tagList: dummyStore.tagList,
-      reviewTagList: dummyStore.reviewTagList,
+      ...seedData
     });
   }
 
   handleSubmit = (newReview) => {
-    const newTagListItems = newReview.tags.map(tag => {
-      return {tagId : tag.id, reviewId: newReview.id}
-    })
+    const newTagListItems = newReview.tags.map((tag) => {
+      return { tagId: tag.id, reviewId: newReview.id };
+    });
     this.setState({
-      ...this.state, 
+      ...this.state,
       reviewList: {
         id: newReview.id,
         title: newReview.title,
         content: newReview.content,
         rating: newReview.rating,
       },
-      tags: [...this.state.reviewTagList, ...newTagListItems]
+      tags: [...this.state.reviewTagList, ...newTagListItems],
     });
-
-  }
+  };
 
   render() {
     return (
@@ -60,14 +61,22 @@ class App extends React.Component {
           episodeList: this.state.episodeList,
           tagList: this.state.tagList,
           reviewTagList: this.state.reviewTagList,
-          handleSubmit: this.handleSubmit, 
+          typeList: this.state.typeList,
+          bookList: this.state.bookList,
+          issueList: this.state.issueList,
+          arcList: this.state.arcList,
+          installmentList: this.state.installmentList,
+          handleSubmit: this.handleSubmit,
         }}
       >
         <NavBar />
         <Route exact path="/users/:userId/profile/" component={Profile} />
         <Route
           exact
-          path={["/users/:userId/review-form/:seasonId","/users/:userId/review-form/:seasonId/episode"]}  
+          path={[
+            "/users/:userId/review-form/:seasonId",
+            "/users/:userId/review-form/:seasonId/episode",
+          ]}
           component={CreateReview}
         />
         <Route

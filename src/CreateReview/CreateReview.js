@@ -53,7 +53,7 @@ export default class CreateReview extends React.Component {
   };
 
   handleContentChange = (content) => {
-    console.log(this.state.content)
+    // console.log(this.state.content)
     const newContent = {value: content, touched: true}
     this.setState({
       ...this.state, content: newContent

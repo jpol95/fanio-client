@@ -5,7 +5,7 @@ import FanioContext from '../FanioContext'
 export default class ReviewMain extends React.Component {
   static contextType = FanioContext
   getReview() {
-    console.log(this.props)
+    // console.log(this.props)
     return this.context.reviewList.find(review => review.id === Number(this.props.match.params.reviewId))
   }
 

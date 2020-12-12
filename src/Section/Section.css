@@ -1,4 +1,4 @@
-.fandom-comp .season,
+.fandom-comp .section,
 .fandom-comp .episode {
   border: solid 2px black;
   border-bottom: none;
@@ -16,7 +16,7 @@
     background-color: grey;
 }
 
-.fandom-comp .season, .fandom-comp .episode{
+.fandom-comp .section, .fandom-comp .episode{
 border:solid 2px black;
 /* border-bottom: none; */
 padding: 5px;

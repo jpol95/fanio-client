@@ -1,9 +1,9 @@
 import React from "react";
-import "./Season.css";
+import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
 
-export default class Season extends React.Component {
+export default class Section extends React.Component {
   static contextType = FanioContext;
 
   getReview(element) {
@@ -12,24 +12,43 @@ export default class Season extends React.Component {
     );
   }
 
-  getEpisodes() {
-    return this.context.episodeList
-      .filter((episode) => episode.seasonId === this.props.id)
-      .map((episode) => {
-        const epReview = this.getReview(episode);
+  getSubDisplay() {
+    // console.log("kjrenferkjferkjnerfkerjfjkn")
+    return (
+      <React.Fragment>
+        <div className="subsection-list ">{this.getSubSection()}</div>
+        <button>Add {this.props.type.subName}</button>
+        <label className="hidden" htmlFor={`add-episode ${this.props.id}`}>
+          Add {this.props.type.subName}
+        </label>
+        <input
+          className="hidden"
+          i
+          d={`add-${this.props.type.subName} ${this.props.id}`}
+          type="text"
+        />
+      </React.Fragment>
+    );
+  }
+
+  getSubSection() {
+    return this.context[`${this.props.type.subName}List`]
+      .filter((subSection) => subSection.seasonId === this.props.id)
+      .map((subSection) => {
+        const subReview = this.getReview(subSection);
         return (
           <Link
             to={
-              epReview
-                ? `/users/1/review-main/${epReview.id}`
+              subReview
+                ? `/users/1/review-main/${subReview.id}`
                 : `/users/1/profile`
             }
-            key={episode.id}
+            key={subSection.id}
             className="episode"
           >
-            {episode.name}{" "}
-            {epReview ? (
-              <p>{epReview.content.substring(0, 100)}</p>
+            {subSection.title}{" "}
+            {subReview ? (
+              <p>{subReview.content.substring(0, 100)}</p>
             ) : (
               <Link to={`/users/1/review-form/${this.props.id}/episode/`}>
                 <button> Write Review</button>
@@ -43,8 +62,8 @@ export default class Season extends React.Component {
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
-        <div className="season">
-          {this.props.name}
+        <div className="section">
+          {this.props.title}
           {<br />}
           {review ? (
             <React.Fragment>
@@ -61,16 +80,7 @@ export default class Season extends React.Component {
               <button>Write Review</button>
             </Link>
           )}
-          <div className="episode-list ">{this.getEpisodes()}</div>
-          <button>Add episode</button>
-          <label className="hidden" htmlFor={`add-episode ${this.props.id}`}>
-            Add episode
-          </label>
-          <input
-            className="hidden"
-            id={`add-episode ${this.props.id}`}
-            type="text"
-          />
+          {this.props.type.hasSubs && this.getSubDisplay()}
         </div>
       </div>
     );
