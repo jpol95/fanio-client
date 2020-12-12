@@ -13,7 +13,6 @@ export default class Section extends React.Component {
   }
 
   getSubDisplay() {
-    // console.log("kjrenferkjferkjnerfkerjfjkn")
     return (
       <React.Fragment>
         <div className="subsection-list ">{this.getSubSection()}</div>
@@ -32,12 +31,13 @@ export default class Section extends React.Component {
   }
 
   getSubSection() {
-    return this.context[`${this.props.type.subName}List`]
-      .filter((subSection) => subSection.seasonId === this.props.id)
+    const subSection =  this.context[`${this.props.type.subName}List`]
+      .filter((subSection) => subSection[`${this.props.type.sectionName}Id`] === this.props.id)
       .map((subSection) => {
         const subReview = this.getReview(subSection);
         return (
           <Link
+          {...subSection}
             to={
               subReview
                 ? `/users/1/review-main/${subReview.id}`
@@ -46,6 +46,8 @@ export default class Section extends React.Component {
             key={subSection.id}
             className="episode"
           >
+            {`${this.props.type.subName.charAt(0).toUpperCase() + this.props.type.subName.slice(1)} ${subSection.order}`}
+            {<br />}
             {subSection.title}{" "}
             {subReview ? (
               <p>{subReview.content.substring(0, 100)}</p>
@@ -57,12 +59,18 @@ export default class Section extends React.Component {
           </Link>
         );
       });
+      
+      subSection.sort((a,b) => a.props.order - b.props.order)
+
+      return subSection
   }
   render() {
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
         <div className="section">
+        {`${this.props.type.sectionName.charAt(0).toUpperCase() + this.props.type.sectionName.slice(1)} ${this.props.order}`}
+        {<br />}
           {this.props.title}
           {<br />}
           {review ? (

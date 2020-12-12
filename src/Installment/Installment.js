@@ -14,7 +14,7 @@ export default class Installment extends React.Component{
     //make objects have list word in them
     getSections(){
         // console.log(this.context[`${this.getType().sectionName}List`])
-        return this.context[`${this.getType().sectionName}List`]
+        const sectionsArray =  this.context[`${this.getType().sectionName}List`]
         .filter(section => {
             return section.installmentId === this.props.id
         })
@@ -22,6 +22,9 @@ export default class Installment extends React.Component{
             // console.log(section)
           return <Section key={section.id} {...section} type={this.getType()} />
         })
+
+        sectionsArray.sort((a, b) => a.props.order - b.props.order)
+        return sectionsArray
       }
 
 

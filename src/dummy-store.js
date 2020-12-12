@@ -38,11 +38,11 @@ const bookList = [
 ]
 
 const arcList = [
-    {id: 4, title: `Buffy Season 8`, installmentId: 4, reviewId: 23}
+    {id: 4, title: `Buffy Season 8`, order: 8, installmentId: 4, reviewId: 23}
 ]
 
 const issueList = [
-    {id: 1, title: `Buffy Season 8 issue 1`, reviewId: 24, collectionId: 4}
+    {id: 1, title: `Buffy Season 8 issue 1`, order: 1, reviewId: 24, arcId: 4}
 ]
 
 const reviewList = [
@@ -97,7 +97,7 @@ const seasonList = [
 
 
 const episodeList = [
-    {id: 1, title: "Doctor Who s3e5", order: 5, reviewId: 1, seasonId: 3},
+    {id: 1, title: "Doctor Who s3e5", order: 5, reviewId: 1, seasonId: 2},
     {id: 2, title: "Doctor Who s4e7", order: 7, reviewId: 2, seasonId: 4},
     {id: 3, title: "Supernatural s2e3", order: 3, reviewId: null, seasonId: 9},
     {id: 4, title: "Supernatural s3e4", order: 4, reviewId: 4, seasonId: 11},
@@ -105,8 +105,8 @@ const episodeList = [
     {id: 6, title: "PR s3e12", order: 12, reviewId: 6, seasonId: 10},
     {id: 7, title: "Buffy s2e4", order: 4, reviewId: 7, seasonId: 7},
     {id: 8, title: "Buffy s5e9", order: 9, reviewId: null, seasonId: 12},
-    {id: 9, title: "Doctor Wo s2e9", order: 9, reviewId: 9, seasonId: 2},
-    {id: 10, title: "Doctor Who s1e2", order: 2, reviewId: 10, seasonId: 1},
+    {id: 9, title: "Doctor Who s2e9", order: 9, reviewId: 9, seasonId: 1},
+    {id: 10, title: "Doctor Who s1e2", order: 2, reviewId: 10, seasonId: 3},
     {id: 11, title: "PR s5e18", order: 18, reviewId: null, seasonId: 5},
     {id: 12, title: "PR s5e17", order: 17, reviewId: 12, seasonId: 5},
     {id: 13, title: "Supernatural s2e7", order: 7, reviewId: 13, seasonId: 9},
