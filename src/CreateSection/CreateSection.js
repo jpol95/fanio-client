@@ -10,6 +10,7 @@ export default class CreateSection extends React.Component {
   handleSectionOrder = (e) => {
     sectionOrder = e.target.value;
     this.setState({
+      ...this.state,
       sectionOrder,
     });
   };
@@ -17,6 +18,7 @@ export default class CreateSection extends React.Component {
   handleNumSubs = (e) => {
     numSubs = e.target.value;
     this.setState({
+      ...this.state,
       numSubs,
     });
   };
@@ -24,14 +26,15 @@ export default class CreateSection extends React.Component {
   handleSectionTitle = (e) => {
     sectionTitle = e.target.value;
     this.setState({
+      ...this.state,
       sectionTitle,
     });
   };
 
   createSubLists = () => {
     const subListArray = [];
-    for (let i = 0; i < this.state.numSubs; i++){
-    subListArray.push(<SubList {...props} subId={`${i}`}/>);
+    for (let i = 0; i < this.state.numSubs; i++) {
+      subListArray.push(<CreateSubList {...props} subId={`${i}`} />);
     }
     return subListArray;
   };
@@ -79,21 +82,5 @@ export default class CreateSection extends React.Component {
   }
 }
 
-
-
 //WHEN YOU GET BACK make sure you separe this into another class since this neweds its own title an dorder number, then your job is tofigure
 //out how to put this whole form together, including sending the info up
-function SubList(props) {
-  return (
-    <React.Fragment>
-      <label for={`subsection-${props.id}-order`}>
-        What's the {props.type.subName} number?
-      </label>
-      <input onChange={this.handleNumSubs} type="number" />
-      <label for={`${props.id} title`}>
-        What's the {props.type.subName} title?
-      </label>
-      <input onChange={this.handlesectionName} type="text" />
-    </React.Fragment>
-  );
-}
