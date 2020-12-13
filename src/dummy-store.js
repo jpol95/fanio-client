@@ -11,10 +11,10 @@ const fandomList =  [
 //you'd have a join table of users to fandoms 
 
 const typeList = [
-    {id: 1, type: 'show', hasSubs: true, sectionName: 'season', subName: 'episode'}, 
-    {id: 2, type: 'book', hasSubs: false, sectionName: 'book', subName: null}, 
-    {id: 3, type: 'movie', hasSubs: false, sectionName: 'movie', subName: null}, 
-    {id: 4, type: 'comic', hasSubs: true, sectionName: 'arc', subName: 'issue'}
+    {id: 1, title: 'show', hasSubs: true, sectionName: 'season', subName: 'episode'}, 
+    {id: 2, title: 'book series', hasSubs: false, sectionName: 'book', subName: null}, 
+    {id: 3, title: 'movie series', hasSubs: false, sectionName: 'movie', subName: null}, 
+    {id: 4, title: 'comic', hasSubs: true, sectionName: 'arc', subName: 'issue'}
 ]
 
 //later on if I want to add the option of comics not having subs
