@@ -11,6 +11,8 @@ export default class CreateSubList extends React.Component{
         this.setState({
             ...this.state, subTitle
         })
+        
+        this.props.addSub({...this.state, subId: this.props.subId})
     }
 
     handleOrderNumber = (e) => {
@@ -18,6 +20,7 @@ export default class CreateSubList extends React.Component{
         this.setState({
             ...this.state, orderNumber
         })
+        this.props.addSub({...this.state, subId: this.props.subId})
     }
 
     render(){

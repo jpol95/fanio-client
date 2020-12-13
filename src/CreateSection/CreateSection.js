@@ -5,6 +5,7 @@ export default class CreateSection extends React.Component {
     numSubs: 0,
     sectionOrder: 0,
     sectionTitle: "",
+    subList: []
   };
 
   handleSectionOrder = (e) => {
@@ -17,9 +18,14 @@ export default class CreateSection extends React.Component {
 
   handleNumSubs = (e) => {
     numSubs = e.target.value;
+    const subList = []
+    for (let i = 0; i < numSubs; i++){
+        subList.push({})
+    }
     this.setState({
       ...this.state,
       numSubs,
+      subList
     });
   };
 
@@ -34,10 +40,19 @@ export default class CreateSection extends React.Component {
   createSubLists = () => {
     const subListArray = [];
     for (let i = 0; i < this.state.numSubs; i++) {
-      subListArray.push(<CreateSubList {...props} subId={`${i}`} />);
+      subListArray.push(<CreateSubSection {...props} subId={`${i}`} addSub={this.addSub} />);
     }
     return subListArray;
   };
+
+  addSub = (subObject) => {
+    const {subId} = subObject
+    const stateSubsCopy = [...this.state.subList]
+    stateSubsCopy[subId] = {...subObject, sectionId: this.props.sectionId}
+    this.setState({
+        ...this.state, subList: [...stateSubsCopy]
+    })
+  }
 
   render() {
     return (
