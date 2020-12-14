@@ -14,8 +14,24 @@ const typeList = [
     {id: 1, title: 'show', hasSubs: true, sectionName: 'season', subName: 'episode'}, 
     {id: 2, title: 'book series', hasSubs: false, sectionName: 'book', subName: null}, 
     {id: 3, title: 'movie series', hasSubs: false, sectionName: 'movie', subName: null}, 
-    {id: 4, title: 'comic', hasSubs: true, sectionName: 'arc', subName: 'issue'}
+    {id: 4, title: 'comic series', hasSubs: true, sectionName: 'arc', subName: 'issue'}
 ]
+
+// installment of type show
+// How many seasons? 5
+// How many episodes in this season?
+
+// book series?
+// It'll ask how many books?
+
+
+
+sectionList --> subSectionList 
+
+
+//hasSubs not necessary
+//so instead of having separate typeList table, type can be a field attached to installment table
+
 
 //later on if I want to add the option of comics not having subs
 //then i could just have another type that's false, call one 

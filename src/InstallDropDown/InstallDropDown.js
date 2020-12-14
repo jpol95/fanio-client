@@ -17,6 +17,8 @@ export default class InstallDropDown extends React.Component {
     return this.context.map(type => type.id === id)
   }
 
+  //make a service class for this type of map and filter logic
+
   handleTypeChange = (e) => {
     this.setState({
       type: this.getType(e.target.value)

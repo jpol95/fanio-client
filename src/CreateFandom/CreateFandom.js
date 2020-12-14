@@ -6,51 +6,71 @@ import InstallDropDown from "../InstallDropDown/InstallDropDown";
 //rename type attribute to title
 
 export default class Fandom extends React.Component {
+
+  static contextType = FanioContext
   state = {
     fandomName: "",
-    fandomId: null,
-    installments: [],
-    sections: [],
-    subSections: [],
+    id: Math.round(Math.random()*1000000000)
   };
 
-  handleSectionAdd(section) {
+  handleName(e){
     this.setState({
-      ...this.state,
-      sections: [...this.state.sections, section],
-    });
+      ...this.state, fandomName: e.target.value
+    })
   }
 
-  handleSubSectionAdd(subSection) {
-    this.setState({
-      ...this.state,
-      subSections: [...this.state.subSections, subSection],
-    });
+  handleSubmit(){
+    this.history.push(`/users/1/fandom-view/${this.state.id}`)
+    this.context.handleAddFandom({fandomName: this.state.fandomName, id: this.state.id})
   }
 
-  handleInstallmentAdd(installment) {
-    this.setState({
-      ...this.state,
-      installments: [...this.state.installments, installment],
-    });
-  }
+  // handleSectionAdd(section) {
+  //   this.setState({
+  //     ...this.state,
+  //     sections: [...this.state.sections, section],
+  //   });
+  // }
 
-  callBacks = {
-    handleInstallmentAdd: this.handleInstallmentAdd,
-    handleSubSectionAdd: this.handleSectionAdd,
-    handleSectionAdd: this.handleSectionAdd,
-  };
-  static contextType = FanioContext;
+  // handleSubSectionAdd(subSection) {
+  //   this.setState({
+  //     ...this.state,
+  //     subSections: [...this.state.subSections, subSection],
+  //   });
+  // }
 
-  getInstallDDs(numInstalls) {
-    let installDDs = [];
-    for (let i = 0; i < numInstalls; i++) {
-      installDDs.push(
-        <InstallDropDown {...this.callBacks} key={i} installId={i} />
-      );
-    }
-    return installDDs;
-  }
+  // handleInstallmentAdd(installment) {
+  //   this.setState({
+  //     ...this.state,
+  //     installments: [...this.state.installments, installment],
+  //   });
+  // }
+
+  // addInstallment = (installObject) => {
+  //   const {installId} = installObject
+  //   const stateInstallmentsCopy = [...this.state.installList]
+  //   stateInstallmentsCopy[sectionId] = {...sectionObject, installId: this.props.sectionId}
+  //   this.setState({
+  //       ...this.state, installList: [...stateInstallmentsCopy]
+  //   })
+  // }
+
+
+  // callBacks = {
+  //   handleInstallmentAdd: this.handleInstallmentAdd,
+  //   handleSubSectionAdd: this.handleSectionAdd,
+  //   handleSectionAdd: this.handleSectionAdd,
+  // };
+  // static contextType = FanioContext;
+
+  // getInstallDDs(numInstalls) {
+  //   let installDDs = [];
+  //   for (let i = 0; i < numInstalls; i++) {
+  //     installDDs.push(
+  //       <InstallDropDown {...this.callBacks} key={i} installId={i} />
+  //     );
+  //   }
+  //   return installDDs;
+  // }
 
   // this.setState({
   //   ...this.state, numOfInstalls: installDDs.length
@@ -59,16 +79,11 @@ export default class Fandom extends React.Component {
     return (
       <div className="fandom">
         <p>Create a new fandom</p>
-        <p>
-          The only field required is the name of the fandom. If you wish to
-          supply the other details of the fandom now, you may do so as well.
-        </p>
+        <form class="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
-        <input id="workname" type="text" />
-        <label htmlFor="seasons">Number of Installments</label>
-        <input id="seasons" type="text" />
-        {this.getInstallDDs(this.state.numOfInstalls)}
-        <button>Create New Fandom</button>
+        <input onChange={this.handleName} id="workname" type="text" />
+        <button type="submit">Create New Fandom</button>
+        </form>
       </div>
     );
   }

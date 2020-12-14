@@ -12,7 +12,8 @@ const FanioContext = React.createContext({
     issueList: [],
     arcList: [],
     installmentList: [],
-    handleSubmit: () => {}
+    handleSubmit: () => {}, 
+    handleAddFandom: () => {}
 })
 
 export default FanioContext

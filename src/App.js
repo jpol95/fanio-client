@@ -51,6 +51,12 @@ class App extends React.Component {
     });
   };
 
+  handleAddFandom = (fandom) => {
+    this.setState({
+      ...this.state, fandomList: [...this.state.fandomList, fandom]
+    })
+  }
+
   render() {
     return (
       <FanioContext.Provider
@@ -67,6 +73,7 @@ class App extends React.Component {
           arcList: this.state.arcList,
           installmentList: this.state.installmentList,
           handleSubmit: this.handleSubmit,
+          handleAddFandom: this.handleAddFandom
         }}
       >
         <NavBar />

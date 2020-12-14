@@ -20,7 +20,6 @@ export default class Fandom extends React.Component {
     return (
       <div className="fandom-view">
         <h3>{this.props.title}</h3>
-        {this.getInstallments()}
       </div>
     );
   }
