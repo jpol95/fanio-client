@@ -40,23 +40,25 @@ export default class Section extends React.Component {
         const subReview = this.getReview(subSection);
         return (
           <Link
-          {...subSection}
+          {...subSection} //??????????
             to={
               subReview
                 ? `/users/1/review-main/${subReview.id}`
-                : this.props.location
+                : ""
             }
             key={subSection.id}
-            className="episode"
+            onClick={(e) => {e.stopPropagation(); if (!subReview) e.preventDefault()}}
+            className={`episode ${!subReview ? "disabled-link" : "" }`}
+            
           >
             {`${this.props.type.subName.charAt(0).toUpperCase() + this.props.type.subName.slice(1)} ${subSection.order}`}
             {<br />}
             {subSection.title}{" "}
             {subReview ? (
-              <p>{subReview.content.substring(0, 100)}</p>
+             <p> {subReview.content.substring(0, 100)}</p>
             ) : (
               
-              <button onClick={(e) => {e.preventDefault(); window.open(`/users/1/review-form/${this.props.id}/episode/`, '_self')}}> Write Review </button>
+              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/review-form/${this.props.id}/episode/`, '_self')}}> Write Review </button>
             )}
           </Link>
         );
@@ -78,16 +80,17 @@ export default class Section extends React.Component {
           {<br />}
           {review ? (
             <React.Fragment>
-              {review.content.substring(0, 100)}
+              <p>{review.content.substring(0, 100)}</p>
               <Link
-                className="full-page-link"
+                className="full-page-link write-review-button"
                 to={`/users/1/review-main/${review.id}`}
               >
-                <button>View Full Review</button>
+                View Full Review
               </Link>
             </React.Fragment>
           ) : (
-              <button onClick={(e) => {e.stopPropagation();  window.open(`/users/1/review-form/${this.props.id}`, '_self')}} className="write-review-season-button">Write Review</button>      
+            <Link className="write-review-button" to={`/users/1/review-form/${this.props.id}`}> Write Review </Link>
+            //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           {this.state.clicked && this.props.type.hasSubs && this.getSubDisplay()}
         </div>

@@ -50,3 +50,10 @@ padding: 5px;
 /* .write-review-season-button{
     padding: 0%;
 } */
+
+
+
+.disabled-link{
+    cursor: default;
+}
+ 

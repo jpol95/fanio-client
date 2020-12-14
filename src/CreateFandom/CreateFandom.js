@@ -1,7 +1,7 @@
 import React from "react";
 import "./CreateFandom.css";
 import FanioContext from "../FanioContext";
-import InstallDropDown from "../InstallDropDown/InstallDropDown";
+import InstallDropDown from "../CreateSingleInstallment/CreateSingleInstallment";
 
 //rename type attribute to title
 
@@ -13,15 +13,17 @@ export default class Fandom extends React.Component {
     id: Math.round(Math.random()*1000000000)
   };
 
-  handleName(e){
+  handleName = (e) => {
     this.setState({
       ...this.state, fandomName: e.target.value
     })
   }
 
-  handleSubmit(){
-    this.history.push(`/users/1/fandom-view/${this.state.id}`)
-    this.context.handleAddFandom({fandomName: this.state.fandomName, id: this.state.id})
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.history.push(`/users/1/fandom-view/${this.state.id}`)
+    // this.props.history.push(`/users/1/profile`)
+    this.context.handleAddFandom({title: this.state.fandomName, id: this.state.id, user: 1})
   }
 
   // handleSectionAdd(section) {
@@ -79,7 +81,7 @@ export default class Fandom extends React.Component {
     return (
       <div className="fandom">
         <p>Create a new fandom</p>
-        <form class="create-fandom">
+        <form onSubmit={this.handleSubmit} class="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
         <input onChange={this.handleName} id="workname" type="text" />
         <button type="submit">Create New Fandom</button>

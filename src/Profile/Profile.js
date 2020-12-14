@@ -4,6 +4,7 @@ import Reviews from '../Reviews/Reviews'
 import Fandom from '../Fandom/Fandom'
 import FanioContext from '../FanioContext'
 import './Profile.css'
+import {Link} from 'react-router-dom'
 
 
 export default class Profile extends React.Component {
@@ -21,6 +22,7 @@ export default class Profile extends React.Component {
         <PersonalInfo />
         <Reviews />
         {this.getFandoms()}
+        <Link to={`/users/1/fandom-form`}>Create Fandom</Link>
       </React.Fragment>
     );
   }
