@@ -1,35 +1,41 @@
-import React from 'react'
+import React from "react";
+import FanioContext from "../FanioContext";
+import Section from "../Section/Section";
 
-export default class InstallmentView extends React.Component{
+export default class InstallmentView extends React.Component {
+  static contextType = FanioContext;
 
-    static contextType = FanioContext
+  getInstallment = () => {
+    return this.context.installmentList.find(
+      (installment) => Number(this.props.match.params.installmentId) === installment.id
+    );
+  };
 
-    getType = () => {
-        return this.context.typeList.find(type => type.id === this.props.typeId)
-    }
+  getType = () => {
+    return this.context.typeList.find(
+      (type) => this.getInstallment().typeId === type.id
+    );
+  };
 
-    
-    getSections(){
-        // console.log(this.context[`${this.getType().sectionName}List`])
-        const sectionsArray =  this.context[`${this.getType().sectionName}List`]
-        .filter(section => {
-            return section.installmentId === this.props.id
-        })
-        .map(section => {
-            // console.log(section)
-          return <Section key={section.id} {...section} type={this.getType()} />
-        })
+  getSections() {
+    const sectionsArray = this.context[`${this.getType().sectionName}List`]
+      .filter((section) => {
+        return section.installmentId === Number(this.props.match.params.installmentId);
+      })
+      .map((section) => {
+        return <Section key={section.id} {...section} {...this.props} type={this.getType()} />;
+      });
 
-        sectionsArray.sort((a, b) => a.props.order - b.props.order)
-        return sectionsArray
-      }
+    sectionsArray.sort((a, b) => a.props.order - b.props.order);
+    return sectionsArray;
+  }
 
-      render() {
-        return (
-          <div className="fandom-view">
-            <h4>{this.props.title}</h4>
-            {this.getSections()}
-          </div>
-        );
-      }
+  render() {
+    return (
+      <div className="fandom-view">
+        <h4>{this.getInstallment() && this.getInstallment().title}</h4>
+        {this.context.fandomList.length != 0 && this.getSections()}
+      </div>
+    );
+  }
 }

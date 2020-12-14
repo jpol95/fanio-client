@@ -6,6 +6,8 @@ import Footer from "./Footer/Footer";
 import CreateReview from "./CreateReview/CreateReview";
 import CreateFandom from "./CreateFandom/CreateFandom";
 import ReviewMain from "./ReviewMain/ReviewMain";
+import FandomView from './FandomView/FandomView'
+import InstallmentView from './InstallmentView/InstallmentView'
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
@@ -95,6 +97,16 @@ class App extends React.Component {
           exact
           path="/users/:userId/review-main/:reviewId"
           component={ReviewMain}
+        />
+        <Route
+          exact
+          path="/users/:userId/fandom-view/:fandomId"
+          component={FandomView}
+          />
+        <Route
+          exact
+          path="/users/:userId/fandom/:fandomId/installment-view/:installmentId"
+          component={InstallmentView}
         />
         <Route exact path="/signup-form" component={SignUp} />
         <Route exact path="/landing" component={Landing} />

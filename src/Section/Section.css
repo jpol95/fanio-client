@@ -40,3 +40,13 @@ padding: 5px;
 .full-page-link{
     text-decoration: none;
 }
+
+.write-review-season-link{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
+/* .write-review-season-button{
+    padding: 0%;
+} */

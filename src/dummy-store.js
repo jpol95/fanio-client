@@ -26,7 +26,7 @@ const typeList = [
 
 
 
-sectionList --> subSectionList 
+// sectionList --> subSectionList 
 
 
 //hasSubs not necessary

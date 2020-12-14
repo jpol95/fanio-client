@@ -1,23 +1,26 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import FanioContext from "../FanioContext";
 
-export default class Installment extends React.Component{
+export default class Installment extends React.Component {
+  static contextType = FanioContext;
 
-  static contextType = FanioContext
+  fandomId = this.props.match.params.fandomId;
+  installmentId = this.props.id;
 
-  fandomId = this.props.params.match.fandomId
-  installmentId = this.props.installmentId
-  
+  getType = () => {
+    return this.context.typeList.find((type) => type.id === this.props.typeId);
+  };
 
-    getType = () => {
-        return this.context.typeList.find(type => type.id === this.props.typeId)
-    }
-
-    render() {
-        return (
-          <Link to={`/users/1/fandom/${fandomId}/installment/${installmentId}/${this}`} className="fandom-view">
-            <h4>{this.props.title}</h4>
-          </Link>
-        );
-      }
+  render() {
+    console.log(this.props);
+    return (
+      <Link
+        to={`/users/1/fandom/${this.fandomId}/installment-view/${this.installmentId}`}
+        className="fandom-view"
+      >
+        <h4>{this.props.title}</h4>
+      </Link>
+    );
+  }
 }

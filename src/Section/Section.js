@@ -4,6 +4,9 @@ import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
 
 export default class Section extends React.Component {
+  state = {
+    clicked: false
+  }
   static contextType = FanioContext;
 
   getReview(element) {
@@ -41,7 +44,7 @@ export default class Section extends React.Component {
             to={
               subReview
                 ? `/users/1/review-main/${subReview.id}`
-                : `/users/1/profile`
+                : this.props.location
             }
             key={subSection.id}
             className="episode"
@@ -52,9 +55,8 @@ export default class Section extends React.Component {
             {subReview ? (
               <p>{subReview.content.substring(0, 100)}</p>
             ) : (
-              <Link to={`/users/1/review-form/${this.props.id}/episode/`}>
-                <button> Write Review</button>
-              </Link>
+              
+              <button onClick={(e) => {e.preventDefault(); window.open(`/users/1/review-form/${this.props.id}/episode/`, '_self')}}> Write Review </button>
             )}
           </Link>
         );
@@ -64,11 +66,12 @@ export default class Section extends React.Component {
 
       return subSection
   }
+
   render() {
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
-        <div className="section">
+        <div onClick={() => this.setState({clicked: !this.state.clicked})} className="section">
         {`${this.props.type.sectionName.charAt(0).toUpperCase() + this.props.type.sectionName.slice(1)} ${this.props.order}`}
         {<br />}
           {this.props.title}
@@ -84,13 +87,12 @@ export default class Section extends React.Component {
               </Link>
             </React.Fragment>
           ) : (
-            <Link to={`/users/1/review-form/${this.props.id}`}>
-              <button>Write Review</button>
-            </Link>
+              <button onClick={(e) => {e.stopPropagation();  window.open(`/users/1/review-form/${this.props.id}`, '_self')}} className="write-review-season-button">Write Review</button>      
           )}
-          {this.props.type.hasSubs && this.getSubDisplay()}
+          {this.state.clicked && this.props.type.hasSubs && this.getSubDisplay()}
         </div>
       </div>
     );
   }
 }
+//<Link className="write-review-season-link" to={`/users/1/review-form/${this.props.id}`}>

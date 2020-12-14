@@ -1,6 +1,9 @@
 .personal, .fandom, .fandom-view{
     background-color: lightgray;
     padding: 20px;
+    display: block;
+    text-decoration: none;
+    color: black;
 }
 
 .personal, .fandom-view{
