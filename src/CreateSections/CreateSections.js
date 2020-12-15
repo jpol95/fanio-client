@@ -16,6 +16,10 @@ export default class CreateSections extends React.Component {
       return this.context.installmentList.find(installment => Number(this.props.match.params.installmentId) === installment.id)
   }
 
+  listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
+  parentName = this.props.match.params.sectionId ? this.getType().sectionName : "installment"
+  genParentName = this.props.match.params.sectionId ? "section": "installment"
+
 
   state = {
     numSections: 0,
@@ -37,20 +41,19 @@ export default class CreateSections extends React.Component {
   };
 
   createSectionForms() {
-    const sectionFormArray = [];
+    const sectionFormArray = []
     for (let i = 0; i < this.state.numSections; i++) {
-      sectionFormArray.push(<CreateSingleSection type={this.getType()} handleAddSection={this.handleAddSection} sectionId={i} />);
+      sectionFormArray.push(<CreateSingleSection {...this.props} type={this.getType()} handleAddSection={this.handleAddSection} sectionId={i} />);
     }
     return sectionFormArray
   }
 
   handleAddSection = (section) => {
+    console.log(this.props.match.params[`sectionId`])
     const sectionListCopy = [...this.state.sectionList];
-    
     sectionListCopy[section.sectionId] = {
       ...section,
-      installmentId: Number(this.props.match.params.installmentId),
-      id: Math.round(Math.random()*100000000)
+      [`${this.parentName}Id`]: Number(this.props.match.params[`${this.genParentName}Id`])
     };
     // console.log(sectionListCopy)
     this.setState({
@@ -60,20 +63,21 @@ export default class CreateSections extends React.Component {
 
   handleSubmitSections = (e) => {
     e.preventDefault()
-    console.log(this.state)
-    this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`)
-    this.context.handleSubmitSections(this.state.sectionList)
+    // console.log(this.state)
+    this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
+    this.context.handleSubmitSections(this.state.sectionList, this.listName)
   }
 
 //is there a way to combine the add seasons and add episodes form?
 //figure out why form is not submitting properly
 
   render() {
-    // console.log("creating Section forms")
+    // console.log("creating Section forms") 
+    //HOW IS THIS.PROPS.INSTALLID NOT THROWING AN ERROR IM PRETTY SURE IM NOT PASSING ANY PROPS INTO THIS CLASS
     return (
       <form className="add-sections" onSubmit={this.handleSubmitSections}>
-        <label htmlFor={`section-title-${this.props.installId}`}>
-          How many {this.getType(this.getInstallment().typeId).sectionName}s would you like to add?
+        <label htmlFor={`section-title-${this.props.installId}`}> 
+          How many {this.listName}s would you like to add?
         </label>
         <input
           id={`section-title-${this.props.installId}`}
@@ -81,7 +85,7 @@ export default class CreateSections extends React.Component {
           onChange={this.handleNumSections}
         />
         {this.createSectionForms()}
-        <button className="submit-sections-button" type="submit">Add {this.getType(this.getInstallment().typeId).sectionName}s </button>
+        <button className="submit-sections-button" type="submit">Add {this.listName}s </button>
       </form>
     );
   }

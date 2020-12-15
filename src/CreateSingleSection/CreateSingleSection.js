@@ -1,6 +1,7 @@
 import React from "react";
 
 export default class CreateSingleSection extends React.Component {
+  listName = this.props.match.params.sectionId ? "subName" : "sectionName"
   state = {
     order: 0,
     title: "",
@@ -34,7 +35,7 @@ export default class CreateSingleSection extends React.Component {
         <label
           for={`section-title-${this.props.id}`}
         >
-          What's the title of this {this.props.type && this.props.type.sectionName}?
+          What's the title of this {this.props.type && this.props.type[this.listName]}?
         </label>
         <input
           onChange={this.handleSectionTitle}
@@ -43,7 +44,7 @@ export default class CreateSingleSection extends React.Component {
         <label
           for={`section-order-${this.props.id}`}
         >
-          In what order does this {this.props.type &&  this.props.type.sectionName} come?
+          In what order does this {this.props.type &&  this.props.type[this.listName]} come?
         </label>
         <input
           onChange={this.handleSectionOrder}

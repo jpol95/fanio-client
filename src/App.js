@@ -6,10 +6,10 @@ import Footer from "./Footer/Footer";
 import CreateReview from "./CreateReview/CreateReview";
 import CreateFandom from "./CreateFandom/CreateFandom";
 import ReviewMain from "./ReviewMain/ReviewMain";
-import FandomView from './FandomView/FandomView'
-import InstallmentView from './InstallmentView/InstallmentView'
-import CreateInstallments from './CreateInstallments/CreateInstallments'
-import CreateSections from './CreateSections/CreateSections'
+import FandomView from "./FandomView/FandomView";
+import InstallmentView from "./InstallmentView/InstallmentView";
+import CreateInstallments from "./CreateInstallments/CreateInstallments";
+import CreateSections from "./CreateSections/CreateSections";
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
@@ -32,10 +32,34 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const { fandomList, reviewList, seasonList, episodeList, tagList, reviewTagList, typeList, bookList, issueList, arcList, installmentList } = dummyStore
-    const seedData = { fandomList, reviewList, seasonList, episodeList, tagList, reviewTagList, typeList, bookList, issueList, arcList, installmentList }
+    const {
+      fandomList,
+      reviewList,
+      seasonList,
+      episodeList,
+      tagList,
+      reviewTagList,
+      typeList,
+      bookList,
+      issueList,
+      arcList,
+      installmentList,
+    } = dummyStore;
+    const seedData = {
+      fandomList,
+      reviewList,
+      seasonList,
+      episodeList,
+      tagList,
+      reviewTagList,
+      typeList,
+      bookList,
+      issueList,
+      arcList,
+      installmentList,
+    };
     this.setState({
-      ...seedData
+      ...seedData,
     });
   }
 
@@ -57,25 +81,26 @@ class App extends React.Component {
 
   handleAddFandom = (fandom) => {
     this.setState({
-      ...this.state, fandomList: [...this.state.fandomList, fandom]
-    })
-  }
+      ...this.state,
+      fandomList: [...this.state.fandomList, fandom],
+    });
+  };
 
   handleSubmitInstallments = (installmentList) => {
     this.setState({
-      ...this.state, installmentList: [...this.state.installmentList, ...installmentList]
-    })
-  }
+      ...this.state,
+      installmentList: [...this.state.installmentList, ...installmentList],
+    });
+  };
 
-  handleSubmitSections = (sectionList) => {
-    const installment = this.state.installmentList.find(installment => Number(sectionList[0].installmentId) === installment.id)
-    const type = this.state.typeList.find(type => installment.typeId === type.id)
-    const sectionListName = [`${type.sectionName}List`]
-    console.log(sectionListName)
+  handleSubmitSections = (sectionList, listName) => {
+    const sectionListName = [`${listName}List`];
+    console.log(sectionList)
     this.setState({
-      ...this.state, [sectionListName]: [...this.state[sectionListName], ...sectionList]
-    })
-  }
+      ...this.state,
+      [sectionListName] : [...this.state[sectionListName], ...sectionList],
+    });
+  };
 
   render() {
     return (
@@ -93,9 +118,9 @@ class App extends React.Component {
           arcList: this.state.arcList,
           installmentList: this.state.installmentList,
           handleSubmit: this.handleSubmit,
-          handleAddFandom: this.handleAddFandom, 
+          handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
-          handleSubmitSections: this.handleSubmitSections
+          handleSubmitSections: this.handleSubmitSections,
         }}
       >
         <NavBar />
@@ -122,7 +147,7 @@ class App extends React.Component {
           exact
           path="/users/:userId/fandom-view/:fandomId"
           component={FandomView}
-          />
+        />
         <Route
           exact
           path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
@@ -132,12 +157,15 @@ class App extends React.Component {
           exact
           path="/users/:userId/fandoms/:fandomId/add-installments-form"
           component={CreateInstallments}
-          />
-          <Route 
-            exact 
-            path="/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form"
-            component={CreateSections}
-            />
+        />
+        <Route
+          exact
+          path={[
+            "/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form",
+            "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/add-subs-form",
+          ]}
+          component={CreateSections}
+        />
         <Route exact path="/signup-form" component={SignUp} />
         <Route exact path="/landing" component={Landing} />
         <Footer />

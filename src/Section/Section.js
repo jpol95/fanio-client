@@ -9,6 +9,10 @@ export default class Section extends React.Component {
   }
   static contextType = FanioContext;
 
+  fandomId = this.props.match.params.fandomId
+  installmentId = this.props.match.params.installmentId
+  sectionId = this.props.id
+
   getReview(element) {
     return this.context.reviewList.find(
       (review) => review.id === element.reviewId
@@ -19,23 +23,14 @@ export default class Section extends React.Component {
     return (
       <React.Fragment>
         <div className="subsection-list ">{this.getSubSection()}</div>
-        <button>Add {this.props.type.subName}</button>
-        <label className="hidden" htmlFor={`add-episode ${this.props.id}`}>
-          Add {this.props.type.subName}
-        </label>
-        <input
-          className="hidden"
-          i
-          d={`add-${this.props.type.subName} ${this.props.id}`}
-          type="text"
-        />
+        <Link to={`/users/1/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/add-subs-form`}>Add {this.props.type.subName}s</Link>
       </React.Fragment>
     );
   }
 
   getSubSection() {
     const subSection =  this.context[`${this.props.type.subName}List`]
-      .filter((subSection) => subSection[`${this.props.type.sectionName}Id`] === this.props.id)
+      .filter((subSection) => subSection[`${this.props.type.sectionName}Id`] === this.sectionId)
       .map((subSection) => {
         const subReview = this.getReview(subSection);
         return (
@@ -58,7 +53,7 @@ export default class Section extends React.Component {
              <p> {subReview.content.substring(0, 100)}</p>
             ) : (
               
-              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/review-form/${this.props.id}/episode/`, '_self')}}> Write Review </button>
+              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/review-form/${this.sectionId}/episode/`, '_self')}}> Write Review </button>
             )}
           </Link>
         );
@@ -89,7 +84,7 @@ export default class Section extends React.Component {
               </Link>
             </React.Fragment>
           ) : (
-            <Link className="write-review-button" to={`/users/1/review-form/${this.props.id}`}> Write Review </Link>
+            <Link className="write-review-button" to={`/users/1/review-form/${this.sectionId}`}> Write Review </Link>
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           {this.state.clicked && this.props.type.hasSubs && this.getSubDisplay()}
