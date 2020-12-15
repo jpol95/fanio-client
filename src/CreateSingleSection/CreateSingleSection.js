@@ -2,46 +2,48 @@ import React from "react";
 
 export default class CreateSingleSection extends React.Component {
   state = {
-    sectionOrder: 0,
-    sectionTitle: "",
+    order: 0,
+    title: "",
   };
 
   handleSectionOrder = (e) => {
-    const sectionOrder = e.target.value;
-    this.setState({
+    const order = e.target.value;
+    const p = new Promise((resolve, reject) => 
+    resolve(this.setState({
       ...this.state,
-      sectionOrder,
-    });
-    this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId });
+      order,
+    })));
+    p.then(() => this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId }));
   };
 
 
 
   handleSectionTitle = (e) => {
-    const sectionTitle = e.target.value;
-    this.setState({
+    const title = e.target.value;
+    const p = new Promise((resolve, reject) => 
+    resolve(this.setState({
       ...this.state,
-      sectionTitle,
-    });
-    this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId });
+      title,
+    })))
+  p.then(() => this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId }));
   };
 
   render() {
     return (
       <React.Fragment>
         <label
-          for={`section-title-${this.props.installId}-${this.props.sectionId}`}
+          for={`section-title-${this.props.id}`}
         >
-          What's the title of this {this.props.type.sectionName}
+          What's the title of this {this.props.type && this.props.type.sectionName}?
         </label>
         <input
           onChange={this.handleSectionTitle}
-          id={`section-title-${this.props.installId}-${this.props.sectionId}`}
+          id={`section-title-${this.props.id}`}
         />
         <label
-          for={`section-order-${this.props.installId}-${this.props.sectionId}`}
+          for={`section-order-${this.props.id}`}
         >
-          In what order does this {this.props.type.sectionName} come?
+          In what order does this {this.props.type &&  this.props.type.sectionName} come?
         </label>
         <input
           onChange={this.handleSectionOrder}

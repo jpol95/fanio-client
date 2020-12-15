@@ -9,7 +9,7 @@ import ReviewMain from "./ReviewMain/ReviewMain";
 import FandomView from './FandomView/FandomView'
 import InstallmentView from './InstallmentView/InstallmentView'
 import CreateInstallments from './CreateInstallments/CreateInstallments'
-import CreateSections from './CreateSingleSection/CreateSingleSection'
+import CreateSections from './CreateSections/CreateSections'
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
@@ -62,9 +62,18 @@ class App extends React.Component {
   }
 
   handleSubmitInstallments = (installmentList) => {
-    console.log(installmentList)
     this.setState({
       ...this.state, installmentList: [...this.state.installmentList, ...installmentList]
+    })
+  }
+
+  handleSubmitSections = (sectionList) => {
+    const installment = this.state.installmentList.find(installment => Number(sectionList[0].installmentId) === installment.id)
+    const type = this.state.typeList.find(type => installment.typeId === type.id)
+    const sectionListName = [`${type.sectionName}List`]
+    console.log(sectionListName)
+    this.setState({
+      ...this.state, [sectionListName]: [...this.state[sectionListName], ...sectionList]
     })
   }
 
@@ -85,7 +94,8 @@ class App extends React.Component {
           installmentList: this.state.installmentList,
           handleSubmit: this.handleSubmit,
           handleAddFandom: this.handleAddFandom, 
-          handleSubmitInstallments: this.handleSubmitInstallments
+          handleSubmitInstallments: this.handleSubmitInstallments,
+          handleSubmitSections: this.handleSubmitSections
         }}
       >
         <NavBar />

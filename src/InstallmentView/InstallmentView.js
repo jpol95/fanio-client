@@ -13,7 +13,7 @@ export default class InstallmentView extends React.Component {
   };
 
   getType = () => {
-    console.log(this.getInstallment())
+    // console.log(this.getInstallment())
     return this.context.typeList.find(
       (type) => Number(this.getInstallment().typeId) === type.id
     );
@@ -37,7 +37,7 @@ export default class InstallmentView extends React.Component {
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>
         {this.context.fandomList.length != 0 && this.getSections()}
-        <Link to={`/users/1/fandoms/${this.getInstallment().fandomId}/installment/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>
+        <Link to={`/users/1/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>
       </div>
     );
   }

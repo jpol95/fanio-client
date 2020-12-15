@@ -1,77 +1,87 @@
 import React from "react";
-import CreateSingleInstallment from "../CreateSingleInstallment/CreateSingleInstallment";
+import CreateSingleSection from "../CreateSingleSection/CreateSingleSection";
 import FanioContext from '../FanioContext'
-import './CreateInstallments.css'
+import './CreateSections.css'
 
 
 export default class CreateSections extends React.Component {
 
   static contextType = FanioContext
+
+  getType = () => {
+    return this.context.typeList.find(type => type.id === Number(this.getInstallment().typeId))
+  }
+
+  getInstallment = () => {
+      return this.context.installmentList.find(installment => Number(this.props.match.params.installmentId) === installment.id)
+  }
+
+
   state = {
-    numInstallments: 0,
-    installmentList: [],
+    numSections: 0,
+    sectionList: [],
     // title: "",
     // sectionList: []
   };
 
-  handleNumInstallments = (e) => {
-    const installmentList = [];
-    const numInstallments = e.target.value;
-    for (let i = 0; i < numInstallments; i++) {
-      installmentList.push({});
+  handleNumSections = (e) => {
+    const sectionList = [];
+    const numSections = e.target.value;
+    for (let i = 0; i < numSections; i++) {
+      sectionList.push({});
     }
     this.setState({
-      numInstallments,
-      installmentList
+      numSections,
+      sectionList
     });
   };
 
-  createInstallmentForms() {
-    const installFormArray = [];
-    for (let i = 0; i < this.state.numInstallments; i++) {
-      installFormArray.push(<CreateSingleInstallment handleAddInstallment={this.handleAddInstallment} installId={i} />);
+  createSectionForms() {
+    const sectionFormArray = [];
+    for (let i = 0; i < this.state.numSections; i++) {
+      sectionFormArray.push(<CreateSingleSection type={this.getType()} handleAddSection={this.handleAddSection} sectionId={i} />);
     }
-    return installFormArray
+    return sectionFormArray
   }
 
-  handleAddInstallment = (installment) => {
-    const installmentListCopy = [...this.state.installmentList];
+  handleAddSection = (section) => {
+    const sectionListCopy = [...this.state.sectionList];
     
-    installmentListCopy[installment.installId] = {
-      ...installment,
-      fandomId: Number(this.props.match.params.fandomId),
+    sectionListCopy[section.sectionId] = {
+      ...section,
+      installmentId: Number(this.props.match.params.installmentId),
       id: Math.round(Math.random()*100000000)
     };
-    // console.log(installmentListCopy)
+    // console.log(sectionListCopy)
     this.setState({
-      ...this.state, installmentList: installmentListCopy,
+      ...this.state, sectionList: sectionListCopy,
     });
   };
 
-  handleSubmitInstallments = (e) => {
+  handleSubmitSections = (e) => {
     e.preventDefault()
     console.log(this.state)
-    this.props.history.push(`/users/1/fandom-view/${this.props.match.params.fandomId}`)
-    this.context.handleSubmitInstallments(this.state.installmentList)
+    this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`)
+    this.context.handleSubmitSections(this.state.sectionList)
   }
 
 //is there a way to combine the add seasons and add episodes form?
 //figure out why form is not submitting properly
 
   render() {
-    // console.log("creating installment forms")
+    // console.log("creating Section forms")
     return (
-      <form className="add-installments" onSubmit={this.handleSubmitInstallments}>
-        <label htmlFor={`installment-title-${this.props.installId}`}>
-          How many installments would you like to add?
+      <form className="add-sections" onSubmit={this.handleSubmitSections}>
+        <label htmlFor={`section-title-${this.props.installId}`}>
+          How many {this.getType(this.getInstallment().typeId).sectionName}s would you like to add?
         </label>
         <input
-          id={`installment-title-${this.props.installId}`}
+          id={`section-title-${this.props.installId}`}
           type="number"
-          onChange={this.handleNumInstallments}
+          onChange={this.handleNumSections}
         />
-        {this.createInstallmentForms()}
-        <button className="submit-installments-button" type="submit">Create Installments</button>
+        {this.createSectionForms()}
+        <button className="submit-sections-button" type="submit">Add {this.getType(this.getInstallment().typeId).sectionName}s </button>
       </form>
     );
   }
