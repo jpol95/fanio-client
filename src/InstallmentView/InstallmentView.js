@@ -1,6 +1,7 @@
 import React from "react";
 import FanioContext from "../FanioContext";
 import Section from "../Section/Section";
+import {Link} from 'react-router-dom'
 
 export default class InstallmentView extends React.Component {
   static contextType = FanioContext;
@@ -12,8 +13,9 @@ export default class InstallmentView extends React.Component {
   };
 
   getType = () => {
+    console.log(this.getInstallment())
     return this.context.typeList.find(
-      (type) => this.getInstallment().typeId === type.id
+      (type) => Number(this.getInstallment().typeId) === type.id
     );
   };
 
@@ -35,6 +37,7 @@ export default class InstallmentView extends React.Component {
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>
         {this.context.fandomList.length != 0 && this.getSections()}
+        <Link to={`/users/1/fandoms/${this.getInstallment().fandomId}/installment/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>
       </div>
     );
   }

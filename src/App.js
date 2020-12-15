@@ -9,6 +9,7 @@ import ReviewMain from "./ReviewMain/ReviewMain";
 import FandomView from './FandomView/FandomView'
 import InstallmentView from './InstallmentView/InstallmentView'
 import CreateInstallments from './CreateInstallments/CreateInstallments'
+import CreateSections from './CreateSingleSection/CreateSingleSection'
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
@@ -60,6 +61,13 @@ class App extends React.Component {
     })
   }
 
+  handleSubmitInstallments = (installmentList) => {
+    console.log(installmentList)
+    this.setState({
+      ...this.state, installmentList: [...this.state.installmentList, ...installmentList]
+    })
+  }
+
   render() {
     return (
       <FanioContext.Provider
@@ -76,7 +84,8 @@ class App extends React.Component {
           arcList: this.state.arcList,
           installmentList: this.state.installmentList,
           handleSubmit: this.handleSubmit,
-          handleAddFandom: this.handleAddFandom
+          handleAddFandom: this.handleAddFandom, 
+          handleSubmitInstallments: this.handleSubmitInstallments
         }}
       >
         <NavBar />
@@ -106,14 +115,19 @@ class App extends React.Component {
           />
         <Route
           exact
-          path="/users/:userId/fandom/:fandomId/installment-view/:installmentId"
+          path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
           component={InstallmentView}
         />
         <Route
           exact
-          path="/users/:userId/fandom/:fandomId/add-installments-form"
+          path="/users/:userId/fandoms/:fandomId/add-installments-form"
           component={CreateInstallments}
           />
+          <Route 
+            exact 
+            path="/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form"
+            component={CreateSections}
+            />
         <Route exact path="/signup-form" component={SignUp} />
         <Route exact path="/landing" component={Landing} />
         <Footer />

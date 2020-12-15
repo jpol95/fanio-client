@@ -25,7 +25,7 @@ export default class FandomView extends React.Component{
         <React.Fragment>
       <h3>{this.getFandom() && this.getFandom().title}</h3>
       {this.getInstallments()}
-      <Link to={`/users/1/fandom/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>
+      <Link to={`/users/1/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>
       </React.Fragment>
       )
     }

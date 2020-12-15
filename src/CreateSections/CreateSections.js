@@ -4,7 +4,7 @@ import FanioContext from '../FanioContext'
 import './CreateInstallments.css'
 
 
-export default class CreateInstallments extends React.Component {
+export default class CreateSections extends React.Component {
 
   static contextType = FanioContext
   state = {
@@ -76,37 +76,3 @@ export default class CreateInstallments extends React.Component {
     );
   }
 }
-
-
-// addSection = (sectionObject) => {
-  //   const {sectionId} = sectionObject
-  //   const stateSectionsCopy = [...this.state.sectionList]
-  //   stateSectionsCopy[sectionId] = {...sectionObject, installId: this.props.sectionId}
-  //   this.setState({
-  //       ...this.state, sectionList: [...stateSubsCopy]
-  //   })
-  // }
-
-  //   createSections() {
-  //     const subName = props.type.subName;
-  //     const sectionInputArray = [];
-
-  //     for (let i = 0; i < this.state.numSections; i++) {
-  //       sectionInputArray.push(<CreateSection {...props} sectionId={i} addSection={this.addSection} />);
-  //     }
-  //     return sectionInputArray;
-  //   }
-
-  // handleTitle = (e) => {
-  //   const title = e.target.value
-  //   this.setState({
-  //       title
-  //   })
-  // }
-
-  // state = {
-  //   numInstallments: 0,
-  //   installmentList: [],
-  //   // title: "",
-  //   // sectionList: []
-  // };

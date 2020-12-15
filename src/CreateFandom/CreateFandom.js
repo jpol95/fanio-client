@@ -26,7 +26,22 @@ export default class Fandom extends React.Component {
     this.context.handleAddFandom({title: this.state.fandomName, id: this.state.id, user: 1})
   }
 
-  // handleSectionAdd(section) {
+ 
+  render() {
+    return (
+      <div className="fandom">
+        <p>Create a new fandom</p>
+        <form onSubmit={this.handleSubmit} class="create-fandom">
+        <label htmlFor="workname">Name of fandom*</label>
+        <input onChange={this.handleName} id="workname" type="text" />
+        <button type="submit">Create New Fandom</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+ // handleSectionAdd(section) {
   //   this.setState({
   //     ...this.state,
   //     sections: [...this.state.sections, section],
@@ -77,16 +92,3 @@ export default class Fandom extends React.Component {
   // this.setState({
   //   ...this.state, numOfInstalls: installDDs.length
   // })
-  render() {
-    return (
-      <div className="fandom">
-        <p>Create a new fandom</p>
-        <form onSubmit={this.handleSubmit} class="create-fandom">
-        <label htmlFor="workname">Name of fandom*</label>
-        <input onChange={this.handleName} id="workname" type="text" />
-        <button type="submit">Create New Fandom</button>
-        </form>
-      </div>
-    );
-  }
-}

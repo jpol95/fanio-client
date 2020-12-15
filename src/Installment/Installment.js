@@ -13,10 +13,10 @@ export default class Installment extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <Link
-        to={`/users/1/fandom/${this.fandomId}/installment-view/${this.installmentId}`}
+        to={`/users/1/fandoms/${this.fandomId}/installment-view/${this.installmentId}`}
         className="fandom-view"
       >
         <h4>{this.props.title}</h4>
