@@ -1,7 +1,6 @@
 import React from "react";
 import "./CreateFandom.css";
 import FanioContext from "../FanioContext";
-import InstallDropDown from "../CreateSingleInstallment/CreateSingleInstallment";
 
 //rename type attribute to title
 

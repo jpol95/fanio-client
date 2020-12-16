@@ -53,7 +53,7 @@ export default class Section extends React.Component {
              <p> {subReview.content.substring(0, 100)}</p>
             ) : (
               
-              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/review-form/${this.sectionId}/episode/`, '_self')}}> Write Review </button>
+              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/sections/${this.sectionId}/subs/${subSection}/review-form/`, '_self')}}> Write Review </button>
             )}
           </Link>
         );
@@ -84,7 +84,7 @@ export default class Section extends React.Component {
               </Link>
             </React.Fragment>
           ) : (
-            <Link className="write-review-button" to={`/users/1/review-form/${this.sectionId}`}> Write Review </Link>
+            <Link className="write-review-button" to={`/users/1/sections/${this.sectionId}/review-form/`}> Write Review </Link>
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           {this.state.clicked && this.props.type.hasSubs && this.getSubDisplay()}

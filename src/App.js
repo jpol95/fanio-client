@@ -10,6 +10,7 @@ import FandomView from "./FandomView/FandomView";
 import InstallmentView from "./InstallmentView/InstallmentView";
 import CreateInstallments from "./CreateInstallments/CreateInstallments";
 import CreateSections from "./CreateSections/CreateSections";
+import FetchService from './FetchService'
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
 import dummyStore from "./dummy-store";
@@ -31,38 +32,6 @@ class App extends React.Component {
     installmentList: [],
   };
 
-  componentDidMount() {
-    const {
-      fandomList,
-      reviewList,
-      seasonList,
-      episodeList,
-      tagList,
-      reviewTagList,
-      typeList,
-      bookList,
-      issueList,
-      arcList,
-      installmentList,
-    } = dummyStore;
-    const seedData = {
-      fandomList,
-      reviewList,
-      seasonList,
-      episodeList,
-      tagList,
-      reviewTagList,
-      typeList,
-      bookList,
-      issueList,
-      arcList,
-      installmentList,
-    };
-    this.setState({
-      ...seedData,
-    });
-  }
-
   handleSubmit = (newReview) => {
     const newTagListItems = newReview.tags.map((tag) => {
       return { tagId: tag.id, reviewId: newReview.id };
@@ -78,6 +47,27 @@ class App extends React.Component {
       tags: [...this.state.reviewTagList, ...newTagListItems],
     });
   };
+
+  fetchFandoms = () => {
+    FetchService.fetchFandoms().then(fandomList => {
+      this.setState({...this.state, fandomList})
+    })
+  }
+  fetchInstallments = (fandomId) => {
+    FetchService.fetchInstallments(fandomId).then(installmentList => {
+      this.setState({...this.state, installmentList})
+    })
+  }
+  
+  fetchSections = (installmentId, type) => {
+    FetchService.fetchSections(installmentId)
+    .then(result => {
+      console.log(result)
+      this.setState({
+        ...this.state, [`${type.sectionName}List`] : result.sectionList, [`${type.sectionName}List`] : result.subList
+      })
+    })
+  }
 
   handleAddFandom = (fandom) => {
     this.setState({
@@ -101,7 +91,7 @@ class App extends React.Component {
       [sectionListName] : [...this.state[sectionListName], ...sectionList],
     });
   };
-
+//refactor to use redux
   render() {
     return (
       <FanioContext.Provider
@@ -123,13 +113,14 @@ class App extends React.Component {
           handleSubmitSections: this.handleSubmitSections,
         }}
       >
+
         <NavBar />
-        <Route exact path="/users/:userId/profile/" component={Profile} />
+        <Route exact path="/users/:userId/profile/" render={(props) => <Profile fetchFandoms={this.fetchFandoms} {...props} />} />
         <Route
           exact
           path={[
-            "/users/:userId/review-form/:seasonId",
-            "/users/:userId/review-form/:seasonId/episode",
+            "/users/1/sections/:sectionId/review-form/",
+            "/users/1/sections/:sectionId/subs/${subSection}/review-form/",
           ]}
           component={CreateReview}
         />
@@ -146,12 +137,12 @@ class App extends React.Component {
         <Route
           exact
           path="/users/:userId/fandom-view/:fandomId"
-          component={FandomView}
+          render={(props) => <FandomView fetchInstallments={this.fetchInstallments} {...props} />}
         />
         <Route
           exact
           path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
-          component={InstallmentView}
+          render={(props) => <InstallmentView fetchSections={this.fetchSections} {...props} />}
         />
         <Route
           exact
@@ -175,3 +166,36 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+ // componentDidMount() {
+  //   const {
+  //     fandomList,
+  //     reviewList,
+  //     seasonList,
+  //     episodeList,
+  //     tagList,
+  //     reviewTagList,
+  //     typeList,
+  //     bookList,
+  //     issueList,
+  //     arcList,
+  //     installmentList,
+  //   } = dummyStore;
+  //   const seedData = {
+  //     fandomList,
+  //     reviewList,
+  //     seasonList,
+  //     episodeList,
+  //     tagList,
+  //     reviewTagList,
+  //     typeList,
+  //     bookList,
+  //     issueList,
+  //     arcList,
+  //     installmentList,
+  //   };
+  //   this.setState({
+  //     ...seedData,
+  //   });
+  // }
