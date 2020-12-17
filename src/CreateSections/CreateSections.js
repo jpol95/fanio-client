@@ -2,23 +2,25 @@ import React from "react";
 import CreateSingleSection from "../CreateSingleSection/CreateSingleSection";
 import FanioContext from '../FanioContext'
 import './CreateSections.css'
-
+import typeList from '../type-list'
 
 export default class CreateSections extends React.Component {
 
   static contextType = FanioContext
 
   getType = () => {
-    return this.context.typeList.find(type => type.id === Number(this.getInstallment().typeId))
+    typeList[this.getInstallment().type]
   }
+
+  //fix classes to not use type from context, then on with debugging the get calls for the seeded data
 
   getInstallment = () => {
       return this.context.installmentList.find(installment => Number(this.props.match.params.installmentId) === installment.id)
   }
 
+  genListName = this.props.match.params.sectionId ? "subList" : "sectionList"
   listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
-  parentName = this.props.match.params.sectionId ? this.getType().sectionName : "installment"
-  genParentName = this.props.match.params.sectionId ? "section": "installment"
+  parentName = this.props.match.params.sectionId ? "section": "installment"
 
 
   state = {
@@ -49,11 +51,11 @@ export default class CreateSections extends React.Component {
   }
 
   handleAddSection = (section) => {
-    console.log(this.props.match.params[`sectionId`])
+    // console.log(this.props.match.params[`sectionId`])
     const sectionListCopy = [...this.state.sectionList];
     sectionListCopy[section.sectionId] = {
       ...section,
-      [`${this.parentName}Id`]: Number(this.props.match.params[`${this.genParentName}Id`])
+      [`${this.parentName}Id`]: Number(this.props.match.params[`${this.parentName}Id`])
     };
     // console.log(sectionListCopy)
     this.setState({
@@ -65,7 +67,7 @@ export default class CreateSections extends React.Component {
     e.preventDefault()
     // console.log(this.state)
     this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
-    this.context.handleSubmitSections(this.state.sectionList, this.listName)
+    this.context.handleSubmitSections(this.state.sectionList, this.genListName)
   }
 
 //is there a way to combine the add seasons and add episodes form?

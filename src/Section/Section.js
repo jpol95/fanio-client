@@ -29,10 +29,10 @@ export default class Section extends React.Component {
   }
 
   getSubSection() {
-    const subSection =  this.context[`${this.props.type.subName}List`]
+    const subSection =  this.context[`subList`]
       .filter((subSection) => { 
         console.log(this.sectionId)
-        return subSection[`${this.props.type.sectionName}Id`] === this.sectionId
+        return subSection[`sectionId`] === this.sectionId
       })
       .map((subSection) => {
         const subReview = this.getReview(subSection);

@@ -44,7 +44,7 @@ export default class CreateSingleSection extends React.Component {
         <label
           for={`section-order-${this.props.id}`}
         >
-          In what order does this {this.props.type &&  this.props.type[this.listName]} come?
+          In what order does this {this.props.type && this.props.type[this.listName]} come?
         </label>
         <input
           onChange={this.handleSectionOrder}

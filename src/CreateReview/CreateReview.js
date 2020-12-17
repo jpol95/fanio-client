@@ -5,6 +5,7 @@ import FetchService from '../FetchService'
 
 export default class CreateReview extends React.Component {
   static contextType = FanioContext;
+
   state = {
     title: { value: "", touched: false },
     rating: { value: null, touched: false },
@@ -12,6 +13,10 @@ export default class CreateReview extends React.Component {
     tags: { value: [], touched: false },
     errorString: "",
   };
+
+  tableName = this.props.match.params.subId ? "sub" : "section"
+  parentId = this.props.match.params.subId || this.props.match.params.sectionId
+  installmentId = this.props.match.params.installmentId
 
   getTagById = (id) => {
     return this.context.tagList.find(tag => tag.id === Number(id))
@@ -72,8 +77,7 @@ export default class CreateReview extends React.Component {
       tags: this.state.tags.value, 
     }
     // this.props.history.push(`/users/${}`)
-    FetchService.postReview(reviewObject)
-    this.context.handleSubmitReview(FetchService.postReview(reviewObject))
+    this.context.handleSubmitReview(FetchService.postReview(reviewObject), this.tableName, this.parentId)
     
   }
 

@@ -32,7 +32,7 @@ const typeList = [
     id: 1,
     title: "show",
     hasSubs: true,
-    sectionName: "season",
+    sectionName: "section",
     subName: "episode",
   },
   {
@@ -59,8 +59,8 @@ const typeList = [
 ];
 
 // installment of type show
-// How many seasons? 5
-// How many episodes in this season?
+// How many sections? 5
+// How many episodes in this section?
 
 // book series?
 // It'll ask how many books?
@@ -117,131 +117,131 @@ const bookList = [
 ];
 
 const arcList = [
-  { id: 4, title: `Buffy Season 8`, order: 8, installmentId: 4, reviewId: 23 },
+  { id: 5, title: `Buffy season 8`, order: 8, installmentId: 4, reviewId: 23 },
 ];
 
 const issueList = [
-  { id: 1, title: `Buffy Season 8 issue 1`, order: 1, reviewId: 24, arcId: 4 },
+  { id: 17, title: `Buffy season 8 issue 1`, order: 1, reviewId: 24, arcId: 5 },
 ];
 
 const reviewList = [
   {
     id: 1,
-    title: `Doctor Who Season 3 Episode 5 Review`,
+    title: `Doctor Who season 3 Episode 5 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 4,
   },
   {
     id: 2,
-    title: `Doctor Who Season 4 Episode 7 Review`,
+    title: `Doctor Who season 4 Episode 7 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 1,
   },
   {
     id: 3,
-    title: `Supernatural Season 2 Episode 3 Review`,
+    title: `Supernatural season 2 Episode 3 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 1,
   },
   {
     id: 4,
-    title: `Supernatural Season 3 Episode 4 Review`,
+    title: `Supernatural season 3 Episode 4 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 2,
   },
   {
     id: 5,
-    title: `Parks and Recreation Season 5 Episode 19 Review`,
+    title: `Parks and Recreation season 5 Episode 19 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 3,
   },
   {
     id: 6,
-    title: `Parks and Recreation Season 3 Episode 12 Review`,
+    title: `Parks and Recreation season 3 Episode 12 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 4,
   },
   {
     id: 7,
-    title: `Buffy the Vampire Slayer Season 2 Episode 4 Review`,
+    title: `Buffy the Vampire Slayer season 2 Episode 4 Review`,
     content: `Inca mummy girl???? More like LAME-KA mummy girl amirite haha im depressed please send meds`,
     rating: 5,
   },
   {
     id: 8,
-    title: `Buffy the Vampire Slayer Season 5 Episode 9 Review`,
+    title: `Buffy the Vampire Slayer season 5 Episode 9 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 2,
   },
   {
     id: 9,
-    title: `Doctor Who Season 2 Episode 9 Review`,
+    title: `Doctor Who season 2 Episode 9 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 4,
   },
   {
     id: 10,
-    title: `Doctor Who Season 1 Episode 2 Review`,
+    title: `Doctor Who season 1 Episode 2 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 1,
   },
   {
     id: 11,
-    title: `Parks and Recreation Season 5 Episode 18 Review`,
+    title: `Parks and Recreation season 5 Episode 18 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 2,
   },
   {
     id: 12,
-    title: `Parks and Recreation Season 5 Episode 17 Review`,
+    title: `Parks and Recreation season 5 Episode 17 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 3,
   },
   {
     id: 13,
-    title: `Supernatural Season 2 Episode 7 Review`,
+    title: `Supernatural season 2 Episode 7 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 4,
   },
   {
     id: 14,
-    title: `Supernatural Season 1 Episode 9 Review`,
+    title: `Supernatural season 1 Episode 9 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 5,
   },
   {
     id: 15,
-    title: `Buffy the Vampire Slayer Season 1 Episode 7 Review`,
+    title: `Buffy the Vampire Slayer season 1 Episode 7 Review`,
     content: `Omg this is the worst episode ever!`,
     rating: 1,
   },
   {
     id: 16,
-    title: `Buffy the Vampire Slayer Season 1 Episode 9 Review`,
+    title: `Buffy the Vampire Slayer season 1 Episode 9 Review`,
     content: `Omg this is the best episode ever!`,
     rating: 2,
   },
   {
     id: 17,
-    title: `Buffy the Vampire Slayer Season 5 Review`,
+    title: `Buffy the Vampire Slayer season 5 Review`,
     content: `Omg this is the worst season ever!`,
     rating: 3,
   },
   {
     id: 18,
-    title: `Parks and Recreation Season 3 Review`,
+    title: `Parks and Recreation season 3 Review`,
     content: `Omg this is the worst season ever!`,
     rating: 3,
   },
   {
     id: 19,
-    title: `Supernatural Season 3 Review`,
+    title: `Supernatural season 3 Review`,
     content: `Omg this is the worst season ever!`,
     rating: 3,
   },
   {
     id: 20,
-    title: `Doctor Who Season 2 Review`,
+    title: `Doctor Who season 2 Review`,
     content: `Omg this is the worst season ever!`,
     rating: 3,
   },
@@ -259,123 +259,123 @@ const reviewList = [
   },
   {
     id: 23,
-    title: `Buffy Comics Season 8 Review`,
+    title: `Buffy Comics season 8 Review`,
     content: `This is a cool comic book series!`,
     rating: 3,
   },
   {
     id: 24,
-    title: `Buffy Comics Season 8 Issue 1 Review`,
+    title: `Buffy Comics season 8 Issue 1 Review`,
     content: `Look at what I can do! I can create stuff`,
     rating: 3,
   },
 ];
 
-const seasonList = [
+const sectionList = [
   {
-    id: 1,
-    title: "Season 2 Doctor Who",
+    id: 6,
+    title: "season 2 Doctor Who",
     order: 2,
     reviewId: null,
     installmentId: 1,
   },
   {
-    id: 2,
-    title: "Season 3 Doctor Who",
+    id: 7,
+    title: "season 3 Doctor Who",
     order: 3,
     reviewId: null,
     installmentId: 1,
   },
   {
-    id: 3,
-    title: "Season 1 Doctor Who",
+    id: 8,
+    title: "season 1 Doctor Who",
     order: 1,
     reviewId: null,
     installmentId: 1,
   },
   {
-    id: 4,
-    title: "Season 4 Doctor Who",
+    id: 9,
+    title: "season 4 Doctor Who",
     order: 4,
     reviewId: null,
     installmentId: 1,
   },
   {
-    id: 5,
-    title: "Season 5 Parks and Recreation",
+    id: 10,
+    title: "season 5 Parks and Recreation",
     order: 5,
     reviewId: null,
     installmentId: 2,
   },
   {
-    id: 6,
-    title: "Season 1 Buffy",
+    id: 11,
+    title: "season 1 Buffy",
     order: 1,
     reviewId: null,
     installmentId: 3,
   },
   {
-    id: 7,
-    title: "Season 2 Buffy",
+    id: 12,
+    title: "season 2 Buffy",
     order: 2,
     reviewId: null,
     installmentId: 3,
   },
   {
-    id: 8,
-    title: "Season 1 Supernatural",
+    id: 13,
+    title: "season 1 Supernatural",
     order: 1,
     reviewId: 20,
     installmentId: 5,
   },
   {
-    id: 9,
-    title: "Season 2 Supernatural",
+    id: 14,
+    title: "season 2 Supernatural",
     order: 2,
     reviewId: 20,
     installmentId: 5,
   },
   {
-    id: 10,
-    title: "Season 3 Parks and Recreation",
+    id: 15,
+    title: "season 3 Parks and Recreation",
     order: 3,
     reviewId: 18,
-    installmentId: 3,
+    installmentId: 2,
   },
   {
-    id: 11,
-    title: "Season 3 Supernatural",
+    id: 16,
+    title: "season 3 Supernatural",
     order: 3,
     reviewId: 19,
     installmentId: 5,
   },
-  { id: 12, title: "Season 5 Buffy", order: 5, reviewId: 17, installmentId: 3 },
+  { id: 17, title: "season 5 Buffy", order: 5, reviewId: 17, installmentId: 3 },
 ];
 
 //fakerjs creates fake data for you
 
-//database normalization, instead of title: season number
+//database normalization, instead of title: section number
 //seeding the data
-//fandom -> Season -> Episode
+//fandom -> section -> Episode
 //you could combine different media types into one table
 
 const episodeList = [
-  { id: 1, title: "Doctor Who s3e5", order: 5, reviewId: 1, seasonId: 2 },
-  { id: 2, title: "Doctor Who s4e7", order: 7, reviewId: 2, seasonId: 4 },
-  { id: 3, title: "Supernatural s2e3", order: 3, reviewId: null, seasonId: 9 },
-  { id: 4, title: "Supernatural s3e4", order: 4, reviewId: 4, seasonId: 11 },
-  { id: 5, title: "PR s5e19", order: 19, reviewId: 5, seasonId: 5 },
-  { id: 6, title: "PR s3e12", order: 12, reviewId: 6, seasonId: 10 },
-  { id: 7, title: "Buffy s2e4", order: 4, reviewId: 7, seasonId: 7 },
-  { id: 8, title: "Buffy s5e9", order: 9, reviewId: null, seasonId: 12 },
-  { id: 9, title: "Doctor Who s2e9", order: 9, reviewId: 9, seasonId: 1 },
-  { id: 10, title: "Doctor Who s1e2", order: 2, reviewId: 10, seasonId: 3 },
-  { id: 11, title: "PR s5e18", order: 18, reviewId: null, seasonId: 5 },
-  { id: 12, title: "PR s5e17", order: 17, reviewId: 12, seasonId: 5 },
-  { id: 13, title: "Supernatural s2e7", order: 7, reviewId: 13, seasonId: 9 },
-  { id: 14, title: "Supernatural s1e9", order: 9, reviewId: 14, seasonId: 8 },
-  { id: 15, title: "Buffy s1e7", order: 7, reviewId: 15, seasonId: 6 },
-  { id: 16, title: "Buffy s1e9", order: 9, reviewId: null, seasonId: 6 },
+  { id: 1, title: "Doctor Who s3e5", order: 5, reviewId: 1, sectionId: 7 },
+  { id: 2, title: "Doctor Who s4e7", order: 7, reviewId: 2, sectionId: 9 },
+  { id: 3, title: "Supernatural s2e3", order: 3, reviewId: null, sectionId: 14 },
+  { id: 4, title: "Supernatural s3e4", order: 4, reviewId: 4, sectionId: 16 },
+  { id: 5, title: "PR s5e19", order: 19, reviewId: 5, sectionId: 10 },
+  { id: 6, title: "PR s3e12", order: 12, reviewId: 6, sectionId: 15 },
+  { id: 7, title: "Buffy s2e4", order: 4, reviewId: 7, sectionId: 12 },
+  { id: 8, title: "Buffy s5e9", order: 9, reviewId: null, sectionId: 17 },
+  { id: 9, title: "Doctor Who s2e9", order: 9, reviewId: 9, sectionId: 6 },
+  { id: 10, title: "Doctor Who s1e2", order: 2, reviewId: 10, sectionId: 8 },
+  { id: 11, title: "PR s5e18", order: 18, reviewId: null, sectionId: 10 },
+  { id: 12, title: "PR s5e17", order: 17, reviewId: 12, sectionId: 10 },
+  { id: 13, title: "Supernatural s2e7", order: 7, reviewId: 13, sectionId: 14 },
+  { id: 14, title: "Supernatural s1e9", order: 9, reviewId: 14, sectionId: 13 },
+  { id: 15, title: "Buffy s1e7", order: 7, reviewId: 15, sectionId: 11 },
+  { id: 16, title: "Buffy s1e9", order: 9, reviewId: null, sectionId: 11 },
 ];
 
 const tagList = [
@@ -413,7 +413,7 @@ export default {
   installmentList,
   fandomList,
   reviewList,
-  seasonList,
+  sectionList,
   episodeList,
   tagList,
   reviewTagList,

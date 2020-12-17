@@ -1,21 +1,17 @@
 import React from 'react'
 import FanioContext from '../FanioContext'
+import typeList from '../type-list'
 
 
 export default class InstallDropDown extends React.Component {
 
   static contextType = FanioContext
 
-  types = this.context.typeList
+  types = Object.keys(typeList)
 
   state = {
-    typeId: 0, 
+    type: "", 
     title: ""
-  }
-
-
-  getType = (id) => {
-    return this.context.typeList.find(type => type.id === Number(id))
   }
 
   //make a service class for this type of map and filter logic
@@ -42,12 +38,12 @@ export default class InstallDropDown extends React.Component {
         <select onChange = {this.handleTypeChange} id={`type-${this.props.installId}`}>
           <option></option>
           {this.types && this.types.map((type) => (
-            <option value={type.id}>{type.title}</option>
+            <option value={type}>{type}</option>
           ))}
         </select>
-        {this.state.typeId != 0 &&
+        {this.state.type !== "" &&
         <React.Fragment>
-        <label htmlFor={`name-${this.props.installId}`}>What is the name of this {this.getType(this.state.typeId).title}?</label>
+        <label htmlFor={`name-${this.props.installId}`}>What is the name of this {this.state.type}?</label>
         <input onChange={this.handleTitleChange} type="text" />
         </React.Fragment>
   }     

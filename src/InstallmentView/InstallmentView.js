@@ -7,9 +7,13 @@ import typeList from '../type-list'
 export default class InstallmentView extends React.Component {
   static contextType = FanioContext;
 
+
   componentDidMount = () => {
-    this.props.fetchSections(Number(this.props.match.params.fandomId), this.getType())
+    this.props.fetchSections(Number(this.props.match.params.installmentId))
+    this.props.fetchReviews(Number(this.props.match.params.installmentId))
   }
+
+//change type to user lower case
 
   getInstallment = () => {
     return this.context.installmentList.find(
@@ -23,7 +27,8 @@ export default class InstallmentView extends React.Component {
   };
 
   getSections() {
-    const sectionsArray = this.context[`${this.getType().sectionName}List`]
+    console.log(this.context)
+    const sectionsArray = this.context.sectionList
       .filter((section) => {
         return section.installmentId === Number(this.props.match.params.installmentId);
       })

@@ -1,16 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FanioContext from "../FanioContext";
 
 export default class Installment extends React.Component {
-  static contextType = FanioContext;
 
   fandomId = this.props.match.params.fandomId;
   installmentId = this.props.id;
 
-  getType = () => {
-    return this.context.typeList.find((type) => type.id === this.props.typeId);
-  };
 
   render() {
     // console.log(this.props);

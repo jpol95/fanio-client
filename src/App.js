@@ -21,35 +21,33 @@ class App extends React.Component {
   state = {
     fandomList: [],
     reviewList: [],
-    seasonList: [],
-    episodeList: [],
-    tagList: [],
+    sectionList: [],
+    subList: [],
+    tagList: [], 
     reviewTagList: [],
-    typeList: [],
-    bookList: [],
-    issueList: [],
-    arcList: [],
     installmentList: [],
   };
 
-  handleSubmitReview = (newReview, tableName) => {
+  handleSubmitReview = (newReview, tableName, parentId) => {
     const newTagListItems = newReview.tags.map((tag) => {
       return { tagId: tag.id, reviewId: newReview.id };
     });
-    FetchService.p
+    const section = this.state[`${tableName}List`].find(section => section.id === parentId)
+    const newSection = {...section, reviewId: newReview.id}
+    this.patchSection(FetchService.patchSection(newSection, newSection.id, tableName), `${tableName}List`)
     this.setState({
       ...this.state, reviewList: [...this.state.reviewList, newReview],
       tags: [...this.state.reviewTagList, ...newTagListItems],
     });
   };
 
-  patchSection = (id, newSection, sectionName) => {
-    const sectionListCopy = [...this.state[`${sectionName}List`]]
+  patchSection = (newSection, tableName) => {
+    const sectionListCopy = [...this.state[tableName]]
     sectionListCopy.forEach((section, index, sectionList) => {
-      if (section.id === id) sectionList[index] = newSection
+      if (section.id === newSection.id) sectionList[index] = newSection
     })
     this.setState({
-      ...this.state, [`${sectionName}List`]: sectionListCopy
+      ...this.state, [tableName]: sectionListCopy
     })
   }
 
@@ -64,11 +62,12 @@ class App extends React.Component {
     })
   }
   
-  fetchSections = (installmentId, type) => {
+  fetchSections = (installmentId) => {
     FetchService.fetchSections(installmentId)
     .then(result => {
+      console.log(result)
       this.setState({
-        ...this.state, [`${type.sectionName}List`] : result.sectionList, [`${type.subName}List`] : result.subList
+        ...this.state, [`sectionList`] : result.sectionList, [`subList`] : result.subList
       })
     })
   }
@@ -110,14 +109,10 @@ class App extends React.Component {
         value={{
           fandomList: this.state.fandomList,
           reviewList: this.state.reviewList,
-          seasonList: this.state.seasonList,
-          episodeList: this.state.episodeList,
+          sectionList: this.state.sectionList,
+          subList: this.state.subList,
           tagList: this.state.tagList,
           reviewTagList: this.state.reviewTagList,
-          typeList: this.state.typeList,
-          bookList: this.state.bookList,
-          issueList: this.state.issueList,
-          arcList: this.state.arcList,
           installmentList: this.state.installmentList,
           handleSubmitReview: this.handleSubmitReview,
           handleAddFandom: this.handleAddFandom,
@@ -132,7 +127,7 @@ class App extends React.Component {
           exact
           path={[
             "/users/1/sections/:sectionId/review-form/",
-            "/users/1/sections/:sectionId/subs/:subId/review-form/",
+            "/users/1/subs/:subId/review-form/",
           ]}
           component={CreateReview}
         />
