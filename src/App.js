@@ -102,6 +102,12 @@ class App extends React.Component {
       [sectionListName] : [...this.state[sectionListName], ...sectionList],
     });
   };
+
+  handleGetReview = (review) => {
+    this.setState({
+      ...this.state, reviewList: [...this.state.reviewList, review]
+    })
+  }
 //refactor to use redux
   render() {
     return (
@@ -118,6 +124,7 @@ class App extends React.Component {
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
+          handleGetReview: this.handleGetReview
         }}
       >
 

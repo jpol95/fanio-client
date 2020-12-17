@@ -2,6 +2,7 @@ import React from "react";
 import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
+import FetchService from '../FetchService'
 
 export default class Section extends React.Component {
   state = {
@@ -14,10 +15,12 @@ export default class Section extends React.Component {
   sectionId = this.props.id
 
   getReview(element) {
-    return this.context.reviewList.find(
-      (review) => review.id === element.reviewId
-    );
+    const review = FetchService.fetchReview(element.reviewId)
+    this.context.handleGetReview(review)
+    return review
   }
+
+  //figure out how to return review not in promise form
 
   getSubDisplay() {
     return (
@@ -31,7 +34,7 @@ export default class Section extends React.Component {
   getSubSection() {
     const subSection =  this.context[`subList`]
       .filter((subSection) => { 
-        console.log(this.sectionId)
+        // console.log(this.sectionId)
         return subSection[`sectionId`] === this.sectionId
       })
       .map((subSection) => {

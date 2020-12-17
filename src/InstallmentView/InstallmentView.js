@@ -10,7 +10,6 @@ export default class InstallmentView extends React.Component {
 
   componentDidMount = () => {
     this.props.fetchSections(Number(this.props.match.params.installmentId))
-    this.props.fetchReviews(Number(this.props.match.params.installmentId))
   }
 
 //change type to user lower case
