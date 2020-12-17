@@ -23,7 +23,6 @@ export default class InstallmentView extends React.Component {
   };
 
   getSections() {
-    console.log(this.context[`${this.getType().sectionName}List`])
     const sectionsArray = this.context[`${this.getType().sectionName}List`]
       .filter((section) => {
         return section.installmentId === Number(this.props.match.params.installmentId);
@@ -37,10 +36,11 @@ export default class InstallmentView extends React.Component {
   }
 
   render() {
+    console.log(this.context)
     return (
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>
-        {this.context[`${this.getType().sectionName}List`].length != 0 && this.getSections()}
+        {this.getSections()}
         <Link to={`/users/1/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>
       </div>
     );

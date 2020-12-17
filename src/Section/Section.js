@@ -30,7 +30,10 @@ export default class Section extends React.Component {
 
   getSubSection() {
     const subSection =  this.context[`${this.props.type.subName}List`]
-      .filter((subSection) => subSection[`${this.props.type.sectionName}Id`] === this.sectionId)
+      .filter((subSection) => { 
+        console.log(this.sectionId)
+        return subSection[`${this.props.type.sectionName}Id`] === this.sectionId
+      })
       .map((subSection) => {
         const subReview = this.getReview(subSection);
         return (
@@ -87,7 +90,7 @@ export default class Section extends React.Component {
             <Link className="write-review-button" to={`/users/1/sections/${this.sectionId}/review-form/`}> Write Review </Link>
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
-          {this.state.clicked && this.props.type.hasSubs && this.getSubDisplay()}
+          {this.state.clicked && this.props.type.subName && this.getSubDisplay()}
         </div>
       </div>
     );

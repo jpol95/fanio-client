@@ -15,18 +15,23 @@ const FetchService = {
     const sectionList = await res.json();
     const result = { sectionList };
     const promArray = [];
-    console.log(sectionList);
-    result.sectionList.forEach(async (section) => {
+    let subs = []
+    for (let section of result.sectionList){
       const preJson = await fetch(
         `${base_url}/api/sections/sub/${installmentId}/${section.id}`
       );
-      promArray.push(preJson.json());
-    });
-    console.log(promArray)
-    const subs = await Promise.all(promArray);
+      const ep = await preJson.json()
+    //   console.log(ep)
+      subs = subs.concat(ep)
+    //   console.log(subs)
+    }
+
+    // const subs = await Promise.all(promArray);
+    // console.log(subs)
     result.subList = subs;
     return result;
-  },
-};
+  }
+}
+
 
 export default FetchService;

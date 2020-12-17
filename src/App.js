@@ -62,9 +62,8 @@ class App extends React.Component {
   fetchSections = (installmentId, type) => {
     FetchService.fetchSections(installmentId)
     .then(result => {
-      console.log(result)
       this.setState({
-        ...this.state, [`${type.sectionName}List`] : result.sectionList, [`${type.sectionName}List`] : result.subList
+        ...this.state, [`${type.sectionName}List`] : result.sectionList, [`${type.subName}List`] : result.subList
       })
     })
   }
