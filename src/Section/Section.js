@@ -56,7 +56,7 @@ export default class Section extends React.Component {
              <p> {subReview.content.substring(0, 100)}</p>
             ) : (
               
-              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/sections/${this.sectionId}/subs/${subSection}/review-form/`, '_self')}}> Write Review </button>
+              <button onClick={(e) => {e.preventDefault(); e.stopPropagation(); window.open(`/users/1/sections/${this.sectionId}/subs/${subSection.id}/review-form/`, '_self')}}> Write Review </button>
             )}
           </Link>
         );
@@ -97,3 +97,6 @@ export default class Section extends React.Component {
   }
 }
 //<Link className="write-review-season-link" to={`/users/1/review-form/${this.props.id}`}>
+
+
+//make reviews and review buttons work, as well as fandom installation and section posting

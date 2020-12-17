@@ -32,21 +32,26 @@ class App extends React.Component {
     installmentList: [],
   };
 
-  handleSubmit = (newReview) => {
+  handleSubmitReview = (newReview, tableName) => {
     const newTagListItems = newReview.tags.map((tag) => {
       return { tagId: tag.id, reviewId: newReview.id };
     });
+    FetchService.p
     this.setState({
-      ...this.state,
-      reviewList: {
-        id: newReview.id,
-        title: newReview.title,
-        content: newReview.content,
-        rating: newReview.rating,
-      },
+      ...this.state, reviewList: [...this.state.reviewList, newReview],
       tags: [...this.state.reviewTagList, ...newTagListItems],
     });
   };
+
+  patchSection = (id, newSection, sectionName) => {
+    const sectionListCopy = [...this.state[`${sectionName}List`]]
+    sectionListCopy.forEach((section, index, sectionList) => {
+      if (section.id === id) sectionList[index] = newSection
+    })
+    this.setState({
+      ...this.state, [`${sectionName}List`]: sectionListCopy
+    })
+  }
 
   fetchFandoms = () => {
     FetchService.fetchFandoms().then(fandomList => {
@@ -65,6 +70,14 @@ class App extends React.Component {
       this.setState({
         ...this.state, [`${type.sectionName}List`] : result.sectionList, [`${type.subName}List`] : result.subList
       })
+    })
+  }
+
+  //maybe have a fetch service for these functions?
+
+  postReview = (review) => {
+    this.setState({
+      ...this.state, reviewList: [...this.state.reviewList, review]
     })
   }
 
@@ -106,7 +119,7 @@ class App extends React.Component {
           issueList: this.state.issueList,
           arcList: this.state.arcList,
           installmentList: this.state.installmentList,
-          handleSubmit: this.handleSubmit,
+          handleSubmitReview: this.handleSubmitReview,
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
@@ -119,7 +132,7 @@ class App extends React.Component {
           exact
           path={[
             "/users/1/sections/:sectionId/review-form/",
-            "/users/1/sections/:sectionId/subs/${subSection}/review-form/",
+            "/users/1/sections/:sectionId/subs/:subId/review-form/",
           ]}
           component={CreateReview}
         />
@@ -129,6 +142,7 @@ class App extends React.Component {
           component={CreateFandom}
         />
         <Route
+        //change this to include installmentId, sectionId, and subSectionId
           exact
           path="/users/:userId/review-main/:reviewId"
           component={ReviewMain}

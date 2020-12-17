@@ -1,12 +1,11 @@
 import React from "react";
 import "./CreateReview.css";
 import FanioContext from "../FanioContext";
+import FetchService from '../FetchService'
 
 export default class CreateReview extends React.Component {
   static contextType = FanioContext;
-  reviewId = Math.round(Math.random()*1000000000)
   state = {
-    id: this.reviewId,
     title: { value: "", touched: false },
     rating: { value: null, touched: false },
     content: { value: "", touched: false },
@@ -67,14 +66,14 @@ export default class CreateReview extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const reviewObject = {
-      id: this.state.id, 
       title: this.state.title.value, 
       rating: this.state.rating.value,
       content: this.state.content.value, 
       tags: this.state.tags.value, 
     }
     // this.props.history.push(`/users/${}`)
-    this.context.handleSubmit(reviewObject)
+    FetchService.postReview(reviewObject)
+    this.context.handleSubmitReview(FetchService.postReview(reviewObject))
     
   }
 
