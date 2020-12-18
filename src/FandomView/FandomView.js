@@ -5,10 +5,6 @@ import {Link} from 'react-router-dom'
 
 export default class FandomView extends React.Component{
 
-    componentDidMount = () => {
-      this.props.fetchInstallments(Number(this.props.match.params.fandomId))
-    }
-
     static contextType = FanioContext 
     getFandom = () => {
      const fandom = this.context.fandomList.find(fandom => Number(this.props.match.params.fandomId) === fandom.id)

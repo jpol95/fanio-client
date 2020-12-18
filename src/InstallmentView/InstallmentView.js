@@ -7,11 +7,6 @@ import typeList from '../type-list'
 export default class InstallmentView extends React.Component {
   static contextType = FanioContext;
 
-
-  componentDidMount = () => {
-    this.props.fetchSections(Number(this.props.match.params.installmentId))
-  }
-
 //change type to user lower case
 
   getInstallment = () => {

@@ -5,16 +5,9 @@ import Fandom from "../Fandom/Fandom";
 import FanioContext from "../FanioContext";
 import "./Profile.css";
 import { Link } from "react-router-dom";
-import FetchService from '../FetchService'
 
 export default class Profile extends React.Component {
   static contextType = FanioContext;
-
-  componentDidMount = () => {
-    this.props.fetchFandoms()
-  }
-
-
   getFandoms() {
     // console.log(this.context.fandomList)
     return this.context.fandomList.map(fandom => {

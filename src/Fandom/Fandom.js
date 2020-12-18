@@ -2,7 +2,6 @@ import React from "react";
 import Installment from '../Installment/Installment'
 import './Fandom.css'
 import {Link} from 'react-router-dom'
-import FanioContext from '../FanioContext'
 
 
 export default class Fandom extends React.Component {

@@ -56,6 +56,11 @@ const FetchService = {
     const sectionsPreJson = await fetch(`${base_url}${link}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(sections)})
     const sectionsResult = await sectionsPreJson.json()
     return sectionsResult
+  }, 
+  fetchTags : async () => {
+    const tagsPreJson = await fetch(`${base_url}/tags`)
+    const tagsResult = await tagsPreJson.json()
+    return tagsResult
   }
 }
 //is it ok to just get id from newSection object

@@ -26,7 +26,7 @@ export default class CreateReview extends React.Component {
     return this.context.tagList.map((tag) => {
       return (
         <option value={tag.id} key={tag.id} id={tag.id}>
-          {tag.name}
+          {tag.title}
         </option>
       );
     });
@@ -65,7 +65,7 @@ export default class CreateReview extends React.Component {
   }
 
   displayTags = () => {
-    return this.state.tags.value.map(tag => <span key={tag}>#{this.getTagById(tag).name}</span>)
+    return this.state.tags.value.map(tag => <span key={tag}>#{this.getTagById(tag).title}</span>)
   }
 
   handleSubmit = (e) => {

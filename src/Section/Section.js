@@ -2,7 +2,6 @@ import React from "react";
 import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
-import FetchService from "../FetchService";
 
 export default class Section extends React.Component {
   state = {
@@ -18,41 +17,6 @@ export default class Section extends React.Component {
     return this.context.reviewList.find(
       (review) => review.id === element.reviewId
     );
-  }
-
-  getSubReviews() {
-    const promArray = [];
-    this.context[`subList`]
-      .filter((subSection) => {
-        return (
-          subSection[`sectionId`] === this.sectionId && !!subSection.reviewId
-        );
-      })
-      .forEach((subSection) => {
-        promArray.push(FetchService.fetchReview(subSection.reviewId));
-      });
-    Promise.all(promArray)
-      .then((subReviews) => {
-        subReviews.forEach((review) => {
-          this.context.handleGetReview(review);
-        });
-      })
-      .then(() => {
-        this.render();
-      });
-  }
-
-  componentDidMount() {
-    if (this.props.reviewId) {
-      FetchService.fetchReview(this.props.reviewId).then((review) => {
-        this.context.handleGetReview(review);
-        if (this.context[`subList`].length !== 0) {
-          this.getSubReviews();
-        }
-      });
-    } else {
-      this.getSubReviews();
-    }
   }
 
   //figure out how to return review not in promise form
@@ -71,7 +35,6 @@ export default class Section extends React.Component {
   }
 
   getSubSections() {
-    console.log(this.context)
     const subSections = this.context.subList
       .filter((subSection) => {
         return (
@@ -105,7 +68,7 @@ export default class Section extends React.Component {
                   e.preventDefault();
                   e.stopPropagation();
                   window.open(
-                    `/users/1/sections/${this.sectionId}/subs/${subSection.id}/review-form/`,
+                    `/users/1/subs/${subSection.id}/review-form/`,
                     "_self"
                   );
                 }}
@@ -169,3 +132,38 @@ export default class Section extends React.Component {
 //<Link className="write-review-season-link" to={`/users/1/review-form/${this.props.id}`}>
 
 //make reviews and review buttons work, as well as fandom installation and section posting
+
+// getSubReviews() {
+//   const promArray = [];
+//   this.context[`subList`]
+//     .filter((subSection) => {
+//       return (
+//         subSection[`sectionId`] === this.sectionId && !!subSection.reviewId
+//       );
+//     })
+//     .forEach((subSection) => {
+//       promArray.push(FetchService.fetchReview(subSection.reviewId));
+//     });
+//   Promise.all(promArray)
+//     .then((subReviews) => {
+//       subReviews.forEach((review) => {
+//         this.context.handleGetReview(review);
+//       });
+//     })
+//     .then(() => {
+//       this.render();
+//     });
+// }
+
+// componentDidMount() {
+//   if (this.props.reviewId) {
+//     FetchService.fetchReview(this.props.reviewId).then((review) => {
+//       this.context.handleGetReview(review);
+//       if (this.context[`subList`].length !== 0) {
+//         this.getSubReviews();
+//       }
+//     });
+//   } else {
+//     this.getSubReviews();
+//   }
+// }

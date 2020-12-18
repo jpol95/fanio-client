@@ -13,7 +13,6 @@ import CreateSections from "./CreateSections/CreateSections";
 import FetchService from './FetchService'
 import SignUp from "./SignUp/SignUp";
 import Landing from "./Landing/Landing";
-import dummyStore from "./dummy-store";
 import FanioContext from "./FanioContext";
 import { Route } from "react-router-dom";
 
@@ -56,26 +55,61 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount = () => {
+    this.loadData()
+  }
 
-  fetchFandoms = () => {
-    FetchService.fetchFandoms().then(fandomList => {
-      this.setState({...this.state, fandomList})
-    })
-  }
-  fetchInstallments = (fandomId) => {
-    FetchService.fetchInstallments(fandomId).then(installmentList => {
-      this.setState({...this.state, installmentList})
-    })
-  }
-  
-  fetchSections = (installmentId) => {
-    FetchService.fetchSections(installmentId)
-    .then(result => {
-      console.log(result)
-      this.setState({
-        ...this.state, [`sectionList`] : result.sectionList, [`subList`] : result.subList
+  loadData = async () => {
+    const fandoms = await this.fetchFandoms()
+    fandoms.forEach(async fandom => {
+      const installments = await this.fetchInstallments(fandom.id)
+      installments.forEach(async installment => {
+        const sectionArr = await this.fetchSections(installment.id) 
+        this.loadReviews(sectionArr)
       })
     })
+    this.fetchTags()
+  }
+
+  loadReviews = (sectionArr) => {
+    const promArray = []
+    sectionArr.sectionList.forEach(section => {
+      if (section.reviewId)
+      promArray.push(FetchService.fetchReview(section.reviewId))
+    })
+    sectionArr.subList.forEach(sub => {
+      if (sub.reviewId)
+      promArray.push(FetchService.fetchReview(sub.reviewId))
+    })
+    Promise.all(promArray).then(reviews => {
+      this.setState({
+        ...this.state, reviewList: [...this.state.reviewList, ...reviews]
+      })
+    })
+  }
+
+  fetchTags = async () => {
+    const tagList = await FetchService.fetchTags()
+    this.setState({...this.state, tagList})
+  }
+
+  fetchFandoms = async () => {
+      const fandomList = await FetchService.fetchFandoms()
+      this.setState({...this.state, fandomList: [...this.state.fandomList, ...fandomList]})
+      return fandomList
+  }
+  fetchInstallments = async (fandomId) => {
+    const installmentList = await FetchService.fetchInstallments(fandomId)
+      this.setState({...this.state, installmentList : [...this.state.installmentList, ...installmentList]})
+      return installmentList
+  }
+  
+  fetchSections = async (installmentId) => {
+    const sectionArr = await FetchService.fetchSections(installmentId)
+      this.setState({
+        ...this.state, [`sectionList`] : [...this.state.sectionList, ...sectionArr.sectionList], [`subList`] : [...this.state.subList, ...sectionArr.subList]
+      })
+    return sectionArr
   }
 
   //maybe have a fetch service for these functions?
@@ -107,13 +141,9 @@ class App extends React.Component {
     });
   };
 
-  handleGetReview = (review) => {
-    this.setState({
-      ...this.state, reviewList: [...this.state.reviewList, review]
-    })
-  }
 //refactor to use redux
   render() {
+    // console.log(this.state)
     return (
       <FanioContext.Provider
         value={{
@@ -128,12 +158,11 @@ class App extends React.Component {
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
-          handleGetReview: this.handleGetReview
         }}
       >
 
         <NavBar />
-        <Route exact path="/users/:userId/profile/" render={(props) => <Profile fetchFandoms={this.fetchFandoms} {...props} />} />
+        <Route exact path="/users/:userId/profile/" render={(props) => <Profile {...props} />} />
         <Route
           exact
           path={[
@@ -156,12 +185,12 @@ class App extends React.Component {
         <Route
           exact
           path="/users/:userId/fandom-view/:fandomId"
-          render={(props) => <FandomView fetchInstallments={this.fetchInstallments} {...props} />}
+          render={(props) => <FandomView {...props} />}
         />
         <Route
           exact
           path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
-          render={(props) => <InstallmentView fetchSections={this.fetchSections} {...props} />}
+          render={(props) => <InstallmentView {...props} />}
         />
         <Route
           exact
@@ -218,3 +247,9 @@ export default App;
   //     ...seedData,
   //   });
   // }
+
+
+
+  //figure out why tags aren't showing up, then 
+  //get on with writing reviews and figure ou how you are 
+  //going to add a new tag relationship

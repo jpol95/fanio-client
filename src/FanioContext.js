@@ -11,7 +11,6 @@ const FanioContext = React.createContext({
     handleSubmitReview: () => {}, 
     handleAddFandom: () => {}, 
     handleSubmitInstallments: () => {}, 
-    handleGetReview: () => {}
 })
 
 export default FanioContext
