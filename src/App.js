@@ -32,20 +32,26 @@ class App extends React.Component {
     
   // }
 
-  handleSubmitReview = (newReview, tableName, parentId) => {
-    const newTagListItems = newReview.tags.map((tag) => {
-      return { tagId: tag.id, reviewId: newReview.id };
+  handleSubmitReview = async (newReview, tags, tableName, parentId) => {
+    // console.log(newReview)
+    let newTagListItems = tags.map((tag) => {
+      return { tagId: Number(tag), reviewId: newReview.id };
     });
-    const section = this.state[`${tableName}List`].find(section => section.id === parentId)
+    newTagListItems = await FetchService.postTrels(newTagListItems)
+    // console.log(typeof parentId)
+    const section = this.state[`${tableName}List`].find(section => section.id === Number(parentId))
     const newSection = {...section, reviewId: newReview.id}
-    this.patchSection(FetchService.patchSection(newSection, newSection.id, tableName), `${tableName}List`)
+    console.log(newSection)
+    const updatedSection = await FetchService.patchSection(newSection, newSection.id, tableName)
+    this.patchSection(updatedSection, `${tableName}List`)
     this.setState({
       ...this.state, reviewList: [...this.state.reviewList, newReview],
-      tags: [...this.state.reviewTagList, ...newTagListItems],
+      reviewTagList: [...this.state.reviewTagList, ...newTagListItems],
     });
   };
 
   patchSection = (newSection, tableName) => {
+    console.log(newSection)
     const sectionListCopy = [...this.state[tableName]]
     sectionListCopy.forEach((section, index, sectionList) => {
       if (section.id === newSection.id) sectionList[index] = newSection
@@ -69,6 +75,7 @@ class App extends React.Component {
       })
     })
     this.fetchTags()
+    this.fetchTrels()
   }
 
   loadReviews = (sectionArr) => {
@@ -91,6 +98,11 @@ class App extends React.Component {
   fetchTags = async () => {
     const tagList = await FetchService.fetchTags()
     this.setState({...this.state, tagList})
+  }
+
+  fetchTrels = async () => {
+    const reviewTagList = await FetchService.fetchTrels()
+    this.setState({...this.state, reviewTagList})
   }
 
   fetchFandoms = async () => {

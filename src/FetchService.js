@@ -28,12 +28,13 @@ const FetchService = {
   }, 
   //test to see why the above didnt work with the for each loop
   postReview : async (review) => {
-      const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {"Content-Type": "appication/json"}, body: review})
+      // console.log(review)
+      const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(review)})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
   }, 
   patchSection : async (newSection, id, tableName) => {
-      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"Content-Type": "appication/json"}, body: newSection})
+      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
@@ -61,6 +62,16 @@ const FetchService = {
     const tagsPreJson = await fetch(`${base_url}/tags`)
     const tagsResult = await tagsPreJson.json()
     return tagsResult
+  }, 
+  postTrels : async (trels) => {
+    const trelsPreJson = await fetch(`${base_url}/trels`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(trels)})
+    const trelsResult = await trelsPreJson.json()
+    return trelsResult
+  }, 
+  fetchTrels : async () => {
+    const trelsPreJson = await fetch(`${base_url}/trels`)
+    const trelsResult = await trelsPreJson.json()
+    return trelsResult
   }
 }
 //is it ok to just get id from newSection object

@@ -68,16 +68,16 @@ export default class CreateReview extends React.Component {
     return this.state.tags.value.map(tag => <span key={tag}>#{this.getTagById(tag).title}</span>)
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
     const reviewObject = {
       title: this.state.title.value, 
       rating: this.state.rating.value,
       content: this.state.content.value, 
-      tags: this.state.tags.value, 
     }
-    // this.props.history.push(`/users/${}`)
-    this.context.handleSubmitReview(FetchService.postReview(reviewObject), this.tableName, this.parentId)
+    const review = await FetchService.postReview(reviewObject)
+    this.props.history.push(`/users/1/review-main/${review.id}`)
+    this.context.handleSubmitReview(review, this.state.tags.value, this.tableName, this.parentId)
     
   }
 
