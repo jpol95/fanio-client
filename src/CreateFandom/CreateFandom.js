@@ -1,6 +1,7 @@
 import React from "react";
 import "./CreateFandom.css";
 import FanioContext from "../FanioContext";
+import FetchService from '../FetchService'
 
 //rename type attribute to title
 
@@ -8,8 +9,7 @@ export default class Fandom extends React.Component {
 
   static contextType = FanioContext
   state = {
-    fandomName: "",
-    id: Math.round(Math.random()*1000000000)
+    fandomName: ""
   };
 
   handleName = (e) => {
@@ -18,11 +18,12 @@ export default class Fandom extends React.Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
-    this.props.history.push(`/users/1/fandom-view/${this.state.id}`)
-    // this.props.history.push(`/users/1/profile`)
-    this.context.handleAddFandom({title: this.state.fandomName, id: this.state.id, user: 1})
+    const fandom = await FetchService.postFandom({title: this.state.fandomName, user: 1})
+    console.log(fandom)
+    this.props.history.push(`/users/1/fandom-view/${fandom.id}`)
+    this.context.handleAddFandom(fandom)
   }
 
  
@@ -30,7 +31,7 @@ export default class Fandom extends React.Component {
     return (
       <div className="fandom">
         <p>Create a new fandom</p>
-        <form onSubmit={this.handleSubmit} class="create-fandom">
+        <form onSubmit={this.handleSubmit} className="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
         <input onChange={this.handleName} id="workname" type="text" />
         <button type="submit">Create New Fandom</button>

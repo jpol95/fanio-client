@@ -2,7 +2,7 @@ import React from "react";
 import CreateSingleInstallment from "../CreateSingleInstallment/CreateSingleInstallment";
 import FanioContext from '../FanioContext'
 import './CreateInstallments.css'
-
+import FetchService from '../FetchService'
 
 export default class CreateInstallments extends React.Component {
 
@@ -39,8 +39,7 @@ export default class CreateInstallments extends React.Component {
     
     installmentListCopy[installment.installId] = {
       ...installment,
-      fandomId: Number(this.props.match.params.fandomId),
-      id: Math.round(Math.random()*100000000)
+      fandomId: Number(this.props.match.params.fandomId)
     };
     // console.log(installmentListCopy)
     this.setState({
@@ -48,15 +47,17 @@ export default class CreateInstallments extends React.Component {
     });
   };
 
-  handleSubmitInstallments = (e) => {
+  handleSubmitInstallments = async (e) => {
     e.preventDefault()
-    console.log(this.state)
+    const installCopy = [...this.state.installmentList]
+    const installments = await FetchService.postInstallments(installCopy, this.props.match.params.fandomId)
     this.props.history.push(`/users/1/fandom-view/${this.props.match.params.fandomId}`)
-    this.context.handleSubmitInstallments(this.state.installmentList)
+    this.context.handleSubmitInstallments(installments)
   }
 
-//is there a way to combine the add seasons and add episodes form?
-//figure out why form is not submitting properly
+  //see how you want to handle submitting installments, whether handle the array here or on
+  //serverside, would be easier on serverside but i want to make sure that's good practice
+
 
   render() {
     // console.log("creating installment forms")

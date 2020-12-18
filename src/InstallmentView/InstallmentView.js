@@ -26,7 +26,7 @@ export default class InstallmentView extends React.Component {
   };
 
   getSections() {
-    console.log(this.context)
+    // console.log(this.context)
     const sectionsArray = this.context.sectionList
       .filter((section) => {
         return section.installmentId === Number(this.props.match.params.installmentId);
@@ -40,7 +40,7 @@ export default class InstallmentView extends React.Component {
   }
 
   render() {
-    console.log(this.context)
+    // console.log(this.context)
     return (
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>

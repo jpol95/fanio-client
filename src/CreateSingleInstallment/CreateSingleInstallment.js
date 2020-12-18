@@ -18,7 +18,7 @@ export default class InstallDropDown extends React.Component {
 
   handleTypeChange = (e) => {
     this.setState({
-     ...this.state, typeId: e.target.value, installId: this.props.installId
+     ...this.state, type: e.target.value, installId: this.props.installId
     })
     this.props.handleAddInstallment(this.state)
   }

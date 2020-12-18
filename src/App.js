@@ -28,6 +28,11 @@ class App extends React.Component {
     installmentList: [],
   };
 
+  // componentDidMount() {
+  //   FetchService.fetchTags()
+    
+  // }
+
   handleSubmitReview = (newReview, tableName, parentId) => {
     const newTagListItems = newReview.tags.map((tag) => {
       return { tagId: tag.id, reviewId: newReview.id };
@@ -50,6 +55,7 @@ class App extends React.Component {
       ...this.state, [tableName]: sectionListCopy
     })
   }
+
 
   fetchFandoms = () => {
     FetchService.fetchFandoms().then(fandomList => {
@@ -95,11 +101,9 @@ class App extends React.Component {
   };
 
   handleSubmitSections = (sectionList, listName) => {
-    const sectionListName = [`${listName}List`];
-    console.log(sectionList)
     this.setState({
       ...this.state,
-      [sectionListName] : [...this.state[sectionListName], ...sectionList],
+      [listName] : [...this.state[listName], ...sectionList],
     });
   };
 

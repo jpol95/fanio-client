@@ -13,7 +13,7 @@ const FetchService = {
       `${base_url}/sections/section/${installmentId}`
     );
     const sectionList = await res.json();
-    console.log(sectionList)
+    // console.log(sectionList)
     const result = { sectionList };
     let subs = []
     for (let section of result.sectionList){
@@ -26,14 +26,14 @@ const FetchService = {
     result.subList = subs;
     return result;
   }, 
-  //make sure to fetch the reviews when you fetch the sections/subsections
+  //test to see why the above didnt work with the for each loop
   postReview : async (review) => {
-      const reviewPreJson = await fetch(`${base_url}/reviews`, {headers: {method: 'POST', "Content-Type": "appication/json/", body: review}})
+      const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {"Content-Type": "appication/json"}, body: review})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
   }, 
   patchSection : async (newSection, id, tableName) => {
-      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {headers: {method: 'PATCH', "Content-Type": "appication/json/", body: newSection}})
+      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"Content-Type": "appication/json"}, body: newSection})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
@@ -41,6 +41,21 @@ const FetchService = {
     const reviewPreJson = await fetch(`${base_url}/reviews/${id}`)
     const reviewResult = await reviewPreJson.json()
     return reviewResult
+  }, 
+  postFandom : async (fandom) => {
+     const fandomPreJson = await fetch(`${base_url}/fandoms`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(fandom)})
+     const fandomResult = await fandomPreJson.json()
+     return fandomResult
+  }, 
+  postInstallments : async (installments, fandomId) => {
+    const installmentsPreJson = await fetch(`${base_url}/installments/${fandomId}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(installments)})
+    const installmentsResult = await installmentsPreJson.json()
+    return installmentsResult
+  },
+  postSections : async (sections, link) => {
+    const sectionsPreJson = await fetch(`${base_url}${link}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(sections)})
+    const sectionsResult = await sectionsPreJson.json()
+    return sectionsResult
   }
 }
 //is it ok to just get id from newSection object

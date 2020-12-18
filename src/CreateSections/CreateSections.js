@@ -3,13 +3,14 @@ import CreateSingleSection from "../CreateSingleSection/CreateSingleSection";
 import FanioContext from '../FanioContext'
 import './CreateSections.css'
 import typeList from '../type-list'
+import FetchService from "../FetchService";
 
 export default class CreateSections extends React.Component {
 
   static contextType = FanioContext
 
   getType = () => {
-    typeList[this.getInstallment().type]
+    return typeList[this.getInstallment().type]
   }
 
   //fix classes to not use type from context, then on with debugging the get calls for the seeded data
@@ -63,11 +64,14 @@ export default class CreateSections extends React.Component {
     });
   };
 
-  handleSubmitSections = (e) => {
+  handleSubmitSections = async (e) => {
     e.preventDefault()
-    // console.log(this.state)
+    console.log("kjvenkejnekrjnfejk")
+    const link = this.parentName === "installment" ? `/sections/section/${this.props.match.params.installmentId}` : `/sections/sub/${this.props.match.params.sectionId}`
+    const sectionCopy = [...this.state.sectionList]
+    const sections = await FetchService.postSections(sectionCopy, link)
     this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
-    this.context.handleSubmitSections(this.state.sectionList, this.genListName)
+    this.context.handleSubmitSections(sections, this.genListName)
   }
 
 //is there a way to combine the add seasons and add episodes form?
