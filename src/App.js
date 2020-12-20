@@ -207,7 +207,8 @@ class App extends React.Component {
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
-          setLoggedInUser: this.setLoggedInUser
+          setLoggedInUser: this.setLoggedInUser, 
+          
         }}
       >
         <NavBar />
@@ -272,8 +273,8 @@ class App extends React.Component {
             </CheckUser>
           )}
         />
-        <PublicRoute exact path="/signup-form" component={SignUp} />
-        <PublicRoute exact path="/login" component={LoginPage} />
+        <PublicRoute exact path="/signup" loggedInUser={this.state.loggedInUser.userId} component={SignUp} />
+        <PublicRoute exact path="/login" loggedInUser={this.state.loggedInUser.userId} component={LoginPage} />
         <Route exact path="/landing" component={Landing} />
         <Footer />
       </FanioContext.Provider>

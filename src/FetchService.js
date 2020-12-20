@@ -79,6 +79,11 @@ const FetchService = {
     const loggedInUserPreJson = await fetch(`${base_url}/users/loggedIn`, {headers: {'authorization': `bearer ${TokenService.getAuthToken()}`}})
     const loggedInUserResult = await loggedInUserPreJson.json()
     return loggedInUserResult
+  }, 
+  postUser : async (user) => {
+    const userPreJson = await fetch(`${base_url}/users/`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(user)})
+    const userResult = await userPreJson.json()
+    return userResult
   }
 }
 //is it ok to just get id from newSection object
