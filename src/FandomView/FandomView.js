@@ -25,6 +25,7 @@ export default class FandomView extends React.Component{
 
     
     render() {
+      console.log(this.context.loggedInUser)
       return( 
         <React.Fragment>
       <h3>{this.getFandom() && this.getFandom().title}</h3>

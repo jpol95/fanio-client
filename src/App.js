@@ -38,25 +38,24 @@ class App extends React.Component {
 
   // }
 
-  setLoggedInUser = (userId) => {
-    this.setState({
-      ...this.state,
-      loggedInUser: userId,
-    });
-  };
+  componentDidMount(){
+    FetchService.fetchLoggedInUser()
+    .then(res => {
+      this.setState({
+        loggedInUser: res.userId
+      })
+    })
+  }
 
   handleSubmitReview = async (newReview, tags, tableName, parentId) => {
-    // console.log(newReview)
     let newTagListItems = tags.map((tag) => {
       return { tagId: Number(tag), reviewId: newReview.id };
     });
     newTagListItems = await FetchService.postTrels(newTagListItems);
-    // console.log(typeof parentId)
     const section = this.state[`${tableName}List`].find(
       (section) => section.id === Number(parentId)
     );
     const newSection = { ...section, reviewId: newReview.id };
-    console.log(newSection);
     const updatedSection = await FetchService.patchSection(
       newSection,
       newSection.id,
@@ -90,7 +89,6 @@ class App extends React.Component {
       currentLoadedUser: userId,
     })));
     stateChange.then( async () => {
-      console.log(this.state.currentLoadedUser)
     const fandoms = await this.fetchFandoms(userId);
     fandoms.forEach(async (fandom) => {
       const installments = await this.fetchInstallments(fandom.id);
@@ -189,7 +187,7 @@ class App extends React.Component {
 
   //refactor to use redux
   render() {
-    console.log(this.state.currentLoadedUser)
+    console.log(this.state.loggedInUser)
     return (
       <FanioContext.Provider
         value={{
@@ -200,11 +198,12 @@ class App extends React.Component {
           tagList: this.state.tagList,
           reviewTagList: this.state.reviewTagList,
           installmentList: this.state.installmentList,
+          loggedInUser: this.state.loggedInUser,
           handleSubmitReview: this.handleSubmitReview,
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
-          setLoggedInUser: this.setLoggedInUser,
+          setLoggedInUser: this.setLoggedInUser
         }}
       >
         <NavBar />

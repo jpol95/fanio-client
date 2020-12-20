@@ -1,7 +1,7 @@
 import React from 'react'
 
 const FanioContext = React.createContext({
-    loggedInUserId: 0, 
+    loggedInUser: 0, 
     fandomList: [],
     reviewList: [],
     sectionList: [], 

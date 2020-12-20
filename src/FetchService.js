@@ -1,3 +1,4 @@
+import TokenService from './Services/token-service'
 const base_url = `http://localhost:8000/api`;
 const FetchService = {
   fetchFandoms: (userId) => {
@@ -73,6 +74,11 @@ const FetchService = {
     const trelsPreJson = await fetch(`${base_url}/trels`)
     const trelsResult = await trelsPreJson.json()
     return trelsResult
+  }, 
+  fetchLoggedInUser : async () => {
+    const loggedInUserPreJson = await fetch(`${base_url}/users/loggedIn`, {headers: {'authorization': `bearer ${TokenService.getAuthToken()}`}})
+    const loggedInUserResult = await loggedInUserPreJson.json()
+    return loggedInUserResult
   }
 }
 //is it ok to just get id from newSection object
