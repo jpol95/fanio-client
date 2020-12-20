@@ -39,6 +39,10 @@ class App extends React.Component {
   // }
 
   componentDidMount(){
+    this.setLoggedInUser()
+  }
+
+  setLoggedInUser = () =>   {
     FetchService.fetchLoggedInUser()
     .then(res => {
       this.setState({

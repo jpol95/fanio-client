@@ -13,10 +13,10 @@ export default class LoginPage extends Component {
   };
 
   handleLoginSuccess = (userId) => {
-    console.log(userId)
     const { location, history } = this.props;
-    const destination = (location.state || {}).from || "/";
+    const destination = (location.state || {}).from || `/users/${userId}/profile`;
     history.push(destination);
+    this.context.setLoggedInUser()
   };
 
   render() {
