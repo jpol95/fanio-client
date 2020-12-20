@@ -71,7 +71,7 @@ class App extends React.Component {
   };
 
   patchSection = (newSection, tableName) => {
-    console.log(newSection);
+    // console.log(newSection);
     const sectionListCopy = [...this.state[tableName]];
     sectionListCopy.forEach((section, index, sectionList) => {
       if (section.id === newSection.id) sectionList[index] = newSection;
@@ -84,10 +84,13 @@ class App extends React.Component {
 
 
   loadData = async (userId) => {
-    this.setState({
+    // console.log(userId)
+    const stateChange = new Promise((resolve, reject) => 
+    resolve(this.setState({
       currentLoadedUser: userId,
-    });
-    console.log(userId)
+    })));
+    stateChange.then( async () => {
+      console.log(this.state.currentLoadedUser)
     const fandoms = await this.fetchFandoms(userId);
     fandoms.forEach(async (fandom) => {
       const installments = await this.fetchInstallments(fandom.id);
@@ -98,7 +101,7 @@ class App extends React.Component {
     });
     this.fetchTags();
     this.fetchTrels();
-  };
+  })};
 
   loadReviews = (sectionArr) => {
     const promArray = [];
@@ -186,7 +189,7 @@ class App extends React.Component {
 
   //refactor to use redux
   render() {
-    // console.log(this.state)
+    console.log(this.state.currentLoadedUser)
     return (
       <FanioContext.Provider
         value={{
