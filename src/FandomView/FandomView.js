@@ -5,6 +5,10 @@ import {Link} from 'react-router-dom'
 
 export default class FandomView extends React.Component{
 
+    userId = Number(this.props.match.params.userId)
+    isLoggedInUser = this.context.loggedInUser === this.userId
+
+
     static contextType = FanioContext 
     getFandom = () => {
      const fandom = this.context.fandomList.find(fandom => Number(this.props.match.params.fandomId) === fandom.id)
@@ -25,7 +29,7 @@ export default class FandomView extends React.Component{
         <React.Fragment>
       <h3>{this.getFandom() && this.getFandom().title}</h3>
       {this.getInstallments()}
-      <Link to={`/users/1/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>
+      {this.isLoggedInUser && <Link to={`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>}
       </React.Fragment>
       )
     }

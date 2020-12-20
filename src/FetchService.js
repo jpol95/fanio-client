@@ -1,7 +1,8 @@
 const base_url = `http://localhost:8000/api`;
 const FetchService = {
-  fetchFandoms: () => {
-    return fetch(`${base_url}/fandoms`).then((res) => res.json());
+  fetchFandoms: (userId) => {
+    console.log(userId)
+    return fetch(`${base_url}/fandoms/users/${userId}`).then((res) => res.json());
   },
   fetchInstallments: (fandomId) => {
     return fetch(`${base_url}/installments/${fandomId}`).then((res) =>
@@ -27,14 +28,14 @@ const FetchService = {
     return result;
   }, 
   //test to see why the above didnt work with the for each loop
-  postReview : async (review) => {
+  postReview : async (userId, review) => {
       // console.log(review)
-      const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(review)})
+      const reviewPreJson = await fetch(`${base_url}/reviews/users/${userId}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(review)})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
   }, 
-  patchSection : async (newSection, id, tableName) => {
-      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"content-type": "application/json"}, body: JSON.stringify(newSection)})
+  patchSection : async (userId, newSection, id, tableName) => {
+      const sectionPreJson = await fetch(`${base_url}/sections/users/${userId}/${tableName}/${id}`, {method: 'PATCH', headers: {"content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
@@ -43,18 +44,18 @@ const FetchService = {
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   }, 
-  postFandom : async (fandom) => {
-     const fandomPreJson = await fetch(`${base_url}/fandoms`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(fandom)})
+  postFandom : async (userId, fandom) => {
+     const fandomPreJson = await fetch(`${base_url}/fandoms/users/${userId}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(fandom)})
      const fandomResult = await fandomPreJson.json()
      return fandomResult
   }, 
-  postInstallments : async (installments, fandomId) => {
-    const installmentsPreJson = await fetch(`${base_url}/installments/${fandomId}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(installments)})
+  postInstallments : async (userId, installments, fandomId) => {
+    const installmentsPreJson = await fetch(`${base_url}/installments/users/${userId}/${fandomId}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(installments)})
     const installmentsResult = await installmentsPreJson.json()
     return installmentsResult
   },
-  postSections : async (sections, link) => {
-    const sectionsPreJson = await fetch(`${base_url}${link}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(sections)})
+  postSections : async (userId, sections, link) => {
+    const sectionsPreJson = await fetch(`${base_url}users/${userId}${link}`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(sections)})
     const sectionsResult = await sectionsPreJson.json()
     return sectionsResult
   }, 

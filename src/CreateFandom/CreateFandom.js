@@ -12,6 +12,8 @@ export default class Fandom extends React.Component {
     fandomName: ""
   };
 
+  userId = this.props.match.params.userId
+
   handleName = (e) => {
     this.setState({
       ...this.state, fandomName: e.target.value
@@ -20,9 +22,9 @@ export default class Fandom extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const fandom = await FetchService.postFandom({title: this.state.fandomName, user: 1})
+    const fandom = await FetchService.postFandom(this.userId, {title: this.state.fandomName, user: 1})
     console.log(fandom)
-    this.props.history.push(`/users/1/fandom-view/${fandom.id}`)
+    this.props.history.push(`/users/${this.userId}/fandom-view/${fandom.id}`)
     this.context.handleAddFandom(fandom)
   }
 

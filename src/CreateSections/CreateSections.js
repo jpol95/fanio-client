@@ -22,6 +22,7 @@ export default class CreateSections extends React.Component {
   genListName = this.props.match.params.sectionId ? "subList" : "sectionList"
   listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
   parentName = this.props.match.params.sectionId ? "section": "installment"
+  userId = Number(this.props.match.params.userId)
 
 
   state = {
@@ -69,8 +70,8 @@ export default class CreateSections extends React.Component {
     console.log("kjvenkejnekrjnfejk")
     const link = this.parentName === "installment" ? `/sections/section/${this.props.match.params.installmentId}` : `/sections/sub/${this.props.match.params.sectionId}`
     const sectionCopy = [...this.state.sectionList]
-    const sections = await FetchService.postSections(sectionCopy, link)
-    this.props.history.push(`/users/1/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
+    const sections = await FetchService.postSections(this.userId, sectionCopy, link)
+    this.props.history.push(`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
     this.context.handleSubmitSections(sections, this.genListName)
   }
 

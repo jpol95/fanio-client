@@ -1,6 +1,7 @@
 import React from 'react'
 
 const FanioContext = React.createContext({
+    loggedInUserId: 0, 
     fandomList: [],
     reviewList: [],
     sectionList: [], 
@@ -11,6 +12,7 @@ const FanioContext = React.createContext({
     handleSubmitReview: () => {}, 
     handleAddFandom: () => {}, 
     handleSubmitInstallments: () => {}, 
+    setLoggedInUser: () => {}
 })
 
 export default FanioContext

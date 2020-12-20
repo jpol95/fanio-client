@@ -17,6 +17,7 @@ export default class CreateReview extends React.Component {
   tableName = this.props.match.params.subId ? "sub" : "section"
   parentId = this.props.match.params.subId || this.props.match.params.sectionId
   installmentId = this.props.match.params.installmentId
+  userId = Number(this.props.match.params.userId)
 
   getTagById = (id) => {
     return this.context.tagList.find(tag => tag.id === Number(id))
@@ -75,8 +76,8 @@ export default class CreateReview extends React.Component {
       rating: this.state.rating.value,
       content: this.state.content.value, 
     }
-    const review = await FetchService.postReview(reviewObject)
-    this.props.history.push(`/users/1/review-main/${review.id}`)
+    const review = await FetchService.postReview(this.userId, reviewObject)
+    this.props.history.push(`/users/${this.userId}/review-main/${review.id}`)
     this.context.handleSubmitReview(review, this.state.tags.value, this.tableName, this.parentId)
     
   }

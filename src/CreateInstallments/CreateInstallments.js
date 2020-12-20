@@ -14,6 +14,8 @@ export default class CreateInstallments extends React.Component {
     // sectionList: []
   };
 
+  userId = Number(this.props.match.params.userId)
+
   handleNumInstallments = (e) => {
     const installmentList = [];
     const numInstallments = e.target.value;
@@ -50,8 +52,8 @@ export default class CreateInstallments extends React.Component {
   handleSubmitInstallments = async (e) => {
     e.preventDefault()
     const installCopy = [...this.state.installmentList]
-    const installments = await FetchService.postInstallments(installCopy, this.props.match.params.fandomId)
-    this.props.history.push(`/users/1/fandom-view/${this.props.match.params.fandomId}`)
+    const installments = await FetchService.postInstallments(this.userId, installCopy, this.props.match.params.fandomId)
+    this.props.history.push(`/users/${this.userId}/fandom-view/${this.props.match.params.fandomId}`)
     this.context.handleSubmitInstallments(installments)
   }
 

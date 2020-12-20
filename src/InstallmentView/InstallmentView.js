@@ -7,6 +7,10 @@ import typeList from '../type-list'
 export default class InstallmentView extends React.Component {
   static contextType = FanioContext;
 
+  userId = Number(this.props.match.params.userId)
+  isLoggedInUser = this.context.loggedInUser === this.userId
+
+
 //change type to user lower case
 
   getInstallment = () => {
@@ -40,7 +44,7 @@ export default class InstallmentView extends React.Component {
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>
         {this.getSections()}
-        <Link to={`/users/1/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>
+        {this.isLoggedInUser && <Link to={`/users/${this.userId}/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import "./SignUp.css";
 export default class Signup extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <form class="new-user-form">
         <div className="basic">
           <p> Basic account information </p>
           <label htmlFor="username">Username</label>
@@ -13,8 +13,6 @@ export default class Signup extends React.Component {
           <input id="pw" type="text" />
           <label htmlFor="pw-confirm">Confirm Password</label>
           <input id="pw-confirm" type="text" />
-          <label htmlFor="username">Profile Picture</label>
-          <button> Browse </button>
         </div>
 
         <div className="personal">
@@ -32,8 +30,8 @@ export default class Signup extends React.Component {
           <label htmlFor="education">Education</label>
           <input id="education" type="text" />
         </div>
-        <button>Create Profile</button>
-      </React.Fragment>
+        <button type="submit">Create Profile</button>
+      </form>
     );
   }
 }

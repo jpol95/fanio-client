@@ -12,6 +12,9 @@ export default class Section extends React.Component {
   fandomId = this.props.match.params.fandomId;
   installmentId = this.props.match.params.installmentId;
   sectionId = this.props.id;
+  userId = Number(this.props.match.params.userId)
+  isLoggedInUser = this.context.loggedInUser === this.userId
+
 
   getReview(element) {
     return this.context.reviewList.find(
@@ -25,11 +28,11 @@ export default class Section extends React.Component {
     return (
       <React.Fragment>
         <div className="subsection-list ">{this.getSubSections()}</div>
-        <Link
+        {this.isLoggedInUser && <Link
           to={`/users/1/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/add-subs-form`}
         >
           Add {this.props.type.subName}s
-        </Link>
+        </Link>}
       </React.Fragment>
     );
   }
@@ -63,6 +66,7 @@ export default class Section extends React.Component {
             {subReview ? (
               <p> {subReview.content.substring(0, 100)}</p>
             ) : (
+              this.isLoggedInUser ? 
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -76,6 +80,8 @@ export default class Section extends React.Component {
                 {" "}
                 Write Review{" "}
               </button>
+              :
+              ""
             )}
           </Link>
         );
@@ -112,6 +118,7 @@ export default class Section extends React.Component {
               </Link>
             </React.Fragment>
           ) : (
+            this.isLoggedInUser ? 
             <Link
               className="write-review-button"
               to={`/users/1/sections/${this.sectionId}/review-form/`}
@@ -119,6 +126,8 @@ export default class Section extends React.Component {
               {" "}
               Write Review{" "}
             </Link>
+            :
+            ""
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           {this.state.clicked &&
