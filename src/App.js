@@ -220,19 +220,6 @@ class App extends React.Component {
                 path="/users/:userId/profile/"
                 render={(props) => <Profile {...props} />}
               />
-              <PrivateOnlyRoute
-                exact
-                path={[
-                  "/users/:userId/sections/:sectionId/review-form/",
-                  "/users/:userId/subs/:subId/review-form/",
-                ]}
-                component={CreateReview}
-              />
-              <PrivateOnlyRoute
-                exact
-                path="/users/:userId/fandom-form"
-                component={CreateFandom}
-              />
               <Route
                 exact
                 path="/users/:userId/review-main/:reviewId"
@@ -250,11 +237,28 @@ class App extends React.Component {
               />
               <PrivateOnlyRoute
                 exact
+                loggedInUser={this.state.loggedInUser}
+                path={[
+                  "/users/:userId/sections/:sectionId/review-form/",
+                  "/users/:userId/subs/:subId/review-form/",
+                ]}
+                component={CreateReview}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser}
+                path="/users/:userId/fandom-form"
+                component={CreateFandom}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser}
                 path="/users/:userId/fandoms/:fandomId/add-installments-form"
                 component={CreateInstallments}
               />
               <PrivateOnlyRoute
                 exact
+                loggedInUser={this.state.loggedInUser}
                 path={[
                   "/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form",
                   "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/add-subs-form",
