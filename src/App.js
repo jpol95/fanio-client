@@ -23,7 +23,7 @@ import CheckUser from "./Utils/CheckUser";
 class App extends React.Component {
   state = {
     currentLoadedUser: 0,
-    loggedInUser: 0,
+    loggedInUser: {loaded: false, userId: true},
     fandomList: [],
     reviewList: [],
     sectionList: [],
@@ -42,7 +42,7 @@ class App extends React.Component {
     FetchService.fetchLoggedInUser()
     .then(res => {
       this.setState({
-        loggedInUser: res.userId
+        loggedInUser: {loaded:true, userId: res.userId}
       })
     })
   }
@@ -187,7 +187,7 @@ class App extends React.Component {
 
   //refactor to use redux
   render() {
-    console.log(this.state.loggedInUser)
+    if (!this.state.loggedInUser.loaded) return null
     return (
       <FanioContext.Provider
         value={{
@@ -198,7 +198,7 @@ class App extends React.Component {
           tagList: this.state.tagList,
           reviewTagList: this.state.reviewTagList,
           installmentList: this.state.installmentList,
-          loggedInUser: this.state.loggedInUser,
+          loggedInUser: this.state.loggedInUser.userId,
           handleSubmitReview: this.handleSubmitReview,
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
@@ -237,7 +237,7 @@ class App extends React.Component {
               />
               <PrivateOnlyRoute
                 exact
-                loggedInUser={this.state.loggedInUser}
+                loggedInUser={this.state.loggedInUser.userId}
                 path={[
                   "/users/:userId/sections/:sectionId/review-form/",
                   "/users/:userId/subs/:subId/review-form/",
@@ -246,19 +246,19 @@ class App extends React.Component {
               />
               <PrivateOnlyRoute
                 exact
-                loggedInUser={this.state.loggedInUser}
+                loggedInUser={this.state.loggedInUser.userId}
                 path="/users/:userId/fandom-form"
                 component={CreateFandom}
               />
               <PrivateOnlyRoute
                 exact
-                loggedInUser={this.state.loggedInUser}
+                loggedInUser={this.state.loggedInUser.userId}
                 path="/users/:userId/fandoms/:fandomId/add-installments-form"
                 component={CreateInstallments}
               />
               <PrivateOnlyRoute
                 exact
-                loggedInUser={this.state.loggedInUser}
+                loggedInUser={this.state.loggedInUser.userId}
                 path={[
                   "/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form",
                   "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/add-subs-form",
