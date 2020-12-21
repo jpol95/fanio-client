@@ -12,6 +12,8 @@ export default class Fandom extends React.Component {
     return (
       <Link to={`/users/1/fandom-view/${this.props.id}`} className="fandom-view">
         <h3>{this.props.title}</h3>
+        <button>Edit</button>
+        <button>Delete</button>
       </Link>
     );
   }

@@ -15,7 +15,8 @@ export default class Installment extends React.Component {
         className="fandom-view"
       >
         <h4>{this.props.title}</h4>
-      
+        <button>Edit</button>
+        <button>Delete</button>
       </Link>
     );
   }

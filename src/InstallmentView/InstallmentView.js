@@ -39,7 +39,7 @@ export default class InstallmentView extends React.Component {
   }
 
   render() {
-    // console.log(this.context)
+    if (!this.getInstallment()) return null
     return (
       <div className="fandom-view">
         <h4>{this.getInstallment() && this.getInstallment().title}</h4>

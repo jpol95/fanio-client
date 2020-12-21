@@ -2,6 +2,7 @@ import React from "react";
 import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
+import FetchService from "../FetchService";
 
 export default class Section extends React.Component {
   state = {
@@ -35,6 +36,17 @@ export default class Section extends React.Component {
         </Link>}
       </React.Fragment>
     );
+  }
+
+  //const link = this.parentName === "installment" ? `/sections/section/${this.props.match.params.installmentId}` : `/sections/sub/${this.props.match.params.sectionId}`
+    
+
+  handleDeleteSub = (e, subId) => {
+    e.preventDefault()
+    FetchService.deleteSub(this.userId, subId)
+    .then(() => {
+      this.context.handleDeleteSub(subId)
+    })
   }
 
   getSubSections() {
@@ -83,6 +95,8 @@ export default class Section extends React.Component {
               :
               ""
             )}
+            <button>Edit</button>
+            <button onClick={(e) => this.handleDeleteSub(e, subSection.id)}>Delete</button>
           </Link>
         );
       });
@@ -130,6 +144,8 @@ export default class Section extends React.Component {
             ""
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
+          <button>Edit</button>
+          <button>Delete</button>
           {this.state.clicked &&
             this.props.type.subName &&
             this.getSubDisplay()}

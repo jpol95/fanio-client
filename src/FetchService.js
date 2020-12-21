@@ -86,22 +86,25 @@ const FetchService = {
     return userResult
   }, 
   deleteUser : async (userId) => {
-    await fetch(`${base_url}/users/${userId}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+    await fetch(`${base_url}/users/${userId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
-  deleteSection : async (userId, link) => {
-    await fetch(`${base_url}users/${userId}${link}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+  deleteSection : async (userId, sectionId) => {
+    await fetch(`${base_url}/sections/users/${userId}/section/${sectionId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
-  deleteInstallment : async (installId) => {
-    await fetch(`${base_url}/installments/users/${userId}/${installId}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+  deleteSub : async (userId, subId) => {
+    await fetch(`${base_url}/sections/users/${userId}/sub/${subId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
-  deleteFandom : async (fandomId) => {
-    await fetch(`${base_url}/fandoms/users/${userId}/${fandomId}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+  deleteInstallment : async (userId, installId) => {
+    await fetch(`${base_url}/installments/users/${userId}/${installId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
-  deleteReview : async (reviewId) => {
-    await fetch(`${base_url}/reviews/users/${userId}/${reviewId}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+  deleteFandom : async (userId, fandomId) => {
+    await fetch(`${base_url}/fandoms/users/${userId}/${fandomId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
-  deleteTrelsByReview : async (reviewId) => {
-    await fetch(`${base_url}/trels/users/${userId}/${reviewId}`, {method: 'DELETE', headers: {"content-type": "application/json"}})
+  deleteReview : async (userId, reviewId) => {
+    await fetch(`${base_url}/reviews/users/${userId}/${reviewId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
+  }, 
+  deleteTrelsByReview : async (userId, reviewId) => {
+    await fetch(`${base_url}/trels/users/${userId}/${reviewId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }
 }
 //is it ok to just get id from newSection object

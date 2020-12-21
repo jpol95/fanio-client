@@ -51,6 +51,56 @@ class App extends React.Component {
     })
   }
 
+
+
+  handleDeleteSub = (subId) => {
+    const newSubList = this.state.subList.filter(sub => sub.id === subId)
+    this.setState({
+      subList: newSubList
+    })
+    }
+  handleDeleteSection = (sectionId) => {
+    const newSectionList = this.state.sectionList.filter(section => section.id === sectionId)
+    const newSubList = this.state.subList.filter(sub => sub.sectionId === sectionId)
+    this.setState({
+      sectionList:  newSectionList, 
+      subList: newSubList
+    })
+  }
+  handleDeleteReview = () => {
+
+  }
+  handleDeleteInstallment = (installmentId) => {
+    this.state.sectionList.forEach(section => {
+      if (installmentId === section.installmentId)
+    })
+    const newSectionList = this.state.sectionList
+    .filter(section=> section.id !== sectionId)
+    this.setState({
+      ...this.state, 
+      sectionList: newSectionList, 
+      subList: newSubList
+    })
+  }
+  handleDeleteFandom = () => {
+
+  }
+  handleUpdateSub = () => {
+
+  }
+  handleUpdateSection = () => {
+
+  }
+  handleUpdateReview = () => {
+
+  }
+  handleUpdateInstallment = () => {
+
+  }
+  handleUpdateFandom = () => {
+
+  }
+
   handleSubmitReview = async (newReview, tags, tableName, parentId) => {
     let newTagListItems = tags.map((tag) => {
       return { tagId: Number(tag), reviewId: newReview.id };
@@ -74,7 +124,6 @@ class App extends React.Component {
   };
 
   patchSection = (newSection, tableName) => {
-    // console.log(newSection);
     const sectionListCopy = [...this.state[tableName]];
     sectionListCopy.forEach((section, index, sectionList) => {
       if (section.id === newSection.id) sectionList[index] = newSection;
@@ -87,12 +136,13 @@ class App extends React.Component {
 
 
   loadData = async (userId) => {
-    // console.log(userId)
     const stateChange = new Promise((resolve, reject) => 
     resolve(this.setState({
       currentLoadedUser: userId,
+      testing: "blahlabefkjewnjk"
     })));
     stateChange.then( async () => {
+      console.log(this.state)
     const fandoms = await this.fetchFandoms(userId);
     fandoms.forEach(async (fandom) => {
       const installments = await this.fetchInstallments(fandom.id);
@@ -208,6 +258,16 @@ class App extends React.Component {
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
           setLoggedInUser: this.setLoggedInUser, 
+          handleDeleteSub: this.handleDeleteSub, 
+          handleDeleteSection: this.handleDeleteSection, 
+          handleDeleteReview: this.handleDeleteReview, 
+          handleDeleteInstallment: this.handleDeleteInstallment, 
+          handleDeleteFandom: this.handeDeleteFandom, 
+          handleUpdateSub: this.handleUpdateSub, 
+          handleUpdateSection: this.handleUpdateSection, 
+          handleUpdateReview: this.handleUpdateReview, 
+          handleUpdateInstallment: this.handleUpdateInstallment, 
+          handleUpdateFandom: this.handleUpdateFandom
           
         }}
       >
@@ -240,6 +300,7 @@ class App extends React.Component {
                 path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
                 render={(props) => <InstallmentView {...props} />}
               />
+
               <PrivateOnlyRoute
                 exact
                 loggedInUser={this.state.loggedInUser.userId}
@@ -273,6 +334,7 @@ class App extends React.Component {
             </CheckUser>
           )}
         />
+        <PublicRoute exact path="/" loggedInUser={this.state.loggedInUser.userId} component={Landing}/>
         <PublicRoute exact path="/signup" loggedInUser={this.state.loggedInUser.userId} component={SignUp} />
         <PublicRoute exact path="/login" loggedInUser={this.state.loggedInUser.userId} component={LoginPage} />
         <Route exact path="/landing" component={Landing} />
