@@ -24,7 +24,7 @@ import TokenService from "./Services/token-service";
 class App extends React.Component {
   state = {
     currentLoadedUser: 0,
-    loggedInUser: {loaded: false, userId: 0},
+    loggedInUser: { loaded: false, userId: 0 },
     fandomList: [],
     reviewList: [],
     sectionList: [],
@@ -39,105 +39,102 @@ class App extends React.Component {
 
   // }
 
-  componentDidMount(){
-    this.setLoggedInUser()
+  componentDidMount() {
+    this.setLoggedInUser();
   }
 
-  setLoggedInUser = () =>   {
-      const jwt = TokenService.getAuthToken()
-      let userId
-      if (!!jwt){
-      userId = JSON.parse(window.atob(jwt.split('.')[1])).user_id
-      } else {
-        userId = 0
-      }
-      this.setState({
-        loggedInUser: {loaded: true, userId}
-      })
-    } 
+  setLoggedInUser = () => {
+    const jwt = TokenService.getAuthToken();
+    let userId;
+    if (!!jwt) {
+      userId = JSON.parse(window.atob(jwt.split(".")[1])).user_id;
+    } else {
+      userId = 0;
+    }
+    this.setState({
+      loggedInUser: { loaded: true, userId },
+    });
+  };
 
-
+  // FetchService.fetchLoggedInUser()
+  // .then(res => {
+  //   this.setState({
+  //     loggedInUser: {loaded:true, userId: res.userId}
+  //   })
+  // })
 
   handleDeleteSub = (subId) => {
-    const newSubList = this.state.subList.filter(sub => sub.id !== subId)
+    const newSubList = this.state.subList.filter((sub) => sub.id !== subId);
     this.setState({
-      subList: newSubList
-    })
-    }
+      subList: newSubList,
+    });
+  };
   handleDeleteSection = (sectionId) => {
-    const newSectionList = this.state.sectionList.filter(section => section.id !== sectionId)
+    const newSectionList = this.state.sectionList.filter(
+      (section) => section.id !== sectionId
+    );
     // const newSubList = this.state.subList.filter(sub => sub.sectionId !== sectionId)
     this.setState({
-      sectionList:  newSectionList, 
+      sectionList: newSectionList,
       // subList: newSubList
-    })
-  }
-  handleDeleteReview = () => {
-
-  }
+    });
+  };
+  handleDeleteReview = () => {};
   handleDeleteInstallment = (installmentId) => {
     // this.state.sectionList.forEach(section => {
     //   if (installmentId === section.installmentId){
     //     this.handleDeleteSection(section.id)
     //   }
     // })
-    const newInstallmentList = this.state.installmentList
-    .filter(installment => installment.id !== installmentId)
+    const newInstallmentList = this.state.installmentList.filter(
+      (installment) => installment.id !== installmentId
+    );
     this.setState({
-      installmentList: newInstallmentList
-    })
-  }
+      installmentList: newInstallmentList,
+    });
+  };
   handleDeleteFandom = (fandomId) => {
     // this.state.installmentList.forEach(installment => {
     //   if (installment.fandomId === fandomId) this.handleDeleteInstallment(installment.id)
     // })
-    const newFandomList = this.state.fandomList.filter(fandom => fandom.id !== fandomId)
+    const newFandomList = this.state.fandomList.filter(
+      (fandom) => fandom.id !== fandomId
+    );
     this.setState({
-      fandomList: newFandomList
-    })
-  }
+      fandomList: newFandomList,
+    });
+  };
 
   handleDeleteReview = (reviewId) => {
-
-    const newReviewList = this.state.reviewList.filter(review=>{
-      return review.id !== reviewId
-    })
-    const newSubList = this.state.subList.map(sub => {
-      if (sub.reviewId === reviewId){
-        sub.reviewId = null
+    const newReviewList = this.state.reviewList.filter((review) => {
+      return review.id !== reviewId;
+    });
+    const newSubList = this.state.subList.map((sub) => {
+      if (sub.reviewId === reviewId) {
+        sub.reviewId = null;
       }
-      return sub
-    })
+      return sub;
+    });
 
-    const newSectionList = this.state.sectionList.map(section => {
-      if(section.reviewId === reviewId){
-        section.reviewId = null
+    const newSectionList = this.state.sectionList.map((section) => {
+      if (section.reviewId === reviewId) {
+        section.reviewId = null;
       }
-      return section
-    })
+      return section;
+    });
 
     this.setState({
-      sectionList: newSectionList, 
-      subList: newSubList, 
-      reviewList: newReviewList
-    })
-  }
+      sectionList: newSectionList,
+      subList: newSubList,
+      reviewList: newReviewList,
+    });
+  };
 
-  handleUpdateSub = () => {
-
-  }
-  handleUpdateSection = () => {
-
-  }
-  handleUpdateReview = () => {
-
-  }
-  handleUpdateInstallment = () => {
-
-  }
-  handleUpdateFandom = () => {
-
-  }
+  handleUpdateSub = () => {};
+  handleUpdateSection = () => {};
+  handleUpdateReview = () => {};
+  handleUpdateInstallment = () => {};
+  handleUpdateFandom = () => {};
 
   handleSubmitReview = async (newReview, tags, tableName, parentId) => {
     let newTagListItems = tags.map((tag) => {
@@ -172,26 +169,29 @@ class App extends React.Component {
     });
   };
 
-
   loadData = async (userId) => {
-    const stateChange = new Promise((resolve, reject) => 
-    resolve(this.setState({
-      currentLoadedUser: userId,
-      testing: "blahlabefkjewnjk"
-    })));
-    stateChange.then( async () => {
+    const stateChange = new Promise((resolve, reject) =>
+      resolve(
+        this.setState({
+          currentLoadedUser: userId,
+          testing: "blahlabefkjewnjk",
+        })
+      )
+    );
+    stateChange.then(async () => {
       // console.log(this.state)
-    const fandoms = await this.fetchFandoms(userId);
-    fandoms.forEach(async (fandom) => {
-      const installments = await this.fetchInstallments(fandom.id);
-      installments.forEach(async (installment) => {
-        const sectionArr = await this.fetchSections(installment.id);
-        this.loadReviews(sectionArr);
+      const fandoms = await this.fetchFandoms(userId);
+      fandoms.forEach(async (fandom) => {
+        const installments = await this.fetchInstallments(fandom.id);
+        installments.forEach(async (installment) => {
+          const sectionArr = await this.fetchSections(installment.id);
+          this.loadReviews(sectionArr);
+        });
       });
+      this.fetchTags();
+      this.fetchTrels();
     });
-    this.fetchTags();
-    this.fetchTrels();
-  })};
+  };
 
   loadReviews = (sectionArr) => {
     const promArray = [];
@@ -279,7 +279,7 @@ class App extends React.Component {
 
   //refactor to use redux
   render() {
-    if (!this.state.loggedInUser.loaded) return null
+    if (!this.state.loggedInUser.loaded) return null;
     // console.log("rerender")
     return (
       <FanioContext.Provider
@@ -296,19 +296,18 @@ class App extends React.Component {
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
           handleSubmitSections: this.handleSubmitSections,
-          setLoggedInUser: this.setLoggedInUser, 
-          handleDeleteSub: this.handleDeleteSub, 
-          handleDeleteSection: this.handleDeleteSection, 
-          handleDeleteReview: this.handleDeleteReview, 
-          handleDeleteInstallment: this.handleDeleteInstallment, 
-          handleDeleteFandom: this.handleDeleteFandom, 
-          handleUpdateSub: this.handleUpdateSub, 
-          handleUpdateSection: this.handleUpdateSection, 
-          handleUpdateReview: this.handleUpdateReview, 
-          handleUpdateInstallment: this.handleUpdateInstallment, 
-          handleUpdateFandom: this.handleUpdateFandom, 
-          handleDeleteReview: this.handleDeleteReview
-          
+          setLoggedInUser: this.setLoggedInUser,
+          handleDeleteSub: this.handleDeleteSub,
+          handleDeleteSection: this.handleDeleteSection,
+          handleDeleteReview: this.handleDeleteReview,
+          handleDeleteInstallment: this.handleDeleteInstallment,
+          handleDeleteFandom: this.handleDeleteFandom,
+          handleUpdateSub: this.handleUpdateSub,
+          handleUpdateSection: this.handleUpdateSection,
+          handleUpdateReview: this.handleUpdateReview,
+          handleUpdateInstallment: this.handleUpdateInstallment,
+          handleUpdateFandom: this.handleUpdateFandom,
+          handleDeleteReview: this.handleDeleteReview,
         }}
       >
         <NavBar />
@@ -374,9 +373,24 @@ class App extends React.Component {
             </CheckUser>
           )}
         />
-        <PublicRoute exact path="/" loggedInUser={this.state.loggedInUser.userId} component={Landing}/>
-        <PublicRoute exact path="/signup" loggedInUser={this.state.loggedInUser.userId} component={SignUp} />
-        <PublicRoute exact path="/login" loggedInUser={this.state.loggedInUser.userId} component={LoginPage} />
+        <PublicRoute
+          exact
+          path="/"
+          loggedInUser={this.state.loggedInUser.userId}
+          component={Landing}
+        />
+        <PublicRoute
+          exact
+          path="/signup"
+          loggedInUser={this.state.loggedInUser.userId}
+          component={SignUp}
+        />
+        <PublicRoute
+          exact
+          path="/login"
+          loggedInUser={this.state.loggedInUser.userId}
+          component={LoginPage}
+        />
         <Route exact path="/landing" component={Landing} />
         <Footer />
       </FanioContext.Provider>

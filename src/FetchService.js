@@ -2,7 +2,7 @@ import TokenService from './Services/token-service'
 const base_url = `http://localhost:8000/api`;
 const FetchService = {
   fetchFandoms: (userId) => {
-    console.log(userId)
+    // console.log(userId)
     return fetch(`${base_url}/fandoms/users/${userId}`).then((res) => res.json());
   },
   fetchInstallments: (fandomId) => {

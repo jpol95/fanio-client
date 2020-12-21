@@ -11,9 +11,6 @@ export default class Fandom extends React.Component {
 
   static contextType = FanioContext
 
-  userId = Number(this.props.match.params.userId)
-  isLoggedInUser = this.context.loggedInUser === this.userId
-
   handleDeleteFandom = (e) => {
     e.preventDefault()
     FetchService.deleteFandom(this.props.id)
@@ -23,11 +20,12 @@ export default class Fandom extends React.Component {
   }
 
   render() {
-    // console.log(this.isLoggedInUser)
+    const userId = Number(this.props.match.params.userId)
+    const isLoggedInUser = this.context.loggedInUser === userId
     return (
       <Link to={`/users/1/fandom-view/${this.props.id}`} className="fandom-view">
         <h3>{this.props.title}</h3>
-        {this.isLoggedInUser &&
+        {isLoggedInUser &&
         <>
         <button>Edit</button>
         <button onClick={this.handleDeleteFandom}>Delete</button>

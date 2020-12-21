@@ -25,6 +25,7 @@ export default class LoginForm extends Component {
         const jwt = res.authToken.split('.')[1]
         const userId = JSON.parse(window.atob(jwt)).user_id
         this.props.onLoginSuccess(userId)
+        // this.props.onLoginSuccess(res.userId)
       })
       .catch(res => {
         this.setState({ error: res.error })
