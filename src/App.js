@@ -23,7 +23,7 @@ import CheckUser from "./Utils/CheckUser";
 class App extends React.Component {
   state = {
     currentLoadedUser: 0,
-    loggedInUser: {loaded: false, userId: true},
+    loggedInUser: {loaded: false, userId: 0},
     fandomList: [],
     reviewList: [],
     sectionList: [],
@@ -92,8 +92,30 @@ class App extends React.Component {
     })
   }
 
-  handleDeleteUser = (userId) => {
-    //code later, maybe reset state, maybe you don't have to
+  handleDeleteReview = (reviewId) => {
+
+    const newReviewList = this.state.reviewList.filter(review=>{
+      return review.id !== reviewId
+    })
+    const newSubList = this.state.subList.map(sub => {
+      if (sub.reviewId === reviewId){
+        sub.reviewId = null
+      }
+      return sub
+    })
+
+    const newSectionList = this.state.sectionList.map(section => {
+      if(section.reviewId === reviewId){
+        section.reviewId = null
+      }
+      return section
+    })
+
+    this.setState({
+      sectionList: newSectionList, 
+      subList: newSubList, 
+      reviewList: newReviewList
+    })
   }
 
   handleUpdateSub = () => {
@@ -280,7 +302,7 @@ class App extends React.Component {
           handleUpdateReview: this.handleUpdateReview, 
           handleUpdateInstallment: this.handleUpdateInstallment, 
           handleUpdateFandom: this.handleUpdateFandom, 
-          handleDeleteUser: this.handleDeleteUser
+          handleDeleteReview: this.handleDeleteReview
           
         }}
       >

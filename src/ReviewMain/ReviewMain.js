@@ -4,9 +4,16 @@ import FanioContext from '../FanioContext'
 
 export default class ReviewMain extends React.Component {
   static contextType = FanioContext
+
+  
+
   getReview() {
     // console.log(this.props)
     return this.context.reviewList.find(review => review.id === Number(this.props.match.params.reviewId))
+  }
+
+  handleDeleteReview(){
+
   }
 
   getTags(reviewId) {
@@ -29,7 +36,7 @@ export default class ReviewMain extends React.Component {
           {review.content}
         </p>
         <button>Edit Review</button>
-        <button>Delete Review</button>
+        <button onClick={this.handle}>Delete Review</button>
       </div>
     );
   }

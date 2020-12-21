@@ -91,6 +91,9 @@ const FetchService = {
   deleteSection : async (userId, sectionId) => {
     await fetch(`${base_url}/sections/users/${userId}/section/${sectionId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
+  deleteUser: async (userId) => {
+    await fetch(`${base_url}/users/user/${userId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
+  },
   deleteSub : async (userId, subId) => {
     await fetch(`${base_url}/sections/users/${userId}/sub/${subId}`, {method: 'DELETE', headers: {'authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }, 
