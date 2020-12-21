@@ -15,7 +15,7 @@ export default class Fandom extends React.Component {
 
   handleDeleteFandom = (e) => {
     e.preventDefault()
-    FetchService.deleteFandom(this.userId, this.props.id)
+    FetchService.deleteFandom(this.props.id)
     .then(() => {
       this.context.handleDeleteFandom(this.props.id)
     })
@@ -25,6 +25,7 @@ export default class Fandom extends React.Component {
     return (
       <Link to={`/users/1/fandom-view/${this.props.id}`} className="fandom-view">
         <h3>{this.props.title}</h3>
+        {this.context.loggedInUser}
         <button>Edit</button>
         <button onClick={this.handleDeleteFandom}>Delete</button>
       </Link>

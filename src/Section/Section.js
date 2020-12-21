@@ -43,7 +43,7 @@ export default class Section extends React.Component {
 
   handleDeleteSub = (e, subId) => {
     e.preventDefault()
-    FetchService.deleteSub(this.userId, subId)
+    FetchService.deleteSub(subId)
     .then(() => {
       this.context.handleDeleteSub(subId)
     })
@@ -52,7 +52,7 @@ export default class Section extends React.Component {
   handleDeleteSection = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    FetchService.deleteSection(this.userId, this.sectionId)
+    FetchService.deleteSection(this.sectionId)
     .then(() => {
       this.context.handleDeleteSection(this.sectionId)
     })
@@ -104,8 +104,12 @@ export default class Section extends React.Component {
               :
               ""
             )}
+            { this.isLoggedInUser &&
+            <>
             <button>Edit</button>
             <button onClick={(e) => this.handleDeleteSub(e, subSection.id)}>Delete</button>
+            </>
+      }
           </Link>
         );
       });

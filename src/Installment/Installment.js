@@ -3,23 +3,20 @@ import { Link } from "react-router-dom";
 import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
 
-
 export default class Installment extends React.Component {
-
-  static contextType = FanioContext
+  static contextType = FanioContext;
 
   fandomId = this.props.match.params.fandomId;
   installmentId = this.props.id;
-  userId = Number(this.props.match.params.userId)
-
+  userId = Number(this.props.match.params.userId);
+  isLoggedInUser = this.context.loggedInUser === this.userId;
 
   handleDeleteInstallment = (e) => {
-    e.preventDefault()
-    FetchService.deleteInstallment(this.userId, this.installmentId)
-    .then(() => {
-      this.context.handleDeleteInstallment(this.installmentId)
-    })
-  }
+    e.preventDefault();
+    FetchService.deleteInstallment(this.installmentId).then(() => {
+      this.context.handleDeleteInstallment(this.installmentId);
+    });
+  };
 
   render() {
     // console.log(this.props);
@@ -29,8 +26,12 @@ export default class Installment extends React.Component {
         className="fandom-view"
       >
         <h4>{this.props.title}</h4>
-        <button>Edit</button>
-        <button onClick={this.handleDeleteInstallment}>Delete</button>
+        {this.isLoggedInUser && (
+          <>
+            <button>Edit</button>
+            <button onClick={this.handleDeleteInstallment}>Delete</button>
+          </>
+        )}
       </Link>
     );
   }
