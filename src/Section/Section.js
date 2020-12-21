@@ -49,6 +49,15 @@ export default class Section extends React.Component {
     })
   }
 
+  handleDeleteSection = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    FetchService.deleteSection(this.userId, this.sectionId)
+    .then(() => {
+      this.context.handleDeleteSection(this.sectionId)
+    })
+  }
+
   getSubSections() {
     const subSections = this.context.subList
       .filter((subSection) => {
@@ -146,7 +155,7 @@ export default class Section extends React.Component {
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={this.handleDeleteSection}>Delete</button>
           {this.state.clicked &&
             this.props.type.subName &&
             this.getSubDisplay()}

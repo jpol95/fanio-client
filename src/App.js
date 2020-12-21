@@ -61,21 +61,21 @@ class App extends React.Component {
     }
   handleDeleteSection = (sectionId) => {
     const newSectionList = this.state.sectionList.filter(section => section.id !== sectionId)
-    const newSubList = this.state.subList.filter(sub => sub.sectionId !== sectionId)
+    // const newSubList = this.state.subList.filter(sub => sub.sectionId !== sectionId)
     this.setState({
       sectionList:  newSectionList, 
-      subList: newSubList
+      // subList: newSubList
     })
   }
   handleDeleteReview = () => {
 
   }
   handleDeleteInstallment = (installmentId) => {
-    this.state.sectionList.forEach(section => {
-      if (installmentId === section.installmentId){
-        this.handleDeleteSection(section.id)
-      }
-    })
+    // this.state.sectionList.forEach(section => {
+    //   if (installmentId === section.installmentId){
+    //     this.handleDeleteSection(section.id)
+    //   }
+    // })
     const newInstallmentList = this.state.installmentList
     .filter(installment => installment.id !== installmentId)
     this.setState({
@@ -83,9 +83,9 @@ class App extends React.Component {
     })
   }
   handleDeleteFandom = (fandomId) => {
-    this.state.installmentList.forEach(installment => {
-      if (installment.fandomId === fandomId) this.handleDeleteInstallment(installment.id)
-    })
+    // this.state.installmentList.forEach(installment => {
+    //   if (installment.fandomId === fandomId) this.handleDeleteInstallment(installment.id)
+    // })
     const newFandomList = this.state.fandomList.filter(fandom => fandom.id !== fandomId)
     this.setState({
       fandomList: newFandomList

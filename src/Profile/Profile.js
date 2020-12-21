@@ -11,7 +11,7 @@ export default class Profile extends React.Component {
   getFandoms() {
     // console.log(this.context.fandomList)
     return this.context.fandomList.map(fandom => {
-      return <Fandom key={fandom.id} {...fandom} />
+      return <Fandom key={fandom.id} {...this.props} {...fandom} />
     })
   }
 
