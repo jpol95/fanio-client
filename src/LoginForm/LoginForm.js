@@ -19,11 +19,12 @@ export default class LoginForm extends Component {
       password: password.value,
     })
       .then(res => {
-        // console.log(res)
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        this.props.onLoginSuccess(res.userId)
+        const jwt = res.authToken.split('.')[1]
+        const userId = JSON.parse(window.atob(jwt)).user_id
+        this.props.onLoginSuccess(userId)
       })
       .catch(res => {
         this.setState({ error: res.error })
