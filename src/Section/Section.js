@@ -107,6 +107,7 @@ export default class Section extends React.Component {
   }
 
   render() {
+    console.log(this.context)
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">

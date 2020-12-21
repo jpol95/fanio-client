@@ -54,14 +54,14 @@ class App extends React.Component {
 
 
   handleDeleteSub = (subId) => {
-    const newSubList = this.state.subList.filter(sub => sub.id === subId)
+    const newSubList = this.state.subList.filter(sub => sub.id !== subId)
     this.setState({
       subList: newSubList
     })
     }
   handleDeleteSection = (sectionId) => {
-    const newSectionList = this.state.sectionList.filter(section => section.id === sectionId)
-    const newSubList = this.state.subList.filter(sub => sub.sectionId === sectionId)
+    const newSectionList = this.state.sectionList.filter(section => section.id !== sectionId)
+    const newSubList = this.state.subList.filter(sub => sub.sectionId !== sectionId)
     this.setState({
       sectionList:  newSectionList, 
       subList: newSubList
@@ -72,19 +72,30 @@ class App extends React.Component {
   }
   handleDeleteInstallment = (installmentId) => {
     this.state.sectionList.forEach(section => {
-      if (installmentId === section.installmentId)
+      if (installmentId === section.installmentId){
+        this.handleDeleteSection(section.id)
+      }
     })
-    const newSectionList = this.state.sectionList
-    .filter(section=> section.id !== sectionId)
+    const newInstallmentList = this.state.installmentList
+    .filter(installment => installment.id !== installmentId)
     this.setState({
-      ...this.state, 
-      sectionList: newSectionList, 
-      subList: newSubList
+      installmentList: newInstallmentList
     })
   }
-  handleDeleteFandom = () => {
-
+  handleDeleteFandom = (fandomId) => {
+    this.state.installmentList.forEach(installment => {
+      if (installment.fandomId === fandomId) this.handleDeleteInstallment(installment.id)
+    })
+    const newFandomList = this.state.fandomList.filter(fandom => fandom.id !== fandomId)
+    this.setState({
+      fandomList: newFandomList
+    })
   }
+
+  handleDeleteUser = (userId) => {
+    //code later, maybe reset state, maybe you don't have to
+  }
+
   handleUpdateSub = () => {
 
   }
@@ -242,6 +253,7 @@ class App extends React.Component {
   //refactor to use redux
   render() {
     if (!this.state.loggedInUser.loaded) return null
+    console.log("rerender")
     return (
       <FanioContext.Provider
         value={{
@@ -262,12 +274,13 @@ class App extends React.Component {
           handleDeleteSection: this.handleDeleteSection, 
           handleDeleteReview: this.handleDeleteReview, 
           handleDeleteInstallment: this.handleDeleteInstallment, 
-          handleDeleteFandom: this.handeDeleteFandom, 
+          handleDeleteFandom: this.handleDeleteFandom, 
           handleUpdateSub: this.handleUpdateSub, 
           handleUpdateSection: this.handleUpdateSection, 
           handleUpdateReview: this.handleUpdateReview, 
           handleUpdateInstallment: this.handleUpdateInstallment, 
-          handleUpdateFandom: this.handleUpdateFandom
+          handleUpdateFandom: this.handleUpdateFandom, 
+          handleDeleteUser: this.handleDeleteUser
           
         }}
       >
