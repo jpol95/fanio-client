@@ -120,7 +120,7 @@ export default class Section extends React.Component {
   }
 
   render() {
-    console.log(this.context)
+    // console.log(this.context)
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
@@ -158,8 +158,12 @@ export default class Section extends React.Component {
             ""
             //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
+          {this.isLoggedInUser && 
+          <>
           <button>Edit</button>
           <button onClick={this.handleDeleteSection}>Delete</button>
+          </>
+  }
           {this.state.clicked &&
             this.props.type.subName &&
             this.getSubDisplay()}

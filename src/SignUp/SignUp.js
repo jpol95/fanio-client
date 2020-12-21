@@ -82,7 +82,7 @@ export default class Signup extends React.Component {
 
   //finish user sign up on client and server*/
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <form onSubmit={this.handleSubmitUser} className="new-user-form">
         <div className="basic">

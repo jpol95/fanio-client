@@ -19,6 +19,7 @@ import { Route } from "react-router-dom";
 import PrivateOnlyRoute from "./Utils/PrivateOnlyRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import CheckUser from "./Utils/CheckUser";
+import TokenService from "./Services/token-service";
 
 class App extends React.Component {
   state = {
@@ -43,13 +44,17 @@ class App extends React.Component {
   }
 
   setLoggedInUser = () =>   {
-    FetchService.fetchLoggedInUser()
-    .then(res => {
+      const jwt = TokenService.getAuthToken()
+      let userId
+      if (!!jwt){
+      userId = JSON.parse(window.atob(jwt.split('.')[1])).user_id
+      } else {
+        userId = 0
+      }
       this.setState({
-        loggedInUser: {loaded:true, userId: res.userId}
+        loggedInUser: {loaded: true, userId}
       })
-    })
-  }
+    } 
 
 
 
@@ -175,7 +180,7 @@ class App extends React.Component {
       testing: "blahlabefkjewnjk"
     })));
     stateChange.then( async () => {
-      console.log(this.state)
+      // console.log(this.state)
     const fandoms = await this.fetchFandoms(userId);
     fandoms.forEach(async (fandom) => {
       const installments = await this.fetchInstallments(fandom.id);
@@ -275,7 +280,7 @@ class App extends React.Component {
   //refactor to use redux
   render() {
     if (!this.state.loggedInUser.loaded) return null
-    console.log("rerender")
+    // console.log("rerender")
     return (
       <FanioContext.Provider
         value={{

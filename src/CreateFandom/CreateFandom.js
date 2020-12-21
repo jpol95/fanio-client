@@ -23,7 +23,7 @@ export default class Fandom extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault()
     const fandom = await FetchService.postFandom(this.userId, {title: this.state.fandomName, user: 1})
-    console.log(fandom)
+    // console.log(fandom)
     this.props.history.push(`/users/${this.userId}/fandom-view/${fandom.id}`)
     this.context.handleAddFandom(fandom)
   }

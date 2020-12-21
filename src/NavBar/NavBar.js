@@ -8,9 +8,9 @@ import FanioContext from "../FanioContext";
 export default class NavBar extends React.Component {
   static contextType = FanioContext
   handleDeleteAccount = () => {
-    console.log("hello")
-    console.log("kjrenflkrejnfrewljknf")
-    console.log(this.context)
+    // console.log("hello")
+    // console.log("kjrenflkrejnfrewljknf")
+    // console.log(this.context)
     const userId = this.context.loggedInUser
     FetchService.deleteUser(userId)
     .then(() =>{
