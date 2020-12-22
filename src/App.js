@@ -79,7 +79,21 @@ class App extends React.Component {
       // subList: newSubList
     });
   };
-  handleDeleteReview = () => {};
+  handleDeleteReview = (reviewId,tableName) => {
+    const newReviewList = this.state.reviewList.filter(review => {
+      return reviewId !== review.id
+    })
+    const newSectionList = this.state[tableName].map(section => {
+      if (section.reviewId === reviewId) {
+        section.reviewId = null
+      }
+    })
+
+    this.setState({
+      reviewList: newReviewList, 
+      [tableName]: newSectionList
+    })
+  };
   handleDeleteInstallment = (installmentId) => {
     // this.state.sectionList.forEach(section => {
     //   if (installmentId === section.installmentId){
@@ -307,7 +321,6 @@ class App extends React.Component {
           handleUpdateReview: this.handleUpdateReview,
           handleUpdateInstallment: this.handleUpdateInstallment,
           handleUpdateFandom: this.handleUpdateFandom,
-          handleDeleteReview: this.handleDeleteReview,
         }}
       >
         <NavBar />
@@ -326,7 +339,10 @@ class App extends React.Component {
               />
               <Route
                 exact
-                path="/users/:userId/review-main/:reviewId"
+                path={[
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/review/:reviewId/", 
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId", 
+                ]}
                 component={ReviewMain}
               />
               <Route

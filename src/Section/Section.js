@@ -70,7 +70,8 @@ export default class Section extends React.Component {
         return (
           <Link
             {...subSection} //??????????
-            to={subReview ? `/users/1/review-main/${subReview.id}` : ""}
+            to={subReview ? `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${subSection.id}/review/${subReview.id}`
+             : ""}
             key={subSection.id}
             onClick={(e) => {
               e.stopPropagation();
@@ -140,7 +141,7 @@ export default class Section extends React.Component {
               <p>{review.content.substring(0, 100)}</p>
               <Link
                 className="full-page-link write-review-button"
-                to={`/users/1/review-main/${review.id}`}
+                to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/review/${review.id}`}
               >
                 View Full Review
               </Link>
