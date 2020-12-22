@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
         <PersonalInfo />
         <Reviews />
         {this.getFandoms()}
-        {this.isLoggedInUser && <Link to={`/users/1/fandom-form`}>Create Fandom</Link>}
+        {this.isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
       </React.Fragment>
     );
   }

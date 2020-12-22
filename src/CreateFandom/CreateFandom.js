@@ -19,7 +19,10 @@ export default class CreateFandom extends React.Component{
   render(){
       const startInfo = {title: ""}
       return (   
-      <FandomForm {...startInfo} handleSubmit={this.handleSubmit} />
+        <>      
+        <h3>Create Fandom</h3>
+        <FandomForm {...startInfo} handleSubmit={this.handleSubmit} />
+        </>
       )
       //YOU ARE HERE. FIGURE OUT WHY THIS PROP IS NOT COMING THROUGH
   }

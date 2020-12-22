@@ -23,11 +23,11 @@ export default class Fandom extends React.Component {
     const userId = Number(this.props.match.params.userId)
     const isLoggedInUser = this.context.loggedInUser === userId
     return (
-      <Link to={`/users/1/fandom-view/${this.props.id}`} className="fandom-view">
+      <Link to={`/users/${userId}/fandom-view/${this.props.id}`} className="fandom-view">
         <h3>{this.props.title}</h3>
         {isLoggedInUser &&
         <>
-        <button>Edit</button>
+        <button onClick={(e) => {e.preventDefault(); window.open(`/users/${userId}/fandoms/${this.props.id}/edit-fandom`, "_self")}}>Edit</button>
         <button onClick={this.handleDeleteFandom}>Delete</button>
         </>
   }

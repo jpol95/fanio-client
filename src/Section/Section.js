@@ -30,7 +30,7 @@ export default class Section extends React.Component {
       <React.Fragment>
         <div className="subsection-list ">{this.getSubSections()}</div>
         {this.isLoggedInUser && <Link
-          to={`/users/1/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/add-subs-form`}
+          to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/add-subs-form`}
         >
           Add {this.props.type.subName}s
         </Link>}
@@ -94,7 +94,7 @@ export default class Section extends React.Component {
                   e.preventDefault();
                   e.stopPropagation();
                   window.open(
-                    `/users/1/subs/${subSection.id}/review-form/`,
+                    `/users/${this.userId}/subs/${subSection.id}/review-form/`,
                     "_self"
                   );
                 }}
@@ -150,7 +150,7 @@ export default class Section extends React.Component {
             this.isLoggedInUser ? 
             <Link
               className="write-review-button"
-              to={`/users/1/sections/${this.sectionId}/review-form/`}
+              to={`/users/${this.userId}/sections/${this.sectionId}/review-form/`}
             >
               {" "}
               Write Review{" "}

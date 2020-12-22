@@ -12,6 +12,8 @@ export default class Fandom extends React.Component {
     title: this.props.title
   };
 
+
+
   handleName = (e) => {
     this.setState({
       ...this.state, title: e.target.value
@@ -22,11 +24,10 @@ export default class Fandom extends React.Component {
   render() {
     return (
       <div className="fandom">
-        <p>Create a new fandom</p>
         <form onSubmit={(e) => this.props.handleSubmit(e, {title: this.state.title})} className="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
-        <input onChange={this.handleName} id="workname" type="text" />
-        <button type="submit">Create New Fandom</button>
+        <input onChange={this.handleName} defaultValue={this.state.title} id="workname" type="text" />
+        <button type="submit">Submit</button>
         </form>
       </div>
     );

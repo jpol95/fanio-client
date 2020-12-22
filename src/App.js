@@ -20,6 +20,7 @@ import PrivateOnlyRoute from "./Utils/PrivateOnlyRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import CheckUser from "./Utils/CheckUser";
 import TokenService from "./Services/token-service";
+import EditFandom from "./EditFandom/EditFandom";
 
 class App extends React.Component {
   state = {
@@ -144,11 +145,20 @@ class App extends React.Component {
     });
   };
 
-  handleUpdateSub = () => {};
-  handleUpdateSection = () => {};
-  handleUpdateReview = () => {};
-  handleUpdateInstallment = () => {};
-  handleUpdateFandom = () => {};
+  handleEditSub = () => {
+  };
+  handleEditSection = () => {};
+  handleEditReview = () => {};
+  handleEditInstallment = () => {};
+  handleEditFandom = (editedFandom) => {
+    const newFandomList = this.state.fandomList.map(fandom => {
+      if (editedFandom.id === fandom.id) fandom = editedFandom 
+      return fandom
+    })
+    this.setState({
+      fandomList: newFandomList
+    })
+  };
 
   handleSubmitReview = async (newReview, tags, tableName, parentId) => {
     let newTagListItems = tags.map((tag) => {
@@ -317,11 +327,11 @@ class App extends React.Component {
           handleDeleteReview: this.handleDeleteReview,
           handleDeleteInstallment: this.handleDeleteInstallment,
           handleDeleteFandom: this.handleDeleteFandom,
-          handleUpdateSub: this.handleUpdateSub,
-          handleUpdateSection: this.handleUpdateSection,
-          handleUpdateReview: this.handleUpdateReview,
-          handleUpdateInstallment: this.handleUpdateInstallment,
-          handleUpdateFandom: this.handleUpdateFandom,
+          handleEditSub: this.handleEditSub,
+          handleEditSection: this.handleEditSection,
+          handleEditReview: this.handleEditReview,
+          handleEditInstallment: this.handleEditInstallment,
+          handleEditFandom: this.handleEditFandom,
         }}
       >
         <NavBar />
@@ -369,8 +379,14 @@ class App extends React.Component {
               <PrivateOnlyRoute
                 exact
                 loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/fandom-form"
+                path="/users/:userId/create-fandom"
                 component={CreateFandom}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser.userId}
+                path="/users/:userId/fandoms/:fandomId/edit-fandom"
+                component={EditFandom}
               />
               <PrivateOnlyRoute
                 exact

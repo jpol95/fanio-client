@@ -22,7 +22,7 @@ export default class Installment extends React.Component {
     // console.log(this.props);
     return (
       <Link
-        to={`/users/1/fandoms/${this.fandomId}/installment-view/${this.installmentId}`}
+        to={`/users/${this.userId}/fandoms/${this.fandomId}/installment-view/${this.installmentId}`}
         className="fandom-view"
       >
         <h4>{this.props.title}</h4>
