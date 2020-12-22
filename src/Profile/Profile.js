@@ -12,9 +12,13 @@ export default class Profile extends React.Component {
   isLoggedInUser = this.context.loggedInUser === this.userId
   getFandoms() {
     // console.log(this.context.fandomList)
-    return this.context.fandomList.map(fandom => {
+    const fandomList =  this.context.fandomList.map(fandom => {
       return <Fandom key={fandom.id} {...this.props} {...fandom} />
     })
+    fandomList.sort((a,b) => {
+     return a.props.id - b.props.id
+    })
+    return fandomList
   }
 
   render() {
