@@ -30,13 +30,18 @@ const FetchService = {
     return result;
   }, 
   //test to see why the above didnt work with the for each loop
-  postReview : async (userId, review) => {
+  postReview : async (review) => {
       // console.log(review)
       const reviewPreJson = await fetch(`${base_url}/reviews/`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
   }, 
-  patchSection : async (userId, newSection, id, tableName) => {
+  patchReview : async (review) => {
+    const reviewPreJson = await fetch(`${base_url}/fandoms/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newReview)})
+    const reviewResult = await reviewPreJson.json()
+    return reviewResult
+  },
+  patchSection : async (newSection, id, tableName) => {
       const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
@@ -46,6 +51,11 @@ const FetchService = {
     const fandomResult = await fandomPreJson.json()
     return fandomResult
 }, 
+patchFandom : async (newReview) => {
+  const reviewPreJson = await fetch(`${base_url}/fandoms/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newReview)})
+  const reviewResult = await reviewPreJson.json()
+  return reviewResult
+},
   fetchReview : async (id) => {
     const reviewPreJson = await fetch(`${base_url}/reviews/${id}`)
     const reviewResult = await reviewPreJson.json()

@@ -94,7 +94,7 @@ export default class Section extends React.Component {
                   e.preventDefault();
                   e.stopPropagation();
                   window.open(
-                    `/users/${this.userId}/subs/${subSection.id}/review-form/`,
+                    `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${subSection.id}/reviews/create-review`,
                     "_self"
                   );
                 }}
@@ -150,7 +150,7 @@ export default class Section extends React.Component {
             this.isLoggedInUser ? 
             <Link
               className="write-review-button"
-              to={`/users/${this.userId}/sections/${this.sectionId}/review-form/`}
+              to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/reviews/create-review`}
             >
               {" "}
               Write Review{" "}

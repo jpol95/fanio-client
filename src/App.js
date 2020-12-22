@@ -4,6 +4,7 @@ import Profile from "./Profile/Profile";
 import NavBar from "./NavBar/NavBar";
 import Footer from "./Footer/Footer";
 import CreateReview from "./CreateReview/CreateReview";
+import EditReview from './EditReview/EditReview'
 import CreateFandom from "./CreateFandom/CreateFandom";
 import ReviewMain from "./ReviewMain/ReviewMain";
 import FandomView from "./FandomView/FandomView";
@@ -80,20 +81,20 @@ class App extends React.Component {
       // subList: newSubList
     });
   };
-  handleDeleteReview = (reviewId,tableName) => {
-    const newReviewList = this.state.reviewList.filter(review => {
-      return reviewId !== review.id
-    })
-    const newSectionList = this.state[tableName].map(section => {
+  handleDeleteReview = (reviewId, tableName) => {
+    const newReviewList = this.state.reviewList.filter((review) => {
+      return reviewId !== review.id;
+    });
+    const newSectionList = this.state[tableName].map((section) => {
       if (section.reviewId === reviewId) {
-        section.reviewId = null
+        section.reviewId = null;
       }
-    })
+    });
 
     this.setState({
-      reviewList: newReviewList, 
-      [tableName]: newSectionList
-    })
+      reviewList: newReviewList,
+      [tableName]: newSectionList,
+    });
   };
   handleDeleteInstallment = (installmentId) => {
     // this.state.sectionList.forEach(section => {
@@ -145,26 +146,34 @@ class App extends React.Component {
     });
   };
 
-  handleEditSub = () => {
-  };
+  handleEditSub = () => {};
   handleEditSection = () => {};
-  handleEditReview = () => {};
+  handleEditReview = (newReview, trelList) => {
+    const newReviewList = this.state.reviewList.map(review => {
+      if (review.id === newReview.id) review = newReview
+      return review
+    })
+    let newTrelList = this.state.reviewTagList.filter(trel => {
+      return trel.reviewId !== newReview.id
+    })
+    newTrelList = {...newTrelList, ...trelList}
+    this.setState({
+      reviewList: newReviewList, 
+      reviewTagList: newTrelList
+    })
+  };
   handleEditInstallment = () => {};
   handleEditFandom = (editedFandom) => {
-    const newFandomList = this.state.fandomList.map(fandom => {
-      if (editedFandom.id === fandom.id) fandom = editedFandom 
-      return fandom
-    })
+    const newFandomList = this.state.fandomList.map((fandom) => {
+      if (editedFandom.id === fandom.id) fandom = editedFandom;
+      return fandom;
+    });
     this.setState({
-      fandomList: newFandomList
-    })
+      fandomList: newFandomList,
+    });
   };
 
-  handleSubmitReview = async (newReview, tags, tableName, parentId) => {
-    let newTagListItems = tags.map((tag) => {
-      return { tagId: Number(tag), reviewId: newReview.id };
-    });
-    newTagListItems = await FetchService.postTrels(newTagListItems);
+  handleSubmitReview = async (newReview, trelList, tableName, parentId) => {
     const section = this.state[`${tableName}List`].find(
       (section) => section.id === Number(parentId)
     );
@@ -178,7 +187,7 @@ class App extends React.Component {
     this.setState({
       ...this.state,
       reviewList: [...this.state.reviewList, newReview],
-      reviewTagList: [...this.state.reviewTagList, ...newTagListItems],
+      reviewTagList: [...this.state.reviewTagList, ...trelList],
     });
   };
 
@@ -351,8 +360,8 @@ class App extends React.Component {
               <Route
                 exact
                 path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/review/:reviewId/", 
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId", 
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/review/:reviewId/",
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId",
                 ]}
                 component={ReviewMain}
               />
@@ -371,10 +380,19 @@ class App extends React.Component {
                 exact
                 loggedInUser={this.state.loggedInUser.userId}
                 path={[
-                  "/users/:userId/sections/:sectionId/review-form/",
-                  "/users/:userId/subs/:subId/review-form/",
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/create-review",
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/create-review",
                 ]}
                 component={CreateReview}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser.userId}
+                path={[
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/:reviewId/edit-review",
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/:reviewId/edit-review",
+                ]}
+                component={EditReview}
               />
               <PrivateOnlyRoute
                 exact

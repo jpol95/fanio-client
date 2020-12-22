@@ -1,0 +1,26 @@
+.create{
+    background-color: lightgray;
+    padding: 20px;
+}
+.create #content{
+    width: 75%;
+    margin-bottom: 20px;
+}
+
+select{
+    margin-bottom: 20px
+}
+
+.tag-list, .tag-list-el {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tag-list{
+    margin-bottom: 20px;
+}
+
+.tag-list-el{
+    margin-right: 10px;
+}
