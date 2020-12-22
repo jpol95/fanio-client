@@ -9,7 +9,7 @@ export default class Fandom extends React.Component {
 
   static contextType = FanioContext
   state = {
-    title: ""
+    title: this.props.title
   };
 
   handleName = (e) => {

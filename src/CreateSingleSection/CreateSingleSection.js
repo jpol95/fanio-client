@@ -33,7 +33,7 @@ export default class CreateSingleSection extends React.Component {
     return (
       <React.Fragment>
         <label
-          for={`section-title-${this.props.id}`}
+          htmlFor={`section-title-${this.props.id}`}
         >
           What's the title of this {this.props.type && this.props.type[this.listName]}?
         </label>
@@ -42,7 +42,7 @@ export default class CreateSingleSection extends React.Component {
           id={`section-title-${this.props.id}`}
         />
         <label
-          for={`section-order-${this.props.id}`}
+          htmlFor={`section-order-${this.props.id}`}
         >
           In what order does this {this.props.type && this.props.type[this.listName]} come?
         </label>
