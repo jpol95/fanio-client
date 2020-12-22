@@ -26,7 +26,7 @@ const FetchService = {
       subs = subs.concat(ep)
     }
     result.subList = subs;
-    console.log(result)
+    // console.log(result)
     return result;
   }, 
   //test to see why the above didnt work with the for each loop
@@ -46,8 +46,8 @@ const FetchService = {
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   }, 
-  postFandom : async (userId, fandom) => {
-     const fandomPreJson = await fetch(`${base_url}/fandoms/users/${userId}`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(fandom)})
+  postFandom : async (fandom) => {
+     const fandomPreJson = await fetch(`${base_url}/fandoms/users/${fandom.userId}`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(fandom)})
      const fandomResult = await fandomPreJson.json()
      return fandomResult
   }, 

@@ -295,7 +295,7 @@ class App extends React.Component {
   render() {
     if (!this.state.loggedInUser.loaded) return null;
     // console.log("rerender")
-    console.log(this.state.subList)
+    // console.log(this.state.subList)
     return (
       <FanioContext.Provider
         value={{
