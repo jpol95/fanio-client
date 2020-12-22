@@ -188,7 +188,6 @@ class App extends React.Component {
       resolve(
         this.setState({
           currentLoadedUser: userId,
-          testing: "blahlabefkjewnjk",
         })
       )
     );
@@ -253,6 +252,7 @@ class App extends React.Component {
 
   fetchSections = async (installmentId) => {
     const sectionArr = await FetchService.fetchSections(installmentId);
+    // console.log(sectionArr)
     this.setState({
       ...this.state,
       [`sectionList`]: [...this.state.sectionList, ...sectionArr.sectionList],
@@ -295,6 +295,7 @@ class App extends React.Component {
   render() {
     if (!this.state.loggedInUser.loaded) return null;
     // console.log("rerender")
+    console.log(this.state.subList)
     return (
       <FanioContext.Provider
         value={{

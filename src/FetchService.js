@@ -20,12 +20,13 @@ const FetchService = {
     let subs = []
     for (let section of result.sectionList){
       const preJson = await fetch(
-        `${base_url}/sections/sub/${section.id}`
+        `${base_url}/sections/sub/parent/${section.id}`
       );
       const ep = await preJson.json()
       subs = subs.concat(ep)
     }
     result.subList = subs;
+    console.log(result)
     return result;
   }, 
   //test to see why the above didnt work with the for each loop
