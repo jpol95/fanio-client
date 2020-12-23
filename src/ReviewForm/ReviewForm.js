@@ -100,16 +100,19 @@ export default class CreateReview extends React.Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <form onSubmit={(e) => this.props.handleSubmit(e, this.createReviewObject())} className="create">
         <label htmlFor="title">Title</label>
         <input
+          defaultValue={this.state.title.value}
           onChange={(e) => this.handleTitleChange(e.target.value)}
           id="title"
           type="text"
         />
         <label htmlFor="rating">Rating</label>
         <input
+          defaultValue={this.state.rating.value}
           onChange={(e) => this.handleRatingChange(e.target.value)}
           id="rating"
           type="text"
@@ -117,6 +120,7 @@ export default class CreateReview extends React.Component {
         <label htmlFor="content">Review</label>
         
         <textarea
+          defaultValue={this.state.content.value}
           onChange={(e) => this.handleContentChange(e.target.value)}
           id="content"
           type="text"

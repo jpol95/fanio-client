@@ -2,6 +2,7 @@ import React from "react";
 import "./ReviewMain.css";
 import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
+import {Link} from 'react-router-dom'
 
 export default class ReviewMain extends React.Component {
   static contextType = FanioContext;
@@ -74,7 +75,7 @@ export default class ReviewMain extends React.Component {
         <p>{review.content}</p>
         {this.isLoggedInUser && (
           <>
-            <button>Edit Review</button>
+            <Link to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/${this.subId ? `subs/${this.subId}/` : ``}reviews/${this.reviewId}/edit-review`}>Edit Review </Link>
             <button onClick={this.handleDeleteReview}>Delete Review</button>
           </>
         )}

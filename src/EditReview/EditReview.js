@@ -25,21 +25,27 @@ export default class EditReview extends React.Component {
     const reviewToPost = {title, content, rating, id: this.reviewId }
     const review = await FetchService.patchReview(reviewToPost);
     await FetchService.deleteTrelsByReview(review.id)
-    const newTrels = FetchService.postTrels(reviewObject.tagList)
+    const trelsToPost = reviewObject.tagList.map(tag => {return {tagId: tag, reviewId: review.id}} )
+    const newTrels = FetchService.postTrels(trelsToPost)
     this.props.history.push(link);
     this.context.handleEditReview(review, newTrels);
   };
 
   getReviewById = () => {
-    this.context.reviewList.find((review) => review.id === this.reviewId);
+    return this.context.reviewList.find((review) => review.id === this.reviewId);
   };
 
+  getTrels = () => {
+      return this.context.reviewTagList.filter(trel => trel.reviewId === this.reviewId)
+      .map(trel => trel.tagId)
+  }
+
   render() {
-    const review = this.getReviewById();
+      const review = {...this.getReviewById(), tags: this.getTrels()}
     return (
       <>
         <h3>Edit review</h3>
-        <ReviewForm {...review} handleSubmit={this.handleSubmit} />
+        <ReviewForm {...review} tagshandleSubmit={this.handleSubmit} />
       </>
     );
   }
