@@ -67,7 +67,7 @@ export default class Section extends React.Component {
   handleEditSub = (e, subId) => {
     e.preventDefault();
     e.stopPropagation();
-    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${this.subId}/edit-section`, "_self")
+    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${subId}/edit-sub`, "_self")
   }
 
   getSubSections() {

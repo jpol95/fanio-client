@@ -147,16 +147,16 @@ class App extends React.Component {
     });
   };
 
-  handleEditSub = () => {};
   handleEditSection = (editedSection, tableName) => {
     const sectionListCopy = this.state[tableName].map(section => {
       if(section.id === editedSection.id) section = editedSection
+      return section
     })
     this.setState({
       [tableName]: sectionListCopy
     })
   };
-  
+
   handleEditReview = (newReview, trelList) => {
     const newReviewList = this.state.reviewList.map((review) => {
       if (review.id === newReview.id) review = newReview;

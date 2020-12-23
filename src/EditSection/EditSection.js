@@ -38,7 +38,7 @@ export default class EditSection extends React.Component {
 //   //fix classes to not use type from context, then on with debugging the get calls for the seeded data
 
 getSection = () => {
-    return this.context[this.subId ? "sectionList" : "subList"].find(section => this[ this.subId ? "subId" : "sectionId"] === section.id)
+    return this.context[this.subId ? "subList" : "sectionList"].find(section => this[ this.subId ? "subId" : "sectionId"] === section.id)
 }
 
   handleEditSection = async (e) => {
