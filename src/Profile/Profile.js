@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
     const isLoggedInUser = this.context.loggedInUser === this.userId
     return (
       <React.Fragment>
-        <PersonalInfo />
+        <PersonalInfo userId={this.userId} />
         <Reviews />
         {this.getFandoms()}
         {isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}

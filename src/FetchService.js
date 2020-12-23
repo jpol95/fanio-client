@@ -62,6 +62,11 @@ const FetchService = {
     const fandomResult = await fandomPreJson.json()
     return fandomResult
 }, 
+patchUser : async (user) => {
+  const userPreJson = await fetch(`${base_url}/users/user/${user.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(user)})
+  const userResult = await userPreJson.json()
+  return userResult
+},  
   fetchReview : async (id) => {
     const reviewPreJson = await fetch(`${base_url}/reviews/${id}`)
     const reviewResult = await reviewPreJson.json()

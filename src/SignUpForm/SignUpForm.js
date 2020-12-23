@@ -5,10 +5,10 @@ import FetchService from '../FetchService'
 
 export default class SignupForm extends React.Component {
   state={
-    fullname: {touched: false, value: ""}, 
-    interests: {touched: false, value: ""}, 
-    city: {touched: false, value: ""}, 
-    education: {touched: false, value: ""}
+    fullname: {touched: false, value: this.props.fullname}, 
+    interests: {touched: false, value: this.props.interests}, 
+    city: {touched: false, value: this.props.city}, 
+    education: {touched: false, value: this.props.education}
   }
 
 
@@ -41,21 +41,6 @@ export default class SignupForm extends React.Component {
   }
 
 
-
-  handleSubmitUser = (e) => {
-    e.preventDefault()
-    const user = {
-      fullname: this.state.fullname.value, 
-      interests: this.state.interests.value.split(","),
-      city: this.state.city.value, 
-      education: this.state.education.value
-    }
-    FetchService.postUser(user)
-    .then(() => {
-      window.open("/login", "_self")
-    })
-  }
-
   //finish user sign up on client and server*/
   render() {
     // console.log(this.state)
@@ -64,14 +49,16 @@ export default class SignupForm extends React.Component {
         {this.props.children}
         <div className="personal">
           <p>Tell us about yourself</p>
+          <label htmlFor="fullname">Full Name</label>
+          <input defaultValue={this.state.fullname.value} id="fullname" onChange={this.handleFullnameChange} type="text" />
           <label htmlFor="interests">Interests</label>
-          <input id="interests" onChange={this.handleInterestsChange} type="text" />
+          <input defaultValue={this.state.interests.value} id="interests" onChange={this.handleInterestsChange} type="text" />
           <label htmlFor="city">City</label>
-          <input id="city" onChange={this.handleCityChange} type="text" />
+          <input defaultValue={this.state.city.value} id="city" onChange={this.handleCityChange} type="text" />
           <label htmlFor="education">Education</label>
-          <input id="education" onChange={this.handleEducationChange} type="text" />
+          <input defaultValue={this.state.education.value} id="education" onChange={this.handleEducationChange} type="text" />
         </div>
-        <button type="submit">Create Profile</button>
+        <button type="submit">Submit</button>
       </form>
     );
   }

@@ -24,6 +24,7 @@ import TokenService from "./Services/token-service";
 import EditFandom from "./EditFandom/EditFandom";
 import EditSection from './EditSection/EditSection'
 import EditInstallment from './EditInstallment/EditInstallment'
+import EditPersonal from './EditPersonal/EditPersonal'
 
 class App extends React.Component {
   state = {
@@ -193,6 +194,12 @@ class App extends React.Component {
     });
   };
 
+  handleEditPersonal = (editedPersonal) => {
+    this.setState({
+      currentLoadedUser: editedPersonal
+    })
+  }
+
   handleSubmitReview = async (newReview, trelList, tableName, parentId) => {
     const section = this.state[`${tableName}List`].find(
       (section) => section.id === Number(parentId)
@@ -223,6 +230,8 @@ class App extends React.Component {
       [tableName]: sectionListCopy,
     });
   };
+
+  handleEditPersonal
 
   loadData = async (userId) => {
     const user = await FetchService.fetchUser(userId)
@@ -359,6 +368,7 @@ class App extends React.Component {
           handleDeleteSection: this.handleDeleteSection,
           handleDeleteReview: this.handleDeleteReview,
           handleDeleteInstallment: this.handleDeleteInstallment,
+          handleEditPersonal: this.handleEditPersonal, 
           handleDeleteFandom: this.handleDeleteFandom,
           handleEditSection: this.handleEditSection,
           handleEditReview: this.handleEditReview,
@@ -430,6 +440,12 @@ class App extends React.Component {
                 loggedInUser={this.state.loggedInUser.userId}
                 path="/users/:userId/create-fandom"
                 component={CreateFandom}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser.userId}
+                path="/users/:userId/edit-user"
+                component={EditPersonal}
               />
               <PrivateOnlyRoute
                 exact

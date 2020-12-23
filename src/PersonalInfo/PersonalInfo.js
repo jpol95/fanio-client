@@ -1,9 +1,12 @@
 import React from "react";
 import './PersonalInfo.css'
 import FanioContext from '../FanioContext'
+import {Link} from 'react-router-dom'
 
 export default class PersonalInfo extends React.Component {
 
+
+  userId = this.props.userId
   getInterests() {
     return this.context.currentLoadedUser.interests.split(",").map((interest, index) => {
       return <p key={index}>{interest}</p>
@@ -13,6 +16,7 @@ export default class PersonalInfo extends React.Component {
   static contextType = FanioContext
   render() {
     if (!this.context.currentLoadedUser) return null
+    const isLoggedInUser = this.context.loggedInUser === this.userId
     const user = this.context.currentLoadedUser
     return (
       <div className="personal">
@@ -25,6 +29,7 @@ export default class PersonalInfo extends React.Component {
         <p>{user.city}</p>
         <h3>Interests</h3>
         {this.getInterests()}
+        {isLoggedInUser && <Link to={`/users/${this.userId}/edit-user`}>Edit</Link>}
       </div>
     );
   }
