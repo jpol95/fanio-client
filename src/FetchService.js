@@ -32,17 +32,17 @@ const FetchService = {
   //test to see why the above didnt work with the for each loop
   postReview : async (review) => {
       // console.log(review)
-      const reviewPreJson = await fetch(`${base_url}/reviews/`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
+      const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
   }, 
   patchReview : async (review) => {
-    const reviewPreJson = await fetch(`${base_url}/fandoms/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newReview)})
+    const reviewPreJson = await fetch(`${base_url}/fandoms/${review.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   },
   patchSection : async (newSection, id, tableName) => {
-      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {"content-type": "application/json"}, body: JSON.stringify(newSection)})
+      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
@@ -51,11 +51,6 @@ const FetchService = {
     const fandomResult = await fandomPreJson.json()
     return fandomResult
 }, 
-patchFandom : async (newReview) => {
-  const reviewPreJson = await fetch(`${base_url}/fandoms/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newReview)})
-  const reviewResult = await reviewPreJson.json()
-  return reviewResult
-},
   fetchReview : async (id) => {
     const reviewPreJson = await fetch(`${base_url}/reviews/${id}`)
     const reviewResult = await reviewPreJson.json()
@@ -82,7 +77,7 @@ patchFandom : async (newReview) => {
     return tagsResult
   }, 
   postTrels : async (trels) => {
-    const trelsPreJson = await fetch(`${base_url}/trels`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(trels)})
+    const trelsPreJson = await fetch(`${base_url}/trels/${trels[0].reviewId}`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(trels)})
     const trelsResult = await trelsPreJson.json()
     return trelsResult
   }, 

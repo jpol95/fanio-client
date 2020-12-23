@@ -183,6 +183,8 @@ class App extends React.Component {
       newSection.id,
       tableName
     );
+    console.log(trelList)
+    await FetchService.postTrels(trelList)
     this.patchSection(updatedSection, `${tableName}List`);
     this.setState({
       ...this.state,

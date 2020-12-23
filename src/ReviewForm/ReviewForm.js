@@ -57,7 +57,7 @@ export default class CreateReview extends React.Component {
 
   handleTagAdd = (e) => {
     e.preventDefault()
-    console.log(this.state.tag.value)
+    // console.log(this.state.tag.value)
     const tag = this.getTagByTitle(this.state.tag.value)
     if (!tag || this.state.tags.value.includes(tag.id)) return 
     this.setState({
@@ -67,7 +67,7 @@ export default class CreateReview extends React.Component {
   }
 
   handleContentChange = (content) => {
-    console.log(this.state.content)
+    // console.log(this.state.content)
     const newContent = { value: content, touched: true };
     this.setState({
       ...this.state,

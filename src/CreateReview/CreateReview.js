@@ -19,11 +19,10 @@ export default class CreateReview extends React.Component{
     const {tags} = reviewObject
     const link = this.tableName === "subs" ? `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${this.subId}/review/${this.reviewId}`: 
     `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/review/${this.reviewId}`
-    const review = await FetchService.postReview(reviewToPost)
-    const trelsToPost = tags.map(tag => {return {tagId: tag.id, reviewId: review.id}} )
-    const trels = await FetchService.postTrels(trelsToPost)
+    const review = await FetchService.postReview(reviewToPost, this.installmentId)
+    const trelsToPost = tags.map(tag => {return {tagId: tag, reviewId: review.id}} )
     this.props.history.push(link)
-    this.context.handleSubmitReview(review, trels, this.tableName, this.parentId)
+    this.context.handleSubmitReview(review, trelsToPost, this.tableName, this.parentId)
     
   }
 
