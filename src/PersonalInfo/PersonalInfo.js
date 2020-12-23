@@ -17,6 +17,8 @@ export default class PersonalInfo extends React.Component {
     return (
       <div className="personal">
         <h1>{user.username}</h1>
+        <h3>Full name</h3>
+        <p>{user.fullname}</p>
         <h3>Education</h3>
         <p>{user.education}</p>
         <h3>City</h3>

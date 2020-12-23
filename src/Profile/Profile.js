@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export default class Profile extends React.Component {
   static contextType = FanioContext;
   userId = Number(this.props.match.params.userId)
-  isLoggedInUser = this.context.loggedInUser === this.userId
   getFandoms() {
     // console.log(this.context.fandomList)
     const fandomList =  this.context.fandomList.map(fandom => {
@@ -22,13 +21,13 @@ export default class Profile extends React.Component {
   }
 
   render() {
-
+    const isLoggedInUser = this.context.loggedInUser === this.userId
     return (
       <React.Fragment>
         <PersonalInfo />
         <Reviews />
         {this.getFandoms()}
-        {this.isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
+        {isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
       </React.Fragment>
     );
   }
