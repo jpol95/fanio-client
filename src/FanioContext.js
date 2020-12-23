@@ -9,6 +9,7 @@ const FanioContext = React.createContext({
   tagList: [],
   reviewTagList: [],
   installmentList: [],
+  currentLoadedUser: {},
   handleSubmitReview: () => {},
   handleAddFandom: () => {},
   handleSubmitInstallments: () => {},

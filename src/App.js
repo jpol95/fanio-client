@@ -225,10 +225,11 @@ class App extends React.Component {
   };
 
   loadData = async (userId) => {
+    const user = await FetchService.fetchUser(userId)
     const stateChange = new Promise((resolve, reject) =>
       resolve(
         this.setState({
-          currentLoadedUser: userId,
+          currentLoadedUser: user,
         })
       )
     );
@@ -348,6 +349,7 @@ class App extends React.Component {
           reviewTagList: this.state.reviewTagList,
           installmentList: this.state.installmentList,
           loggedInUser: this.state.loggedInUser.userId,
+          currentLoadedUser: this.state.currentLoadedUser,
           handleSubmitReview: this.handleSubmitReview,
           handleAddFandom: this.handleAddFandom,
           handleSubmitInstallments: this.handleSubmitInstallments,
@@ -358,7 +360,6 @@ class App extends React.Component {
           handleDeleteReview: this.handleDeleteReview,
           handleDeleteInstallment: this.handleDeleteInstallment,
           handleDeleteFandom: this.handleDeleteFandom,
-          handleEditSub: this.handleEditSub,
           handleEditSection: this.handleEditSection,
           handleEditReview: this.handleEditReview,
           handleEditInstallment: this.handleEditInstallment,
@@ -371,7 +372,7 @@ class App extends React.Component {
           render={(props) => (
             <CheckUser
               {...props}
-              currentLoadedUser={this.state.currentLoadedUser}
+              currentLoadedUser={this.state.currentLoadedUser.id}
               loadData={this.loadData}
             >
               <Route

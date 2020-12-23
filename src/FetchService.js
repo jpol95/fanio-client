@@ -29,6 +29,11 @@ const FetchService = {
     // console.log(result)
     return result;
   }, 
+  fetchUser : async (id) => {
+    const userPreJson = await fetch(`${base_url}/users/user/${id}`)
+    const userResult = await userPreJson.json()
+    return userResult
+  }, 
   //test to see why the above didnt work with the for each loop
   postReview : async (review) => {
       // console.log(review)
