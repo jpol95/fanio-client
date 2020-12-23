@@ -3,8 +3,8 @@ import React from "react";
 export default class CreateSingleSection extends React.Component {
   listName = this.props.match.params.sectionId ? "subName" : "sectionName"
   state = {
-    order: 0,
-    title: "",
+    order: {value: 0, touched: false},
+    title: {value: "", touched: false},
   };
 
   handleSectionOrder = (e) => {
@@ -12,7 +12,7 @@ export default class CreateSingleSection extends React.Component {
     const p = new Promise((resolve, reject) => 
     resolve(this.setState({
       ...this.state,
-      order,
+      order: {value: order, touched: true},
     })));
     p.then(() => this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId }));
   };
@@ -24,7 +24,7 @@ export default class CreateSingleSection extends React.Component {
     const p = new Promise((resolve, reject) => 
     resolve(this.setState({
       ...this.state,
-      title,
+      title: {value: title, touched: true},
     })))
   p.then(() => this.props.handleAddSection({ ...this.state, sectionId: this.props.sectionId }));
   };

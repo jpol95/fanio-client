@@ -58,6 +58,18 @@ export default class Section extends React.Component {
     })
   }
 
+  handleEditSection = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/edit-section`, "_self")
+  }
+
+  handleEditSub = (e, subId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${this.subId}/edit-section`, "_self")
+  }
+
   getSubSections() {
     const subSections = this.context.subList
       .filter((subSection) => {
@@ -107,7 +119,7 @@ export default class Section extends React.Component {
             )}
             { this.isLoggedInUser &&
             <>
-            <button>Edit</button>
+            <button onClick={(e) => {this.handleEditSub(e, subSection.id)}}>Edit</button>
             <button onClick={(e) => this.handleDeleteSub(e, subSection.id)}>Delete</button>
             </>
       }
@@ -162,7 +174,7 @@ export default class Section extends React.Component {
           )}
           {this.isLoggedInUser && 
           <>
-          <button>Edit</button>
+          <button onClick={this.handleEditSection}>Edit</button>
           <button onClick={this.handleDeleteSection}>Delete</button>
           </>
   }

@@ -41,8 +41,9 @@ const FetchService = {
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   },
-  patchSection : async (newSection, id, tableName) => {
-      const sectionPreJson = await fetch(`${base_url}/sections/${tableName}/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
+  patchSection : async (newSection, link) => {
+
+      const sectionPreJson = await fetch(`${base_url}${link}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 

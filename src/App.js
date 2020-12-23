@@ -4,7 +4,7 @@ import Profile from "./Profile/Profile";
 import NavBar from "./NavBar/NavBar";
 import Footer from "./Footer/Footer";
 import CreateReview from "./CreateReview/CreateReview";
-import EditReview from './EditReview/EditReview'
+import EditReview from "./EditReview/EditReview";
 import CreateFandom from "./CreateFandom/CreateFandom";
 import ReviewMain from "./ReviewMain/ReviewMain";
 import FandomView from "./FandomView/FandomView";
@@ -22,6 +22,7 @@ import PublicRoute from "./Utils/PublicRoute";
 import CheckUser from "./Utils/CheckUser";
 import TokenService from "./Services/token-service";
 import EditFandom from "./EditFandom/EditFandom";
+import EditSection from './EditSection/EditSection'
 
 class App extends React.Component {
   state = {
@@ -147,20 +148,28 @@ class App extends React.Component {
   };
 
   handleEditSub = () => {};
-  handleEditSection = () => {};
-  handleEditReview = (newReview, trelList) => {
-    const newReviewList = this.state.reviewList.map(review => {
-      if (review.id === newReview.id) review = newReview
-      return review
+  handleEditSection = (editedSection, tableName) => {
+    const sectionListCopy = this.state[tableName].map(section => {
+      if(section.id === editedSection.id) section = editedSection
     })
-    let newTrelList = this.state.reviewTagList.filter(trel => {
-      return trel.reviewId !== newReview.id
-    })
-    newTrelList = [...newTrelList, ...trelList]
     this.setState({
-      reviewList: newReviewList, 
-      reviewTagList: newTrelList
+      [tableName]: sectionListCopy
     })
+  };
+  
+  handleEditReview = (newReview, trelList) => {
+    const newReviewList = this.state.reviewList.map((review) => {
+      if (review.id === newReview.id) review = newReview;
+      return review;
+    });
+    let newTrelList = this.state.reviewTagList.filter((trel) => {
+      return trel.reviewId !== newReview.id;
+    });
+    newTrelList = [...newTrelList, ...trelList];
+    this.setState({
+      reviewList: newReviewList,
+      reviewTagList: newTrelList,
+    });
   };
   handleEditInstallment = () => {};
   handleEditFandom = (editedFandom) => {
@@ -183,8 +192,8 @@ class App extends React.Component {
       newSection.id,
       tableName
     );
-    console.log(trelList)
-    await FetchService.postTrels(trelList)
+    console.log(trelList);
+    await FetchService.postTrels(trelList);
     this.patchSection(updatedSection, `${tableName}List`);
     this.setState({
       ...this.state,
@@ -366,6 +375,14 @@ class App extends React.Component {
                   "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId",
                 ]}
                 component={ReviewMain}
+              />
+              <Route
+                exact
+                path={[
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/edit-section",
+                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/edit-sub",
+                ]}
+                component={EditSection}
               />
               <Route
                 exact
