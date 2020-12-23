@@ -23,10 +23,11 @@ export default class EditReview extends React.Component {
         : `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/review/${this.reviewId}`;
     const {title, content, rating} = reviewObject
     const reviewToPost = {title, content, rating, id: this.reviewId }
+    console.log(reviewToPost)
     const review = await FetchService.patchReview(reviewToPost);
     await FetchService.deleteTrelsByReview(review.id)
-    const trelsToPost = reviewObject.tagList.map(tag => {return {tagId: tag, reviewId: review.id}} )
-    const newTrels = FetchService.postTrels(trelsToPost)
+    const trelsToPost = reviewObject.tags.map(tag => {return {tagId: tag, reviewId: review.id}} )
+    const newTrels = await FetchService.postTrels(trelsToPost)
     this.props.history.push(link);
     this.context.handleEditReview(review, newTrels);
   };
@@ -45,7 +46,7 @@ export default class EditReview extends React.Component {
     return (
       <>
         <h3>Edit review</h3>
-        <ReviewForm {...review} tagshandleSubmit={this.handleSubmit} />
+        <ReviewForm {...review} handleSubmit={this.handleSubmit} />
       </>
     );
   }

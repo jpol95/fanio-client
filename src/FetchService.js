@@ -37,7 +37,7 @@ const FetchService = {
       return reviewResult
   }, 
   patchReview : async (review) => {
-    const reviewPreJson = await fetch(`${base_url}/fandoms/${review.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
+    const reviewPreJson = await fetch(`${base_url}/reviews/${review.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   },

@@ -156,7 +156,7 @@ class App extends React.Component {
     let newTrelList = this.state.reviewTagList.filter(trel => {
       return trel.reviewId !== newReview.id
     })
-    newTrelList = {...newTrelList, ...trelList}
+    newTrelList = [...newTrelList, ...trelList]
     this.setState({
       reviewList: newReviewList, 
       reviewTagList: newTrelList
