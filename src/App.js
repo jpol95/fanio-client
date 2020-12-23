@@ -23,6 +23,7 @@ import CheckUser from "./Utils/CheckUser";
 import TokenService from "./Services/token-service";
 import EditFandom from "./EditFandom/EditFandom";
 import EditSection from './EditSection/EditSection'
+import EditInstallment from './EditInstallment/EditInstallment'
 
 class App extends React.Component {
   state = {
@@ -171,7 +172,17 @@ class App extends React.Component {
       reviewTagList: newTrelList,
     });
   };
-  handleEditInstallment = () => {};
+  handleEditInstallment = (editedInstallment) => {
+    const installmentListCopy = this.state.installmentList.map(installment => {
+      console.log(installment.id === editedInstallment.id)
+      if (installment.id === editedInstallment.id) installment = editedInstallment 
+      return installment
+    })
+
+    this.setState({
+      installmentList: installmentListCopy
+    })
+  };
   handleEditFandom = (editedFandom) => {
     const newFandomList = this.state.fandomList.map((fandom) => {
       if (editedFandom.id === fandom.id) fandom = editedFandom;
@@ -424,6 +435,12 @@ class App extends React.Component {
                 loggedInUser={this.state.loggedInUser.userId}
                 path="/users/:userId/fandoms/:fandomId/edit-fandom"
                 component={EditFandom}
+              />
+              <PrivateOnlyRoute
+                exact
+                loggedInUser={this.state.loggedInUser.userId}
+                path="/users/:userId/fandoms/:fandomId/installments/:installmentId/edit-installment"
+                component={EditInstallment}
               />
               <PrivateOnlyRoute
                 exact

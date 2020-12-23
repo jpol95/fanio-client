@@ -18,6 +18,11 @@ export default class Installment extends React.Component {
     });
   };
 
+  handleEditInstallment = (e) => {
+    e.preventDefault()
+    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/edit-installment`, "_self")
+  }
+
   render() {
     // console.log(this.props);
     return (
@@ -28,7 +33,7 @@ export default class Installment extends React.Component {
         <h4>{this.props.title}</h4>
         {this.isLoggedInUser && (
           <>
-            <button>Edit</button>
+            <button onClick={this.handleEditInstallment}>Edit</button>
             <button onClick={this.handleDeleteInstallment}>Delete</button>
           </>
         )}

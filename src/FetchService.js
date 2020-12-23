@@ -42,11 +42,16 @@ const FetchService = {
     return reviewResult
   },
   patchSection : async (newSection, link) => {
-
       const sectionPreJson = await fetch(`${base_url}${link}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
+  patchInstallment: async (newInstallment) => {
+    console.log(newInstallment)
+    const installmentPreJson = await fetch(`${base_url}/installments/${newInstallment.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newInstallment)})
+    const installmentResult = await installmentPreJson.json()
+    return installmentResult
+}, 
   patchFandom : async (newFandom, id) => {
     const fandomPreJson = await fetch(`${base_url}/fandoms/${id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newFandom)})
     const fandomResult = await fandomPreJson.json()
