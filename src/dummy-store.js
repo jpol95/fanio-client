@@ -359,7 +359,7 @@ const sectionList = [
 //fandom -> section -> Episode
 //you could combine different media types into one table
 
-const episodeList = [
+const subList = [
   { id: 1, title: "Doctor Who s3e5", order: 5, reviewId: 1, sectionId: 7 },
   { id: 2, title: "Doctor Who s4e7", order: 7, reviewId: 2, sectionId: 9 },
   { id: 3, title: "Supernatural s2e3", order: 3, reviewId: null, sectionId: 14 },
@@ -376,6 +376,7 @@ const episodeList = [
   { id: 14, title: "Supernatural s1e9", order: 9, reviewId: 14, sectionId: 13 },
   { id: 15, title: "Buffy s1e7", order: 7, reviewId: 15, sectionId: 11 },
   { id: 16, title: "Buffy s1e9", order: 9, reviewId: null, sectionId: 11 },
+  { id: 17, title: `Buffy season 8 issue 1`, order: 1, reviewId: 24, arcId: 5 },
 ];
 
 const tagList = [
@@ -407,6 +408,24 @@ const reviewTagList = [
   { tagId: 12, reviewId: 3 },
 ];
 
+const seedDataBase = (db) => {
+  db("users").insert(userList)
+  db("fandoms").insert(fandomList)
+  db("installments").insert(installmentList)
+  db("sections").insert(sectionList)
+  db("subs").insert(subList)
+  db("tags").insert(tagList)
+  db("review_tag_rels").insert(reviewList)
+  db.raw("select setval('users_id_seq', ?, false);", userList[userList.length - 1].id)
+  db.raw("select setval('fandoms_id_seq', ?, false);", fandomList[fandomList.length - 1].id)
+  db.raw("select setval('installments_id_seq', ?, false);", installmentList[installmentList.length - 1].id)
+  db.raw("select setval('sections_id_seq', ?, false);", sectionList[sectionList.length - 1].id)
+  db.raw("select setval('subs_id_seq', ?, false);", subList[subList.length - 1].id)
+  db.raw("select setval('reviews_id_seq', ?, false);", reviewList[reviewList.length - 1].id)
+  db.raw("select setval('tags_id_seq', ?, false);", tagList[tagList.length - 1].id)
+}
+
+
 export default {
   arcList,
   issueList,
@@ -419,4 +438,5 @@ export default {
   reviewTagList,
   bookList,
   typeList,
+  seedDataBase
 };

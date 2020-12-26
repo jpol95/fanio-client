@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+<form
+  className="add-installments"
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="installment-title-1"
+  >
+    How many installments would you like to add?
+  </label>
+  <input
+    id="installment-title-1"
+    onChange={[Function]}
+    type="number"
+  />
+  <button
+    className="submit-installments-button"
+    type="submit"
+  >
+    Create Installments
+  </button>
+</form>
+`;

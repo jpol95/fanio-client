@@ -347,6 +347,7 @@ class App extends React.Component {
     if (!this.state.loggedInUser.loaded) return null;
     // console.log("rerender")
     // console.log(this.state.subList)
+    console.log(TokenService.getAuthToken())
     return (
       <FanioContext.Provider
         value={{

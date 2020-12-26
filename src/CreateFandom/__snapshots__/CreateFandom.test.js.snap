@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages component renders the UI as expected 1`] = `
+Array [
+  <h3>
+    Create Fandom
+  </h3>,
+  <div
+    className="fandom"
+  >
+    <form
+      className="create-fandom"
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="workname"
+      >
+        Name of fandom*
+      </label>
+      <input
+        defaultValue=""
+        id="workname"
+        onChange={[Function]}
+        type="text"
+      />
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>,
+]
+`;
