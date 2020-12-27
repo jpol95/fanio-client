@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <form
+    className="new-user-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="personal"
+    >
+      <p>
+        Tell us about yourself
+      </p>
+      <label
+        htmlFor="fullname"
+      >
+        Full Name
+      </label>
+      <input
+        defaultValue="Jesse A Pollack"
+        id="fullname"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="interests"
+      >
+        Interests
+      </label>
+      <input
+        defaultValue={
+          Array [
+            "skating",
+            "softball",
+            "listending to show tunes",
+            "knitting",
+          ]
+        }
+        id="interests"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="city"
+      >
+        City
+      </label>
+      <input
+        defaultValue="Gallifrey"
+        id="city"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="education"
+      >
+        Education
+      </label>
+      <input
+        defaultValue="Purple University"
+        id="education"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+  " ",
+]
+`;

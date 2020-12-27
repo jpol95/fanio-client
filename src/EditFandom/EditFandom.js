@@ -26,7 +26,6 @@ export default class EditFandom extends React.Component{
   render(){
       if (!this.getFandomById()) return null
       const title = this.getFandomById().title
-      console.log(title)
       const startInfo = {title}
       return ( 
       <>      

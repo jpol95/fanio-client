@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <form
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="type-1"
+    >
+      What type of installment is this?
+    </label>
+    <select
+      id="type-1"
+      onChange={[Function]}
+    >
+      <option />
+      <option
+        value="Show"
+      >
+        Show
+      </option>
+      <option
+        value="Book series"
+      >
+        Book series
+      </option>
+      <option
+        value="Movie series"
+      >
+        Movie series
+      </option>
+      <option
+        value="Comic series"
+      >
+        Comic series
+      </option>
+    </select>
+    <label>
+      What is the name of this 
+      
+      ?
+    </label>
+    <input
+      defaultValue=""
+      onChange={[Function]}
+      type="text"
+    />
+    <button
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+  " ",
+]
+`;

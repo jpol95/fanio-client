@@ -3,7 +3,6 @@ import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
 import ReviewForm from '../ReviewForm/ReviewForm'
 
-
 export default class EditReview extends React.Component {
   static contextType = FanioContext;
   tableName = this.props.match.params.subId ? "sub" : "section";
