@@ -1,27 +1,31 @@
 const userList = [
   {
     id: 1,
-    user_name: "kingbumii",
+    username: "kingbumii",
+    fullname: "Jesse A Pollack",
     password: "$2y$12$4R1JkopQ4LgjXH27bUAV5OwezOQLoBP6Yv7mbd.Nv7V67yBSmepZq",
-    birthday: "08/29/2959",
     education: "Purple University",
     interests: ["skating", "softball", "listending to show tunes", "knitting"],
     city: "Gallifrey",
-    fandoms: [
-      "Avatar: The Last Airbender",
-      "Breaking Bad",
-      "Buffy The Vampire Slayer",
-      "Doctor Who",
-    ],
   },
+  {
+      id: 2,
+      username: "admiralzhaoo",
+      fullname: "Jesse B Pollack",
+      password: "$2y$12$ndoGk02hhe19W3z6ZPjOmONmLsmJuZV5yKR.7JikmrZAE6UagHxhu", //password 2
+      education: "Purple University",
+      interests: ["skating", "softball", "listending to show tunes", "knitting"],
+      city: "Gallifrey",
+    },
 ];
 
 const fandomList = [
-  { id: 1, title: "Doctor Who", user: 1 }, //fk
-  { id: 2, title: "Supernatural", user: 1 },
-  { id: 3, title: "Parks and Recreation", user: 1 },
-  { id: 4, title: "Buffy the Vampire Slayer", user: 1 },
-  { id: 5, title: "Harry Potter", user: 1 },
+  { id: 1, title: "Doctor Who", userId: 1 }, //fk
+  { id: 2, title: "Supernatural", userId: 1 },
+  { id: 3, title: "Parks and Recreation", userId: 1 },
+  { id: 4, title: "Buffy the Vampire Slayer", userId: 1 },
+  { id: 5, title: "Harry Potter", userId: 1 },
+  { id: 6, title: "This belongs to user 2", userId: 2 },
 ];
 //when someone wants to add a fandom, have a dropdown menu or have them create a new one
 //join fandomList_user table
@@ -75,54 +79,15 @@ const typeList = [
 //'comicHS(hasSubs)' and the other 'comicNS(noSubs)'
 
 const installmentList = [
-  { id: 1, title: "Doctor Who TV Series", typeId: 1, fandomId: 1 },
-  { id: 2, title: "Parks and Rec TV Series", typeId: 1, fandomId: 3 },
-  { id: 3, title: "Buffy TV Series", typeId: 1, fandomId: 4 },
-  { id: 4, title: "Buffy Comic Series", typeId: 4, fandomId: 4 },
-  { id: 5, title: "Supernatural TV Series", typeId: 1, fandomId: 2 },
-  { id: 6, title: "Harry Potter Books", typeId: 2, fandomId: 5 },
+  { id: 1, title: "Doctor Who TV Series", type: "Show", fandomId: 1 },
+  { id: 2, title: "Parks and Rec TV Series", type: "Show", fandomId: 3 },
+  { id: 3, title: "Buffy TV Series", type: "Show", fandomId: 4 },
+  { id: 4, title: "Buffy Comic Series", type: "Comic series", fandomId: 4 },
+  { id: 5, title: "Supernatural TV Series", type: "Show", fandomId: 2 },  //change these to lower case!!!!!!!!!!!!
+  { id: 6, title: "Harry Potter Books", type: "Book series", fandomId: 5 },
 ];
 
 
-//sectionLists
-const bookList = [
-  {
-    id: 1,
-    title: `Harry Potter and the Prisoner of Azkaban`,
-    order: 3,
-    installmentId: 6,
-    reviewId: 21,
-  },
-  {
-    id: 2,
-    title: `Harry Potter and the Philosopher's Stone`,
-    order: 1,
-    installmentId: 6,
-    reviewId: 22,
-  },
-  {
-    id: 3,
-    title: `Harry Potter and the Chamber of Secrets`,
-    order: 2,
-    installmentId: 6,
-    reviewId: null,
-  },
-  {
-    id: 4,
-    title: `Harry Potter and the Case of Jesse's Missing Serotonin`,
-    order: 1,
-    installmentId: 6,
-    reviewId: null,
-  },
-];
-
-const arcList = [
-  { id: 5, title: `Buffy season 8`, order: 8, installmentId: 4, reviewId: 23 },
-];
-
-const issueList = [
-  { id: 17, title: `Buffy season 8 issue 1`, order: 1, reviewId: 24, arcId: 5 },
-];
 
 const reviewList = [
   {
@@ -273,6 +238,35 @@ const reviewList = [
 
 const sectionList = [
   {
+      id: 1,
+      title: `Harry Potter and the Prisoner of Azkaban`,
+      order: 3,
+      installmentId: 6,
+      reviewId: 21,
+    },
+    {
+      id: 2,
+      title: `Harry Potter and the Philosopher's Stone`,
+      order: 1,
+      installmentId: 6,
+      reviewId: 22,
+    },
+    {
+      id: 3,
+      title: `Harry Potter and the Chamber of Secrets`,
+      order: 2,
+      installmentId: 6,
+      reviewId: null,
+    },
+    {
+      id: 4,
+      title: `Harry Potter and the Case of Jesse's Missing Serotonin`,
+      order: 1,
+      installmentId: 6,
+      reviewId: null,
+    },
+    { id: 5, title: `Buffy season 8`, order: 8, installmentId: 4, reviewId: 23 },
+  {
     id: 6,
     title: "season 2 Doctor Who",
     order: 2,
@@ -350,6 +344,7 @@ const sectionList = [
     installmentId: 5,
   },
   { id: 17, title: "season 5 Buffy", order: 5, reviewId: 17, installmentId: 3 },
+  
 ];
 
 //fakerjs creates fake data for you
@@ -376,7 +371,7 @@ const subList = [
   { id: 14, title: "Supernatural s1e9", order: 9, reviewId: 14, sectionId: 13 },
   { id: 15, title: "Buffy s1e7", order: 7, reviewId: 15, sectionId: 11 },
   { id: 16, title: "Buffy s1e9", order: 9, reviewId: null, sectionId: 11 },
-  { id: 17, title: `Buffy season 8 issue 1`, order: 1, reviewId: 24, arcId: 5 },
+  { id: 17, title: `Buffy season 8 issue 1`, order: 1, reviewId: 24, sectionId: 5 },
 ];
 
 const tagList = [
@@ -408,35 +403,94 @@ const reviewTagList = [
   { tagId: 12, reviewId: 3 },
 ];
 
-const seedDataBase = (db) => {
-  db("users").insert(userList)
-  db("fandoms").insert(fandomList)
-  db("installments").insert(installmentList)
-  db("sections").insert(sectionList)
-  db("subs").insert(subList)
-  db("tags").insert(tagList)
-  db("review_tag_rels").insert(reviewList)
-  db.raw("select setval('users_id_seq', ?, false);", userList[userList.length - 1].id)
-  db.raw("select setval('fandoms_id_seq', ?, false);", fandomList[fandomList.length - 1].id)
-  db.raw("select setval('installments_id_seq', ?, false);", installmentList[installmentList.length - 1].id)
-  db.raw("select setval('sections_id_seq', ?, false);", sectionList[sectionList.length - 1].id)
-  db.raw("select setval('subs_id_seq', ?, false);", subList[subList.length - 1].id)
-  db.raw("select setval('reviews_id_seq', ?, false);", reviewList[reviewList.length - 1].id)
-  db.raw("select setval('tags_id_seq', ?, false);", tagList[tagList.length - 1].id)
+const seedUsers = async (db) => {
+  return db.transaction(async trx => {
+    await trx("users").insert(userList)
+    await trx.raw("select setval('users_id_seq', ?);", userList[userList.length - 1].id)
+  })
+}
+
+const seedFandoms = async (db) => {
+  return db.transaction(async trx => {
+    await trx("users").insert(userList)
+    await trx("fandoms").insert(fandomList)
+    await trx.raw("select setval('users_id_seq', ?);", userList[userList.length - 1].id)
+    await trx.raw("select setval('fandoms_id_seq', ?);", fandomList[fandomList.length - 1].id)
+  })
+}
+
+const seedInstallments = async (db) => {
+  await seedFandoms(db)
+  return db.transaction(async trx => {
+  await trx("installments").insert(installmentList)
+  await trx.raw("select setval('installments_id_seq', ?);", installmentList[installmentList.length - 1].id)
+  })
+}
+
+const seedSections = async (db) => {
+  await seedInstallments(db)
+  await seedReviews(db)
+  return db.transaction(async trx => {
+  await trx("sections").insert(sectionList)
+  await trx.raw("select setval('sections_id_seq', ?);", sectionList[sectionList.length - 1].id)
+  })
+}
+
+const seedReviews = async (db) => {
+  return db.transaction(async trx => {
+    await trx("reviews").insert(reviewList)
+    await trx.raw("select setval('reviews_id_seq', ?);", reviewList[reviewList.length - 1].id)
+  })
 }
 
 
-export default {
-  arcList,
-  issueList,
+const seedDataBase = async (db) => {
+  return db.transaction(async trx =>{
+  await trx("reviews").insert(reviewList)
+  await trx("users").insert(userList)
+  await trx("fandoms").insert(fandomList)
+  await trx("installments").insert(installmentList)
+  await trx("sections").insert(sectionList)
+  await trx("subs").insert(subList)
+  await trx("tags").insert(tagList)
+  await trx("review_tag_rels").insert(reviewTagList)
+  await trx.raw("select setval('reviews_id_seq', ?);", reviewList[reviewList.length - 1].id)
+  await trx.raw("select setval('users_id_seq', ?);", userList[userList.length - 1].id)
+  await trx.raw("select setval('fandoms_id_seq', ?);", fandomList[fandomList.length - 1].id)
+  await trx.raw("select setval('installments_id_seq', ?);", installmentList[installmentList.length - 1].id)
+  await trx.raw("select setval('sections_id_seq', ?);", sectionList[sectionList.length - 1].id)
+  await trx.raw("select setval('subs_id_seq', ?);", subList[subList.length - 1].id)
+  await trx.raw("select setval('tags_id_seq', ?);", tagList[tagList.length - 1].id)
+  })
+}
+
+const cleanUp = async (db) => {
+  return db.transaction(async trx =>{
+  await trx.raw("truncate users, fandoms, installments, sections, subs, reviews, tags, review_tag_rels;")
+  await trx.raw("alter sequence reviews_id_seq restart with 1;")
+  await trx.raw("alter sequence users_id_seq restart with 1;")
+  await trx.raw("alter sequence fandoms_id_seq restart with 1;")
+  await trx.raw("alter sequence installments_id_seq restart with 1;")
+  await trx.raw("alter sequence sections_id_seq restart with 1;")
+  await trx.raw("alter sequence subs_id_seq restart with 1;")
+  await trx.raw("alter sequence tags_id_seq restart with 1;")
+  })
+}
+
+
+module.exports = { 
   installmentList,
   fandomList,
   reviewList,
-  sectionList,
-  episodeList,
+  sectionList,  
   tagList,
   reviewTagList,
-  bookList,
-  typeList,
-  seedDataBase
+  subList,
+  seedDataBase, 
+  seedUsers, 
+  seedFandoms,
+  seedSections,
+  seedReviews,
+  cleanUp, 
+  seedInstallments
 };

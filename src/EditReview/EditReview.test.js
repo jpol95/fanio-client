@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import EditReview from './EditReview';
 import FanioContext from '../FanioContext'
-import {reviewList, reviewTagList} from '../dummy-store'
-
+import dummyStore from '../dummy-store'
 
 describe('Create Installment component', () => {
     const props = {
@@ -19,26 +18,17 @@ describe('Create Installment component', () => {
     }, 
     installId: 1
 }
-const currentLoadedUser = {
-    id: 1,
-    username: "kingbumii",
-    fullname: "Jesse A Pollack",
-    password: "$2y$12$4R1JkopQ4LgjXH27bUAV5OwezOQLoBP6Yv7mbd.Nv7V67yBSmepZq",
-    education: "Purple University",
-    interests: ["skating", "softball", "listending to show tunes", "knitting"],
-    city: "Gallifrey",
-  }
-  
+
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<FanioContext.Provider value={{currentLoadedUser}}> <EditPersonal {...props} /> </FanioContext.Provider>, div);
+    ReactDOM.render(<FanioContext.Provider value={{reviewList : dummyStore.reviewList, reviewTagList: dummyStore.reviewTagList, tagList: dummyStore.tagList}}> <EditReview {...props} /> </FanioContext.Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it('renders the UI as expected', () => {
     const tree = renderer
-      .create(<FanioContext.Provider value={{currentLoadedUser}}> <EditPersonal {...props} /> </FanioContext.Provider>)
+      .create(<FanioContext.Provider value={{reviewList : dummyStore.reviewList, reviewTagList: dummyStore.reviewTagList, tagList: dummyStore.tagList}}> <EditReview {...props} /> </FanioContext.Provider>)
       .toJSON();
     expect(tree).toMatchSnapshot();  
   });

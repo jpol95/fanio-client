@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <div
+    className="fandom-view"
+  >
+    <h4>
+      Harry Potter Books
+    </h4>
+    <div
+      className="fandom-comp"
+    >
+      <div
+        className="section"
+        onClick={[Function]}
+      >
+        Book 1
+        <br />
+        Harry Potter and the Philosopher's Stone
+        <br />
+        <p>
+          fuck JK Rowling fuck JK Rowlingfuck JK Rowling fuck JK Rowlingfuck JK Rowlingfuck JK Rowlingfuck JK 
+        </p>
+        <a
+          className="full-page-link write-review-button"
+          href="/users/1/fandoms/5/installments/6/sections/2/review/22"
+          onClick={[Function]}
+        >
+          View Full Review
+        </a>
+        <button
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    <div
+      className="fandom-comp"
+    >
+      <div
+        className="section"
+        onClick={[Function]}
+      >
+        Book 1
+        <br />
+        Harry Potter and the Case of Jesse's Missing Serotonin
+        <br />
+        <a
+          className="write-review-button"
+          href="/users/1/fandoms/5/installments/6/sections/4/reviews/create-review"
+          onClick={[Function]}
+        >
+           
+          Write Review
+           
+        </a>
+        <button
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    <div
+      className="fandom-comp"
+    >
+      <div
+        className="section"
+        onClick={[Function]}
+      >
+        Book 2
+        <br />
+        Harry Potter and the Chamber of Secrets
+        <br />
+        <a
+          className="write-review-button"
+          href="/users/1/fandoms/5/installments/6/sections/3/reviews/create-review"
+          onClick={[Function]}
+        >
+           
+          Write Review
+           
+        </a>
+        <button
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    <div
+      className="fandom-comp"
+    >
+      <div
+        className="section"
+        onClick={[Function]}
+      >
+        Book 3
+        <br />
+        Harry Potter and the Prisoner of Azkaban
+        <br />
+        <p>
+          fuck JK Rowling fuck JK Rowlingfuck JK Rowlingfuck JK Rowlingfuck JK Rowlingfuck JK Rowlingfuck JK R
+        </p>
+        <a
+          className="full-page-link write-review-button"
+          href="/users/1/fandoms/5/installments/6/sections/1/review/21"
+          onClick={[Function]}
+        >
+          View Full Review
+        </a>
+        <button
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    <a
+      href="/users/1/fandoms/5/installments/6/add-sections-form"
+      onClick={[Function]}
+    >
+      Add 
+      book
+      s
+    </a>
+  </div>,
+  " ",
+]
+`;

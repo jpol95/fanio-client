@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <h3>
+    Harry Potter
+  </h3>,
+  <a
+    className="fandom-view"
+    href="/users/1/fandoms/5/installment-view/6"
+    onClick={[Function]}
+  >
+    <h4>
+      Harry Potter Books
+    </h4>
+    <button
+      onClick={[Function]}
+    >
+      Edit
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </a>,
+  <a
+    href="/users/1/fandoms/5/add-installments-form"
+    onClick={[Function]}
+  >
+    Add Installments
+  </a>,
+  " ",
+]
+`;
