@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Installment component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <form
+    className="new-user-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="basic"
+    >
+      <p>
+         Basic account information 
+      </p>
+      <label
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        id="username"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="pw"
+      >
+        Password
+      </label>
+      <input
+        id="pw"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="pw-confirm"
+      >
+        Confirm Password
+      </label>
+      <input
+        id="pw-confirm"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="personal"
+    >
+      <p>
+        Tell us about yourself
+      </p>
+      <label
+        htmlFor="fullname"
+      >
+        Full Name
+      </label>
+      <input
+        id="fullname"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="interests"
+      >
+        Interests
+      </label>
+      <input
+        defaultValue=""
+        id="interests"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="city"
+      >
+        City
+      </label>
+      <input
+        defaultValue=""
+        id="city"
+        onChange={[Function]}
+        type="text"
+      />
+      <label
+        htmlFor="education"
+      >
+        Education
+      </label>
+      <input
+        defaultValue=""
+        id="education"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+  " ",
+]
+`;
