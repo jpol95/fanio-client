@@ -51,7 +51,9 @@ export default class CreateInstallments extends React.Component {
 
   handleSubmitInstallments = async (e) => {
     e.preventDefault()
-    const installCopy = [...this.state.installmentList]
+    const installCopy = [...this.state.installmentList].map(installment => {
+      return {...installment, title: installment.title.value, type: installment.type.value}
+    })
     const installments = await FetchService.postInstallments(installCopy, this.props.match.params.fandomId)
     this.props.history.push(`/users/${this.userId}/fandom-view/${this.props.match.params.fandomId}`)
     this.context.handleSubmitInstallments(installments)
@@ -59,6 +61,15 @@ export default class CreateInstallments extends React.Component {
 
   //see how you want to handle submitting installments, whether handle the array here or on
   //serverside, would be easier on serverside but i want to make sure that's good practice
+
+
+  preventSubmit = () => {
+    if (!this.state.installmentList || this.state.installmentList.length === 0) return true
+    for (let section of this.state.installmentList){
+      if (!section.canSubmit) return true
+    }
+    return false;
+  }
 
 
   render() {
@@ -74,7 +85,7 @@ export default class CreateInstallments extends React.Component {
           onChange={this.handleNumInstallments}
         />
         {this.createInstallmentForms()}
-        <button className="submit-installments-button" type="submit">Create Installments</button>
+        <button disabled={this.preventSubmit()} className="submit-installments-button" type="submit">Create Installments</button>
       </form>
     );
   }

@@ -26,8 +26,7 @@ export default class CreateSections extends React.Component {
 
   state = {
     numSections: 0,
-    sectionList: [],
-    canSubmit: false
+    sectionList: []
     // title: "",
     // sectionList: []
   };
@@ -76,7 +75,9 @@ export default class CreateSections extends React.Component {
   handleSubmitSections = async (e) => {
     e.preventDefault()
     const link = this.parentName === "installment" ? `/sections/section/parent/${this.props.match.params.installmentId}` : `/sections/sub/parent/${this.props.match.params.sectionId}`
-    const sectionCopy = [...this.state.sectionList]
+    const sectionCopy = [...this.state.sectionList].map(section => {
+      return {...section, title: section.title.value, order: section.order.value}
+    })
     const sections = await FetchService.postSections(sectionCopy, link)
     this.props.history.push(`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
     this.context.handleSubmitSections(sections, this.genListName)

@@ -3,8 +3,8 @@
     margin: auto;
 }
 
-.submit-sections-button:disabled{
+.submit-sections-button:disabled, .submit-installments-button:disabled{
     background-color: white;
-    color:lightgrey;
+    color:rgb(102, 97, 97);
     cursor: default
 }

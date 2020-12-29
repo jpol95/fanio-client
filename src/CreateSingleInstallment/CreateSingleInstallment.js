@@ -11,8 +11,8 @@ export default class InstallDropDown extends React.Component {
   types = Object.keys(typeList)
 
   state = {
-    type: "", 
-    title: ""
+    type: {value: "", touched: false}, 
+    title: {value: "", touched: false}
   }
 
   //make a service class for this type of map and filter logic
@@ -21,21 +21,30 @@ export default class InstallDropDown extends React.Component {
     this.setState({
      ...this.state, type: e.target.value, installId: this.props.installId
     })
-    this.props.handleAddInstallment(this.state)
+    this.props.handleAddInstallment({...this.state, canSubmit: this.invalidType() && this.invalidTitle() && this.state.type.touched && this.state.title.touched})
   }
 
   handleTitleChange = (e) => {
     const p = new Promise((resolve, reject) => resolve(this.setState({
           ...this.state, title: e.target.value, installId: this.props.installId
     })))
-    p.then(() => this.props.handleAddInstallment(this.state)
+    p.then(() => this.props.handleAddInstallment({...this.state, canSubmit: this.invalidType() && this.invalidTitle()})
     )
+  }
+
+  invalidType = () => {
+    return !!this.state.type.value
+  }
+
+  invalidTitle = () => {
+    return !!this.state.type.title
   }
 
   render() {
     return (
       <div className="single-installment-form">
         <label htmlFor={`type-${this.props.installId}`}>What type of installment is this?</label>
+        {this.invalidType() && this.state.type.touched && <div class="error">Installment type is required</div>}
         <select onChange = {this.handleTypeChange} id={`type-${this.props.installId}`}>
           <option></option>
           {this.types && this.types.map((type) => (
@@ -45,6 +54,7 @@ export default class InstallDropDown extends React.Component {
         {this.state.type !== "" &&
         <React.Fragment>
         <label htmlFor={`name-${this.props.installId}`}>What is the name of this {this.state.type}?</label>
+        {this.invalidTitle() && this.state.title.touched && <div class="error">Installment title is required</div>}
         <input onChange={this.handleTitleChange} type="text" />
         </React.Fragment>
   }     
