@@ -33,7 +33,7 @@ export default class FandomView extends React.Component{
       <h1>{this.getFandom() && this.getFandom().title}</h1>
       <img class="installment-label" src={installmentsLabel} />
       {this.getInstallments()}
-      {this.isLoggedInUser && <Link to={`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>}
+      {this.isLoggedInUser && <Link className="create-installments-link" to={`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>}
       </React.Fragment>
       )
     }

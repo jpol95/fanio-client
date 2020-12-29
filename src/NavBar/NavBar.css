@@ -39,6 +39,11 @@
     height: 200px;
 }
 
+.login-link {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
 /* .navbar .navbar-buttons .navbar-home-link {
     text-decoration: none;
     border: 2px solid black;

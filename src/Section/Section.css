@@ -61,7 +61,10 @@ padding: 5px;
     width: 100%;
 }
 
-.write-review-button, .add-subs-link {
+.write-review-button, .add-subs-link, .delete-review-button, .edit-review-link,
+.create-fandom-button, .create-installments-link, .submit-installments-button, 
+.submit-fandom-button, .submit-sections-button, .login-link, .login-button, .create-account-link, 
+.landing-page-link, .submit-review-button, .submit-account-button{
     color: black;
     border: 2px solid black;
     text-decoration: none;
@@ -70,24 +73,58 @@ padding: 5px;
     display: inline-block;
     padding: 0px 10px 0px 10px;
     border-radius: 20px;
+    background-color: white;
 
+}
+ 
+.login-button, .submit-review-button, .submit-account-button, .submit-sections-button {
+    padding: 10px 25px 25px 25px;
+    border-radius: 40px;
+}
+
+.create-fandom-button, .create-installments-link, .login-link, .create-account-link, 
+.landing-page-link{
+    padding: 10px 25px 10px 25px;
+    border-radius: 30px;
 }
 
 .add-subs-link {
     margin-top: 10px;
 }
 
-.write-review-button:hover {
-    color: white;
-    background-color: red;
+.create-account-link {
+    margin-right: 10px;
 }
 
-.add-subs-link:hover {
+.delete-review-button:hover, .write-review-button:hover, .login-link:hover, .login-button:hover, 
+.create-account-link:hover, .landing-page-link:hover, .submit-account-button:hover {
     color: white;
-    background-color: blue;
+    background-color: black;
+    cursor:pointer;
+}
+
+.edit-review-link:hover, .add-subs-link:hover, .create-fandom-button:hover, 
+.create-installments-link:hover, .submit-installments-button:hover, 
+.submit-fandom-button:hover, .submit-sections-button:hover, .submit-review-button:hover {
+    color: white;
+    background-color: black;
+    cursor:pointer;
 }
 
 .disabled-link{
     cursor: default;
 }
- 
+/*  
+.episode {
+    display: flex;
+    justify-content: space-between;
+} */
+/* 
+.left, .right {
+    height: 0px
+} */
+
+.label {
+    margin: auto;
+    font-weight: 1000;
+}

@@ -3,6 +3,7 @@ import FanioContext from "../FanioContext";
 import Section from "../Section/Section";
 import {Link} from 'react-router-dom'
 import typeList from '../type-list'
+import './InstallmentView.css'
 
 export default class InstallmentView extends React.Component {
   static contextType = FanioContext;
@@ -41,11 +42,14 @@ export default class InstallmentView extends React.Component {
   render() {
     if (!this.getInstallment()) return null
     return (
+      <>
+      <h1>{this.getInstallment() && this.getInstallment().title}</h1>
       <div className="fandom-view">
-        <h4>{this.getInstallment() && this.getInstallment().title}</h4>
+      <h3>{this.getType().sectionName.charAt(0).toUpperCase() + this.getType().sectionName.slice(1)}s</h3>
         {this.getSections()}
-        {this.isLoggedInUser && <Link to={`/users/${this.userId}/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>}
+        {this.isLoggedInUser && <Link className={"add-sections-link"} to={`/users/${this.userId}/fandoms/${this.getInstallment().fandomId}/installments/${this.getInstallment().id}/add-sections-form`}>Add {this.getType().sectionName}s</Link>}
       </div>
+      </>
     );
   }
 }

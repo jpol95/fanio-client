@@ -33,7 +33,7 @@ export default class Profile extends React.Component {
         <img className="label" src={fandomLabel} />
         <img className="divider" src={divider2} />
         {this.getFandoms()}
-        {isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
+        {isLoggedInUser && <Link className="create-fandom-button" to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
       </React.Fragment>
     );
   }

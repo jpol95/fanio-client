@@ -1,6 +1,7 @@
 import React from 'react'
 import FanioContext from '../FanioContext'
 import typeList from '../type-list'
+import './CreateSingleInstallment.css'
 
 
 export default class InstallDropDown extends React.Component {
@@ -33,7 +34,7 @@ export default class InstallDropDown extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="single-installment-form">
         <label htmlFor={`type-${this.props.installId}`}>What type of installment is this?</label>
         <select onChange = {this.handleTypeChange} id={`type-${this.props.installId}`}>
           <option></option>
@@ -48,7 +49,7 @@ export default class InstallDropDown extends React.Component {
         </React.Fragment>
   }     
         
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -136,7 +136,7 @@ export default class CreateReview extends React.Component {
         </datalist>
         <br />
         <div className="tag-list">{this.displayTags()}</div>
-        <button type="submit">Submit</button>
+        <button className="submit-review-button" type="submit">Submit</button>
       </form>
     );
   }

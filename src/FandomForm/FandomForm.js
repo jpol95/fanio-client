@@ -27,7 +27,7 @@ export default class Fandom extends React.Component {
         <form onSubmit={(e) => this.props.handleSubmit(e, {title: this.state.title})} className="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
         <input onChange={this.handleName} defaultValue={this.state.title} id="workname" type="text" />
-        <button type="submit">Submit</button>
+        <button className="submit-fandom-button" type="submit">Submit</button>
         </form>
       </div>
     );

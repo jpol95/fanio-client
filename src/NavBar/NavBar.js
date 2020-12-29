@@ -47,7 +47,11 @@ export default class NavBar extends React.Component {
             <button onClick={this.handleDeleteAccount} >Delete Account</button>
             </div>
           ) : (
-            <Link to="/login">Log In</Link>
+            <div className="navbar-buttons">
+            <Link className="login-link" to="/login">Log In</Link>
+            <Link className="create-account-link" to="/signup">Create Account</Link>
+            <Link className="landing-page-link" to="/landing">About</Link>
+            </div>
           )}
         </div>
         <img className="background" src={this.chosenPic} />

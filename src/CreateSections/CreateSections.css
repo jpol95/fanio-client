@@ -2,3 +2,9 @@
     display: block;
     margin: auto;
 }
+
+.submit-sections-button:disabled{
+    background-color: white;
+    color:lightgrey;
+    cursor: default
+}

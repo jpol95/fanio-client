@@ -2,6 +2,7 @@ import React from "react";
 import "./SignUp.css";
 import FetchService from '../FetchService'
 import SignUpForm from '../SignUpForm/SignUpForm'
+import './SignUp.css'
 
 export default class Signup extends React.Component {
 

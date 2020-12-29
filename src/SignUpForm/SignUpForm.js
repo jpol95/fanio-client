@@ -58,7 +58,7 @@ export default class SignupForm extends React.Component {
           <label htmlFor="education">Education</label>
           <input defaultValue={this.state.education.value} id="education" onChange={this.handleEducationChange} type="text" />
         </div>
-        <button type="submit">Submit</button>
+        <button className="submit-account-button" type="submit">Submit</button>
       </form>
     );
   }

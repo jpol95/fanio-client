@@ -3,6 +3,7 @@ import "./ReviewMain.css";
 import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
 import {Link} from 'react-router-dom'
+import decoration4 from '../deocrations/decoration4.jpg'
 
 export default class ReviewMain extends React.Component {
   static contextType = FanioContext;
@@ -69,16 +70,19 @@ export default class ReviewMain extends React.Component {
     const tags = this.getTags(review.id);
     return (
       <div className="review-full">
+        <div className="review-body">
         <h2>{review.title}</h2>
         <p>{review.rating} stars</p>
         <p>{tags}</p>
         <p>{review.content}</p>
         {this.isLoggedInUser && (
           <>
-            <Link to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/${this.subId ? `subs/${this.subId}/` : ``}reviews/${this.reviewId}/edit-review`}>Edit Review </Link>
-            <button onClick={this.handleDeleteReview}>Delete Review</button>
+            <Link className="edit-review-link" to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/${this.subId ? `subs/${this.subId}/` : ``}reviews/${this.reviewId}/edit-review`}>Edit Review </Link>
+            <br />
+            <button className="delete-review-button" onClick={this.handleDeleteReview}>Delete Review</button>
           </>
         )}
+        </div>
       </div>
     );
   }

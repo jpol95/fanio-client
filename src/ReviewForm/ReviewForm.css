@@ -1,6 +1,7 @@
 .create{
-    background-color: lightgray;
+    background-color: white;
     padding: 20px;
+    border: 2px solid black;
 }
 .create #content{
     width: 75%;

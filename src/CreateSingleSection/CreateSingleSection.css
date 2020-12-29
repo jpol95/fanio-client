@@ -1,0 +1,9 @@
+.create-section-form {
+    background-color:  #a5f0ad;
+    margin-bottom: 20px;
+    border: 2px solid black;
+}
+
+.error{
+    color: red;
+}

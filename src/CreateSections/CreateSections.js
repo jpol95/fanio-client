@@ -9,7 +9,7 @@ export default class CreateSections extends React.Component {
 
   static contextType = FanioContext
 
-  getType = () => {
+  getType() {
     return typeList[this.getInstallment().type]
   }
 
@@ -20,7 +20,6 @@ export default class CreateSections extends React.Component {
   }
 
   genListName = this.props.match.params.sectionId ? "subList" : "sectionList"
-  listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
   parentName = this.props.match.params.sectionId ? "section": "installment"
   userId = Number(this.props.match.params.userId)
 
@@ -28,6 +27,7 @@ export default class CreateSections extends React.Component {
   state = {
     numSections: 0,
     sectionList: [],
+    canSubmit: false
     // title: "",
     // sectionList: []
   };
@@ -65,6 +65,14 @@ export default class CreateSections extends React.Component {
     });
   };
 
+  preventSubmit = () => {
+    if (!this.state.sectionList || this.state.sectionList.length === 0) return true
+    for (let section of this.state.sectionList){
+      if (!section.canSubmit) return true
+    }
+    return false;
+  }
+
   handleSubmitSections = async (e) => {
     e.preventDefault()
     const link = this.parentName === "installment" ? `/sections/section/parent/${this.props.match.params.installmentId}` : `/sections/sub/parent/${this.props.match.params.sectionId}`
@@ -80,10 +88,12 @@ export default class CreateSections extends React.Component {
   render() {
     // console.log("creating Section forms") 
     //HOW IS THIS.PROPS.INSTALLID NOT THROWING AN ERROR IM PRETTY SURE IM NOT PASSING ANY PROPS INTO THIS CLASS
+    if (!this.getInstallment()) return null
+    const listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
     return (
       <form className="add-sections" onSubmit={this.handleSubmitSections}>
         <label htmlFor={`section-title-${this.props.installId}`}> 
-          How many {this.listName}s would you like to add?
+          How many {listName}s would you like to add?
         </label>
         <input
           id={`section-title-${this.props.installId}`}
@@ -91,7 +101,7 @@ export default class CreateSections extends React.Component {
           onChange={this.handleNumSections}
         />
         {this.createSectionForms()}
-        <button className="submit-sections-button" type="submit">Add {this.listName}s </button>
+        <button disabled={this.preventSubmit()} className="submit-sections-button" type="submit">Add {listName}s </button>
       </form>
     );
   }

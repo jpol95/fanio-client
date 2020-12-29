@@ -3,6 +3,8 @@ import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
 import FetchService from "../FetchService";
+import decoration1 from '../deocrations/decoration1.jpg'
+import decoration2 from '../deocrations/decoration2.PNG'
 
 export default class Section extends React.Component {
   state = {
@@ -92,11 +94,12 @@ export default class Section extends React.Component {
             }}
             className={`episode ${!subReview ? "disabled-link" : ""}`}
           >
+            <div className="label">
             {`${
               this.props.type.subName.charAt(0).toUpperCase() +
               this.props.type.subName.slice(1)
             } ${subSection.order}`}
-            {<br />}
+            </div>
             {subSection.title}{" "}
             {subReview ? (
               <p> {subReview.content.substring(0, 100)}</p>
@@ -124,6 +127,7 @@ export default class Section extends React.Component {
             <button onClick={(e) => this.handleDeleteSub(e, subSection.id)}>Delete</button>
             </>
       }
+       
           </Link>
         );
       });
@@ -142,12 +146,12 @@ export default class Section extends React.Component {
         <div
           onClick={() => this.setState({ clicked: !this.state.clicked })}
           className="section"
-        >
+        ><div className="label">
           {`${
             this.props.type.sectionName.charAt(0).toUpperCase() +
             this.props.type.sectionName.slice(1)
           } ${this.props.order}`}
-          {<br />}
+          </div>
           {this.props.title}
           {<br />}
           {review ? (
