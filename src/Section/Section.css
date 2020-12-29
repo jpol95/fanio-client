@@ -16,6 +16,10 @@
     margin-bottom: 10px;
 }
 
+.fandom-comp button{
+margin-bottom: 10px;
+}
+
 .fandom-comp:hover, .review-comp:hover {
     box-shadow: 10px 10px 8px #888888;
     cursor: pointer;
@@ -25,6 +29,10 @@
 border:solid 2px black;
 /* border-bottom: none; */
 padding: 5px;
+}
+
+.fandom-comp .section {
+    /* background-color: #FFC7C7; */
 }
 
 .personal, .fandom-view{
@@ -40,6 +48,7 @@ padding: 5px;
     text-decoration: none;
     color: black;
     display: block;
+    /* background-color: #A3B2E9; */
 }
 
 .full-page-link{
@@ -52,10 +61,31 @@ padding: 5px;
     width: 100%;
 }
 
-/* .write-review-season-button{
-    padding: 0%;
-} */
+.write-review-button, .add-subs-link {
+    color: black;
+    border: 2px solid black;
+    text-decoration: none;
+    font-size: 14px;
+    height: 19px;
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    border-radius: 20px;
 
+}
+
+.add-subs-link {
+    margin-top: 10px;
+}
+
+.write-review-button:hover {
+    color: white;
+    background-color: red;
+}
+
+.add-subs-link:hover {
+    color: white;
+    background-color: blue;
+}
 
 .disabled-link{
     cursor: default;

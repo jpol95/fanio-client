@@ -30,6 +30,7 @@ export default class Section extends React.Component {
       <React.Fragment>
         <div className="subsection-list ">{this.getSubSections()}</div>
         {this.isLoggedInUser && <Link
+          className="add-subs-link"
           to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/add-subs-form`}
         >
           Add {this.props.type.subName}s
@@ -174,6 +175,7 @@ export default class Section extends React.Component {
           )}
           {this.isLoggedInUser && 
           <>
+          <br />
           <button onClick={this.handleEditSection}>Edit</button>
           <button onClick={this.handleDeleteSection}>Delete</button>
           </>
