@@ -10,16 +10,16 @@
     margin-top: 0px;
 }
 .personal, .fandom, .fandom-view{
-    background-color: lightgray;
+    /* background-color: lightgray; */
     padding: 20px;
 }
-
+/* 
 .personal{
    padding-bottom: 300px 
-}
+} */
 
 .personal .profile-picture{
-    background-color: grey;
+    /* background-color: grey; */
     display: flex;
     height:200px;
 }

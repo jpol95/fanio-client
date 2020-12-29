@@ -1,4 +1,48 @@
-.navbar, footer{
+/* .navbar, footer{
+    background-color: black;
+    color: white;
+} */
+
+.navbar img {
+    height: 65px;
+    margin-left: 15%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-buttons {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.navbar .navbar-buttons button {
+    padding: 8px 16px 8px 16px;
+    border-radius: 20px;
+    background-color: white;
+    border-color: black;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.navbar .navbar-buttons button:hover{
     background-color: black;
     color: white;
 }
+
+.background {
+    height: 200px;
+}
+
+/* .navbar .navbar-buttons .navbar-home-link {
+    text-decoration: none;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+} */

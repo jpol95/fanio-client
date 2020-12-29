@@ -1,5 +1,5 @@
 .personal, .fandom, .fandom-view{
-    background-color: lightgray;
+    /* background-color: lightgray; */
     padding: 20px;
 }
 
@@ -7,8 +7,12 @@
    padding-bottom: 300px 
 }
 
+.personal {
+    border: 2px solid black;
+}
+
 .personal .profile-picture{
-    background-color: grey;
+    /* background-color: grey; */
     display: flex;
     height:200px;
 }

@@ -5,6 +5,9 @@ import Fandom from "../Fandom/Fandom";
 import FanioContext from "../FanioContext";
 import "./Profile.css";
 import { Link } from "react-router-dom";
+import divider2 from '../dividers/divider2.PNG'
+import fandomLabel from '../labels/fandom-label.PNG'
+import profileLabel from '../labels/profile-label.PNG'
 
 export default class Profile extends React.Component {
   static contextType = FanioContext;
@@ -24,8 +27,11 @@ export default class Profile extends React.Component {
     const isLoggedInUser = this.context.loggedInUser === this.userId
     return (
       <React.Fragment>
+        <img className="label" src={profileLabel} />
         <PersonalInfo userId={this.userId} />
-        <Reviews />
+        {/* <Reviews /> */}
+        <img className="label" src={fandomLabel} />
+        <img className="divider" src={divider2} />
         {this.getFandoms()}
         {isLoggedInUser && <Link to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
       </React.Fragment>

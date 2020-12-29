@@ -1,0 +1,12 @@
+.divider{
+    width: 100%;
+}
+.label {
+    width: 100%;
+}
+
+@media only screen and (min-width: 800px){
+.label {
+    width: 60%
+}
+}
