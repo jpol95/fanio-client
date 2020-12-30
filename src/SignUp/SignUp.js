@@ -49,13 +49,13 @@ export default class Signup extends React.Component {
    if (this.state.password.value.startsWith(' ')) {
      return <div class="error">Password must not start or end with empty spaces</div>
    }
-   if (this.state.password.value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/))
+   if (!this.state.password.value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/))
     return <div class="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
   }
   
-  invalidConfirmPassword = () => {
-    if (this.state.password.value === this.state.confirmPassword.value)
-      return <div class="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
+  invalidPasswordConfirm = () => {
+    if (this.state.password.value !== this.state.passwordConfirm.value)
+      return <div class="error">Must match password</div>
   }
 
 //   handleNameChange = (e) => {
@@ -73,7 +73,7 @@ export default class Signup extends React.Component {
     const user = {
       username: this.state.username.value, 
       password: this.state.password.value, 
-      fullname: personalInfo.fullname, 
+      fullname: personalInfo.fullname.value, 
       interests: personalInfo.interests.value.split(","),
       city: personalInfo.city.value, 
       education: personalInfo.education.value
@@ -85,7 +85,7 @@ export default class Signup extends React.Component {
   }
 
   canSubmit = () => {
-   return this.invalidConfirmPassword() || this.invalidPassword()
+   return this.invalidPasswordConfirm() || this.invalidPassword() || this.invalidUsername()
   }
 
   //finish user sign up on client and server*/
@@ -94,16 +94,17 @@ export default class Signup extends React.Component {
     const personalInfo = {name: "", interests: "", city: "", education: ""}
     return (
 
-        <SignUpForm handleSubmitUser={this.handleSubmitUser} {...personalInfo} >
+        <SignUpForm canSubmit={this.canSubmit()} handleSubmitUser={this.handleSubmitUser} {...personalInfo} >
         <div className="basic">
           <p> Basic account information </p>
           <label htmlFor="username">Username</label>
+          {this.state.username.touched && this.invalidUsername()}
           <input id="username" onChange={this.handleUsernameChange} type="text" />
           <label htmlFor="pw">Password</label>
           {this.state.password.touched && this.invalidPassword()}
           <input id="pw" onChange={this.handlePasswordChange} type="text" />
           <label htmlFor="pw-confirm">Confirm Password</label>
-          {this.state.confirmPassword.touched && this.invalidConfirmPassword()}
+          {this.state.passwordConfirm.touched && this.invalidPasswordConfirm()}
           <input id="pw-confirm" onChange={this.handlePasswordConfirmChange} type="text" />
         </div>
              </SignUpForm>

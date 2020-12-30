@@ -4,7 +4,8 @@
 }
 
 .submit-sections-button:disabled, .submit-installments-button:disabled, .submit-fandom-button:disabled,
- .submit-review-button:disabled, .edit-section-button:disabled, .edit-installment-button:disabled{
+ .submit-review-button:disabled, .edit-section-button:disabled, .edit-installment-button:disabled, 
+ .submit-account-button:disabled {
     background-color: white;
     color:rgb(102, 97, 97);
     cursor: default

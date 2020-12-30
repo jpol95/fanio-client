@@ -59,7 +59,7 @@ export default class SignupForm extends React.Component {
           <label htmlFor="education">Education</label>
           <input defaultValue={this.state.education.value} id="education" onChange={this.handleEducationChange} type="text" />
         </div>
-        <button className="submit-account-button" type="submit">Submit</button>
+        <button disabled={this.props.canSubmit} className="submit-account-button" type="submit">Submit</button>
       </form>
     );
   }
