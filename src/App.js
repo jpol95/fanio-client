@@ -175,7 +175,7 @@ class App extends React.Component {
   };
   handleEditInstallment = (editedInstallment) => {
     const installmentListCopy = this.state.installmentList.map(installment => {
-      console.log(installment.id === editedInstallment.id)
+      // console.log(installment.id === editedInstallment.id)
       if (installment.id === editedInstallment.id) installment = editedInstallment 
       return installment
     })
@@ -346,7 +346,7 @@ class App extends React.Component {
     if (!this.state.loggedInUser.loaded) return null;
     // console.log("rerender")
     // console.log(this.state.subList)
-    console.log(TokenService.getAuthToken())
+    // console.log(TokenService.getAuthToken())
     return (
       <FanioContext.Provider
         value={{

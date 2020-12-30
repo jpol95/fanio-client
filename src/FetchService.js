@@ -53,7 +53,7 @@ const FetchService = {
       return sectionResult
   }, 
   patchInstallment: async (newInstallment) => {
-    console.log(newInstallment)
+    // console.log(newInstallment)
     const installmentPreJson = await fetch(`${base_url}/installments/${newInstallment.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newInstallment)})
     const installmentResult = await installmentPreJson.json()
     return installmentResult

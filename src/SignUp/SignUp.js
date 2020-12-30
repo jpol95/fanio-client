@@ -34,6 +34,30 @@ export default class Signup extends React.Component {
   }
 
 
+  invalidUsername = () => {
+    if (!this.state.username.value)
+      return <div class="error">Username is required</div>
+  }
+
+  invalidPassword = () => {
+    if (this.state.password.value.length < 8) {
+      return <div class="error">Password must be longer than 8 characters </div>
+    }
+    if (this.state.password.value.length > 72) {
+      return <div class="error">Password must be less than 72 characters</div>
+    }
+   if (this.state.password.value.startsWith(' ')) {
+     return <div class="error">Password must not start or end with empty spaces</div>
+   }
+   if (this.state.password.value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/))
+    return <div class="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
+  }
+  
+  invalidConfirmPassword = () => {
+    if (this.state.password.value === this.state.confirmPassword.value)
+      return <div class="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
+  }
+
 //   handleNameChange = (e) => {
 //     const name = e.target.value
 //     this.setState({
@@ -60,6 +84,10 @@ export default class Signup extends React.Component {
     })
   }
 
+  canSubmit = () => {
+   return this.invalidConfirmPassword() || this.invalidPassword()
+  }
+
   //finish user sign up on client and server*/
   render() {
     // console.log(this.state)
@@ -72,8 +100,10 @@ export default class Signup extends React.Component {
           <label htmlFor="username">Username</label>
           <input id="username" onChange={this.handleUsernameChange} type="text" />
           <label htmlFor="pw">Password</label>
+          {this.state.password.touched && this.invalidPassword()}
           <input id="pw" onChange={this.handlePasswordChange} type="text" />
           <label htmlFor="pw-confirm">Confirm Password</label>
+          {this.state.confirmPassword.touched && this.invalidConfirmPassword()}
           <input id="pw-confirm" onChange={this.handlePasswordConfirmChange} type="text" />
         </div>
              </SignUpForm>

@@ -48,6 +48,14 @@ export default class InstallDropDown extends React.Component {
     });
   };
 
+  invalidType = () => {
+    return  !this.state.type.value
+  }
+
+  invalidTitle = () => {
+    return  !this.state.title.value
+  }
+
   handleEditInstallment = async (e) => {
     e.preventDefault()
     const installCopy = {type: this.state.type.value, title: this.state.title.value, id: this.installmentId}
@@ -57,13 +65,14 @@ export default class InstallDropDown extends React.Component {
   }
 
   render() {
-    console.log(this.getInstallment())
+    // console.log(this.getInstallment())
     if (!this.getInstallment()) return null
     return (
       <form onSubmit={this.handleEditInstallment}>
         <label htmlFor={`type-${this.installmentId}`}>
           What type of installment is this?
         </label>
+        {this.invalidType() && <div className="error">Type is required</div>}
         <select
           onChange={this.handleTypeChange}
           id={`type-${this.installmentId}`}
@@ -77,10 +86,12 @@ export default class InstallDropDown extends React.Component {
         {this.state.type !== "" && (
           <React.Fragment>
             <label>What is the name of this {this.state.type.value}?</label>
+            {this.invalidTitle() && <div className="error">Title is required</div>}
             <input defaultValue={this.state.title.value} onChange={this.handleTitleChange} type="text" />
           </React.Fragment>
         )}
-        <button type="submit">Submit</button>
+        <br />
+        <button disabled={this.invalidType() || this.invalidTitle()} className="edit-installment-button" type="submit">Submit</button>
      </form>
     );
   }

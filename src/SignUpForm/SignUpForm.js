@@ -19,6 +19,7 @@ export default class SignupForm extends React.Component {
     })
   }
 
+
   handleInterestsChange = (e) => {
     const interests = e.target.value
     this.setState({

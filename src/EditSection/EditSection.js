@@ -32,7 +32,7 @@ export default class EditSection extends React.Component {
     return this.context.installmentList.find(installment => this.installmentId === installment.id)
 }
   getType = () => {
-    console.log("hello")
+    // console.log("hello")
     return typeList[this.getInstallment().type]
   }
 //   //fix classes to not use type from context, then on with debugging the get calls for the seeded data
@@ -58,6 +58,14 @@ getSection = () => {
     })
   };
 
+  invalidOrder = () => {
+    return  (!this.state.order.value || this.state.order.value < 0 || !Number.isInteger(Number(this.state.order.value)))
+  }
+
+  invalidTitle = () => {
+    return  !this.state.title.value
+  }
+
   handleSectionTitle = (e) => {
     const title = e.target.value;
     this.setState({
@@ -76,6 +84,7 @@ getSection = () => {
         >
           What's the title of this {this.getType() && listName}?
         </label>
+        {this.invalidTitle() && <div className="error">Title is required</div>}
         <input
           defaultValue={this.state.title.value}
           onChange={this.handleSectionTitle}
@@ -86,13 +95,15 @@ getSection = () => {
         >
           In what order does this {this.getType() && listName} come?
         </label>
+        {this.invalidOrder() && <div className="error">Title is required</div>}
         <input
           defaultValue={this.state.order.value}
           onChange={this.handleSectionOrder}
           type="number"
           id={`section-order-${this.getSection().id}`}
         />
-        <button type="submit">Submit</button>
+        <br />
+        <button disabled={this.invalidOrder() || this.invalidTitle()} className="edit-section-button" type="submit">Submit</button>
         </form>
     );
   }
