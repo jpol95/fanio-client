@@ -64,7 +64,8 @@ padding: 5px;
 .write-review-button, .add-subs-link, .delete-review-button, .edit-review-link,
 .create-fandom-button, .create-installments-link, .submit-installments-button, 
 .submit-fandom-button, .submit-sections-button, .login-link, .login-button, .create-account-link, 
-.landing-page-link, .submit-review-button, .submit-account-button, .edit-section-button, .edit-installment-button{
+.landing-page-link, .submit-review-button, .submit-account-button, .edit-section-button, .edit-installment-button, 
+.edit-personal-link {
     color: black;
     border: 2px solid black;
     text-decoration: none;
@@ -83,7 +84,7 @@ padding: 5px;
 }
 
 .create-fandom-button, .create-installments-link, .login-link, .create-account-link, 
-.landing-page-link{
+.landing-page-link, .edit-personal-link{
     padding: 10px 25px 10px 25px;
     border-radius: 30px;
 }
@@ -97,7 +98,7 @@ padding: 5px;
 }
 
 .delete-review-button:hover, .write-review-button:hover, .login-link:hover, .login-button:hover, 
-.create-account-link:hover, .landing-page-link:hover, .submit-account-button:hover, .edit-section-button:hover {
+.create-account-link:hover, .landing-page-link:hover, .submit-account-button:hover, .edit-section-button:hover, .edit-personal-link:hover {
     color: white;
     background-color: black;
     cursor:pointer;

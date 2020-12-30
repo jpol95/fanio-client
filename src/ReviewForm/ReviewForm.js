@@ -150,7 +150,7 @@ export default class CreateReview extends React.Component {
         ></textarea>
         <label htmlFor="tag-input">Tags</label>
         <input onChange={(e) => this.handleTagChange(e.target.value)} list="tags" id="tag-input" />
-        <button onClick={this.handleTagAdd}>Add Tag</button>
+        <button className="add-tag-button" onClick={this.handleTagAdd}>Add Tag</button>
         <datalist
           id="tags"
           type="text"

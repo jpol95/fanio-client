@@ -25,3 +25,18 @@ select{
 .tag-list-el{
     margin-right: 10px;
 }
+
+.add-tag-button, .tag-cancel {
+    background-color: white;
+    border: 2px solid black;
+}
+
+.tag-cancel {
+    margin-right: 5px !important;
+}
+
+.add-tag-button:hover, .tag-cancel:hover {
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}

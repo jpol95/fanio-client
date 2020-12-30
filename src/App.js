@@ -234,6 +234,7 @@ class App extends React.Component {
 
   loadData = async (userId) => {
     const user = await FetchService.fetchUser(userId)
+    console.log(user)
     const stateChange = new Promise((resolve, reject) =>
       resolve(
         this.setState({
