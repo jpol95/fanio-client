@@ -19,7 +19,7 @@ export default class CreateReview extends React.Component{
     const reviewToPost = {title, content, rating}
     const {tags} = reviewObject
     const review = await FetchService.postReview(reviewToPost, this.installmentId)
-    const link = this.tableName === "subs" ? `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${this.subId}/review/${review.id}`: 
+    const link = this.tableName === "sub" ? `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${this.subId}/review/${review.id}`: 
     `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/review/${review.id}`
     const trelsToPost = tags.map(tag => {return {tagId: tag, reviewId: review.id}} )
     this.props.history.push(link)

@@ -3,7 +3,8 @@
     margin: auto;
 }
 
-.submit-sections-button:disabled, .submit-installments-button:disabled{
+.submit-sections-button:disabled, .submit-installments-button:disabled, .submit-fandom-button:disabled,
+ .submit-review-button:disabled{
     background-color: white;
     color:rgb(102, 97, 97);
     cursor: default

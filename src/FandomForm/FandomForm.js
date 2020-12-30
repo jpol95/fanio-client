@@ -9,25 +9,30 @@ export default class Fandom extends React.Component {
 
   static contextType = FanioContext
   state = {
-    title: this.props.title
+    title: {value: this.props.title, touched: false}
   };
 
 
 
   handleName = (e) => {
     this.setState({
-      ...this.state, title: e.target.value
+      ...this.state, title: {value: e.target.value, touched: true}
     })
+  }
+
+  invalidTitle = () => {
+    return !this.state.title.value
   }
 
  
   render() {
     return (
       <div className="fandom">
-        <form onSubmit={(e) => this.props.handleSubmit(e, {title: this.state.title})} className="create-fandom">
+        <form onSubmit={(e) => this.props.handleSubmit(e, {title: this.state.title.value})} className="create-fandom">
         <label htmlFor="workname">Name of fandom*</label>
-        <input onChange={this.handleName} defaultValue={this.state.title} id="workname" type="text" />
-        <button className="submit-fandom-button" type="submit">Submit</button>
+        {(this.invalidTitle() && this.state.title.touched) && <div className="error">Title is required</div>}
+        <input onChange={this.handleName} defaultValue={this.state.title.value} id="workname" type="text" />
+        <button disabled={this.invalidTitle()} className="submit-fandom-button" type="submit">Submit</button>
         </form>
       </div>
     );

@@ -205,12 +205,11 @@ class App extends React.Component {
       (section) => section.id === Number(parentId)
     );
     const newSection = { ...section, reviewId: newReview.id };
+    const link = `/sections/${tableName}/${newSection.id}`
     const updatedSection = await FetchService.patchSection(
       newSection,
-      newSection.id,
-      tableName
+      link
     );
-    console.log(trelList);
     await FetchService.postTrels(trelList);
     this.patchSection(updatedSection, `${tableName}List`);
     this.setState({

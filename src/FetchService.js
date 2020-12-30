@@ -46,6 +46,7 @@ const FetchService = {
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   },
+  //FIGURE OUT WHY THIS IS ERRORING OUT WHEN YOU TRY TO POST REVIEWS
   patchSection : async (newSection, link) => {
       const sectionPreJson = await fetch(`${base_url}${link}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
