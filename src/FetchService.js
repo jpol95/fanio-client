@@ -2,7 +2,6 @@ import TokenService from './Services/token-service'
 const base_url = `http://localhost:8000/api`;
 const FetchService = {
   fetchFandoms: (userId) => {
-    // console.log(userId)
     return fetch(`${base_url}/fandoms/users/${userId}`).then((res) => res.json());
   },
   fetchInstallments: (fandomId) => {
@@ -15,7 +14,6 @@ const FetchService = {
       `${base_url}/sections/section/parent/${installmentId}`
     );
     const sectionList = await res.json();
-    // console.log(sectionList)
     const result = { sectionList };
     let subs = []
     for (let section of result.sectionList){
@@ -26,7 +24,6 @@ const FetchService = {
       subs = subs.concat(ep)
     }
     result.subList = subs;
-    // console.log(result)
     return result;
   }, 
   fetchUser : async (id) => {
@@ -34,9 +31,7 @@ const FetchService = {
     const userResult = await userPreJson.json()
     return userResult
   }, 
-  //test to see why the above didnt work with the for each loop
   postReview : async (review) => {
-      // console.log(review)
       const reviewPreJson = await fetch(`${base_url}/reviews`, {method: 'POST', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(review)})
       const reviewResult = await reviewPreJson.json()
       return reviewResult
@@ -46,14 +41,12 @@ const FetchService = {
     const reviewResult = await reviewPreJson.json()
     return reviewResult
   },
-  //FIGURE OUT WHY THIS IS ERRORING OUT WHEN YOU TRY TO POST REVIEWS
   patchSection : async (newSection, link) => {
       const sectionPreJson = await fetch(`${base_url}${link}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newSection)})
       const sectionResult = await sectionPreJson.json()
       return sectionResult
   }, 
   patchInstallment: async (newInstallment) => {
-    // console.log(newInstallment)
     const installmentPreJson = await fetch(`${base_url}/installments/${newInstallment.id}`, {method: 'PATCH', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}, body: JSON.stringify(newInstallment)})
     const installmentResult = await installmentPreJson.json()
     return installmentResult
@@ -107,7 +100,7 @@ patchUser : async (user) => {
     const loggedInUserPreJson = await fetch(`${base_url}/users/loggedIn`, {headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`}})
     const loggedInUserResult = await loggedInUserPreJson.json()
     return loggedInUserResult
-  }, //this function is unnuecessary if you decode logged in user on this side
+  }, 
   postUser : async (user) => {
     const userPreJson = await fetch(`${base_url}/users/`, {method: 'POST', headers: {"content-type": "application/json"}, body: JSON.stringify(user)})
     const userResult = await userPreJson.json()
@@ -135,7 +128,6 @@ patchUser : async (user) => {
     await fetch(`${base_url}/trels/${reviewId}`, {method: 'DELETE', headers: {'Authorization': `bearer ${TokenService.getAuthToken()}`, "content-type": "application/json"}})
   }
 }
-//is it ok to just get id from newSection object
 
 
 export default FetchService;

@@ -18,9 +18,6 @@ export default class InstallDropDown extends React.Component {
   userId = Number(this.props.match.params.userId)
   installmentId = Number(this.props.match.params.installmentId)
 
-  //make a service class for this type of map and filter logic
-
-
   componentDidUpdate(){
       if (!this.getInstallment() || this.state.loaded) return
       this.setState({
@@ -65,7 +62,6 @@ export default class InstallDropDown extends React.Component {
   }
 
   render() {
-    // console.log(this.getInstallment())
     if (!this.getInstallment()) return null
     return (
       <form onSubmit={this.handleEditInstallment}>

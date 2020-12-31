@@ -11,7 +11,6 @@ export default class CreateFandom extends React.Component{
   handleSubmit = async (e, fandom) => {
     e.preventDefault()
     const fandomResult = await FetchService.postFandom({...fandom, userId: this.userId})
-    // console.log(fandom)
     this.props.history.push(`/users/${this.userId}/fandom-view/${fandomResult.id}`)
     this.context.handleAddFandom(fandomResult)
   }
@@ -24,6 +23,5 @@ export default class CreateFandom extends React.Component{
         <FandomForm {...startInfo} handleSubmit={this.handleSubmit} />
         </>
       )
-      //YOU ARE HERE. FIGURE OUT WHY THIS PROP IS NOT COMING THROUGH
   }
 }

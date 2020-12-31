@@ -15,7 +15,6 @@ export default class CreateSingleInstallment extends React.Component {
     title: {value: "", touched: false}
   }
 
-  //make a service class for this type of map and filter logic
 
   handleTypeChange = (e) => {
     this.setState({

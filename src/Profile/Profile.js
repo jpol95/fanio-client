@@ -11,7 +11,6 @@ export default class Profile extends React.Component {
   static contextType = FanioContext;
   userId = Number(this.props.match.params.userId)
   getFandoms() {
-    // console.log(this.context.fandomList)
     const fandomList =  this.context.fandomList.map(fandom => {
       return <Fandom key={fandom.id} {...this.props} {...fandom} />
     })

@@ -39,10 +39,7 @@ class App extends React.Component {
     installmentList: [],
   };
 
-  // componentDidMount() {
-  //   FetchService.fetchTags()
-
-  // }
+ 
 
   componentDidMount() {
     this.setLoggedInUser();
@@ -61,12 +58,7 @@ class App extends React.Component {
     });
   };
 
-  // FetchService.fetchLoggedInUser()
-  // .then(res => {
-  //   this.setState({
-  //     loggedInUser: {loaded:true, userId: res.userId}
-  //   })
-  // })
+  
 
   handleDeleteSub = (subId) => {
     const newSubList = this.state.subList.filter((sub) => sub.id !== subId);
@@ -78,10 +70,8 @@ class App extends React.Component {
     const newSectionList = this.state.sectionList.filter(
       (section) => section.id !== sectionId
     );
-    // const newSubList = this.state.subList.filter(sub => sub.sectionId !== sectionId)
     this.setState({
       sectionList: newSectionList,
-      // subList: newSubList
     });
   };
   handleDeleteReview = (reviewId, tableName) => {
@@ -101,11 +91,6 @@ class App extends React.Component {
     });
   };
   handleDeleteInstallment = (installmentId) => {
-    // this.state.sectionList.forEach(section => {
-    //   if (installmentId === section.installmentId){
-    //     this.handleDeleteSection(section.id)
-    //   }
-    // })
     const newInstallmentList = this.state.installmentList.filter(
       (installment) => installment.id !== installmentId
     );
@@ -114,9 +99,6 @@ class App extends React.Component {
     });
   };
   handleDeleteFandom = (fandomId) => {
-    // this.state.installmentList.forEach(installment => {
-    //   if (installment.fandomId === fandomId) this.handleDeleteInstallment(installment.id)
-    // })
     const newFandomList = this.state.fandomList.filter(
       (fandom) => fandom.id !== fandomId
     );
@@ -176,7 +158,6 @@ class App extends React.Component {
   };
   handleEditInstallment = (editedInstallment) => {
     const installmentListCopy = this.state.installmentList.map(installment => {
-      // console.log(installment.id === editedInstallment.id)
       if (installment.id === editedInstallment.id) installment = editedInstallment 
       return installment
     })
@@ -235,7 +216,6 @@ class App extends React.Component {
 
   loadData = async (userId) => {
     const user = await FetchService.fetchUser(userId)
-    console.log(user)
     const stateChange = new Promise((resolve, reject) =>
       resolve(
         this.setState({
@@ -244,7 +224,6 @@ class App extends React.Component {
       )
     );
     stateChange.then(async () => {
-      // console.log(this.state)
       const fandoms = await this.fetchFandoms(userId);
       fandoms.forEach(async (fandom) => {
         const installments = await this.fetchInstallments(fandom.id);
@@ -304,7 +283,6 @@ class App extends React.Component {
 
   fetchSections = async (installmentId) => {
     const sectionArr = await FetchService.fetchSections(installmentId);
-    // console.log(sectionArr)
     this.setState({
       ...this.state,
       [`sectionList`]: [...this.state.sectionList, ...sectionArr.sectionList],
@@ -313,7 +291,6 @@ class App extends React.Component {
     return sectionArr;
   };
 
-  //maybe have a fetch service for these functions?
 
   postReview = (review) => {
     this.setState({
@@ -343,12 +320,8 @@ class App extends React.Component {
     });
   };
 
-  //refactor to use redux
   render() {
     if (!this.state.loggedInUser.loaded) return null;
-    // console.log("rerender")
-    // console.log(this.state.subList)
-    // console.log(TokenService.getAuthToken())
     return (
       <FanioContext.Provider
         value={{
@@ -508,38 +481,3 @@ class App extends React.Component {
 
 export default App;
 
-// componentDidMount() {
-//   const {
-//     fandomList,
-//     reviewList,
-//     seasonList,
-//     episodeList,
-//     tagList,
-//     reviewTagList,
-//     typeList,
-//     bookList,
-//     issueList,
-//     arcList,
-//     installmentList,
-//   } = dummyStore;
-//   const seedData = {
-//     fandomList,
-//     reviewList,
-//     seasonList,
-//     episodeList,
-//     tagList,
-//     reviewTagList,
-//     typeList,
-//     bookList,
-//     issueList,
-//     arcList,
-//     installmentList,
-//   };
-//   this.setState({
-//     ...seedData,
-//   });
-// }
-
-//figure out why tags aren't showing up, then
-//get on with writing reviews and figure ou how you are
-//going to add a new tag relationship

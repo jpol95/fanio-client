@@ -58,15 +58,6 @@ export default class Signup extends React.Component {
       return <div className="error">Must match password</div>
   }
 
-//   handleNameChange = (e) => {
-//     const name = e.target.value
-//     this.setState({
-//       ...this.state,  name: {touched: true,  value: name}
-//     })
-//   } WHY did I take this out again????    
-
-
-
 
   handleSubmitUser = (e, personalInfo) => {
     e.preventDefault()
@@ -88,9 +79,7 @@ export default class Signup extends React.Component {
    return this.invalidPasswordConfirm() || this.invalidPassword() || this.invalidUsername()
   }
 
-  //finish user sign up on client and server*/
   render() {
-    // console.log(this.state)
     const personalInfo = {name: "", interests: "", city: "", education: ""}
     return (
 

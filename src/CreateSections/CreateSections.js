@@ -13,7 +13,6 @@ export default class CreateSections extends React.Component {
     return typeList[this.getInstallment().type]
   }
 
-  //fix classes to not use type from context, then on with debugging the get calls for the seeded data
 
   getInstallment = () => {
       return this.context.installmentList.find(installment => Number(this.props.match.params.installmentId) === installment.id)
@@ -27,8 +26,6 @@ export default class CreateSections extends React.Component {
   state = {
     numSections: 0,
     sectionList: []
-    // title: "",
-    // sectionList: []
   };
 
   handleNumSections = (e) => {
@@ -52,13 +49,11 @@ export default class CreateSections extends React.Component {
   }
 
   handleAddSection = (section) => {
-    // console.log(this.props.match.params[`sectionId`])
     const sectionListCopy = [...this.state.sectionList];
     sectionListCopy[section.sectionId] = {
       ...section,
       [`${this.parentName}Id`]: Number(this.props.match.params[`${this.parentName}Id`])
     };
-    // console.log(sectionListCopy)
     this.setState({
       ...this.state, sectionList: sectionListCopy,
     });
@@ -79,16 +74,12 @@ export default class CreateSections extends React.Component {
       return {...section, title: section.title.value, order: section.order.value}
     })
     const sections = await FetchService.postSections(sectionCopy, link)
-    this.props.history.push(`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) //CHANGE
+    this.props.history.push(`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/installment-view/${this.props.match.params.installmentId}`) 
     this.context.handleSubmitSections(sections, this.genListName)
   }
 
-//is there a way to combine the add seasons and add episodes form?
-//figure out why form is not submitting properly
 
   render() {
-    // console.log("creating Section forms") 
-    //HOW IS THIS.PROPS.INSTALLID NOT THROWING AN ERROR IM PRETTY SURE IM NOT PASSING ANY PROPS INTO THIS CLASS
     if (!this.getInstallment()) return null
     const listName = this.props.match.params.sectionId ? this.getType().subName : this.getType().sectionName
     return (

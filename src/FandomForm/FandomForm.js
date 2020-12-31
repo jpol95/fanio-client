@@ -2,7 +2,6 @@ import React from "react";
 import "./FandomForm.css";
 import FanioContext from "../FanioContext";
 
-//rename type attribute to title
 
 export default class Fandom extends React.Component {
 
@@ -37,55 +36,3 @@ export default class Fandom extends React.Component {
     );
   }
 }
-
- // handleSectionAdd(section) {
-  //   this.setState({
-  //     ...this.state,
-  //     sections: [...this.state.sections, section],
-  //   });
-  // }
-
-  // handleSubSectionAdd(subSection) {
-  //   this.setState({
-  //     ...this.state,
-  //     subSections: [...this.state.subSections, subSection],
-  //   });
-  // }
-
-  // handleInstallmentAdd(installment) {
-  //   this.setState({
-  //     ...this.state,
-  //     installments: [...this.state.installments, installment],
-  //   });
-  // }
-
-  // addInstallment = (installObject) => {
-  //   const {installId} = installObject
-  //   const stateInstallmentsCopy = [...this.state.installList]
-  //   stateInstallmentsCopy[sectionId] = {...sectionObject, installId: this.props.sectionId}
-  //   this.setState({
-  //       ...this.state, installList: [...stateInstallmentsCopy]
-  //   })
-  // }
-
-
-  // callBacks = {
-  //   handleInstallmentAdd: this.handleInstallmentAdd,
-  //   handleSubSectionAdd: this.handleSectionAdd,
-  //   handleSectionAdd: this.handleSectionAdd,
-  // };
-  // static contextType = FanioContext;
-
-  // getInstallDDs(numInstalls) {
-  //   let installDDs = [];
-  //   for (let i = 0; i < numInstalls; i++) {
-  //     installDDs.push(
-  //       <InstallDropDown {...this.callBacks} key={i} installId={i} />
-  //     );
-  //   }
-  //   return installDDs;
-  // }
-
-  // this.setState({
-  //   ...this.state, numOfInstalls: installDDs.length
-  // })

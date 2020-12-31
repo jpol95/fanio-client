@@ -23,8 +23,6 @@ export default class Section extends React.Component {
     );
   }
 
-  //figure out how to return review not in promise form
-
   getSubDisplay() {
     return (
       <React.Fragment>
@@ -39,7 +37,6 @@ export default class Section extends React.Component {
     );
   }
 
-  //const link = this.parentName === "installment" ? `/sections/section/${this.props.match.params.installmentId}` : `/sections/sub/${this.props.match.params.sectionId}`
     
 
   handleDeleteSub = (e, subId) => {
@@ -82,7 +79,7 @@ export default class Section extends React.Component {
         const subReview = this.getReview(subSection);
         return (
           <Link
-            {...subSection} //??????????
+            {...subSection} 
             to={subReview ? `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/subs/${subSection.id}/review/${subReview.id}`
              : ""}
             key={subSection.id}
@@ -140,7 +137,6 @@ export default class Section extends React.Component {
 
 
   render() {
-    // console.log(this.context)
     const review = this.getReview(this.props);
     return (
       <div className="fandom-comp">
@@ -176,7 +172,6 @@ export default class Section extends React.Component {
             </Link>
             :
             ""
-            //make this display block, and then start working on the logic for the display fandom form after you've debugged everything herre
           )}
           {this.isLoggedInUser && 
           <>
@@ -193,41 +188,3 @@ export default class Section extends React.Component {
     );
   }
 }
-//<Link className="write-review-season-link" to={`/users/1/review-form/${this.props.id}`}>
-
-//make reviews and review buttons work, as well as fandom installation and section posting
-
-// getSubReviews() {
-//   const promArray = [];
-//   this.context[`subList`]
-//     .filter((subSection) => {
-//       return (
-//         subSection[`sectionId`] === this.sectionId && !!subSection.reviewId
-//       );
-//     })
-//     .forEach((subSection) => {
-//       promArray.push(FetchService.fetchReview(subSection.reviewId));
-//     });
-//   Promise.all(promArray)
-//     .then((subReviews) => {
-//       subReviews.forEach((review) => {
-//         this.context.handleGetReview(review);
-//       });
-//     })
-//     .then(() => {
-//       this.render();
-//     });
-// }
-
-// componentDidMount() {
-//   if (this.props.reviewId) {
-//     FetchService.fetchReview(this.props.reviewId).then((review) => {
-//       this.context.handleGetReview(review);
-//       if (this.context[`subList`].length !== 0) {
-//         this.getSubReviews();
-//       }
-//     });
-//   } else {
-//     this.getSubReviews();
-//   }
-// }

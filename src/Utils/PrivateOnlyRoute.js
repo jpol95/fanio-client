@@ -9,7 +9,6 @@ export default function PrivateRoute({ component, ...props }) {
       render={componentProps => {
         const userId = Number(componentProps.match.params.userId)
         const {loggedInUser} = props
-        // console.log(loggedInUser)
         return (userId === loggedInUser
           ? <Component {...componentProps} />
           : <Redirect

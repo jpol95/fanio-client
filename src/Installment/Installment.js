@@ -24,7 +24,6 @@ export default class Installment extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <Link
         to={`/users/${this.userId}/fandoms/${this.fandomId}/installment-view/${this.installmentId}`}

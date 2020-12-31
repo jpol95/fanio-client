@@ -41,9 +41,7 @@ export default class SignupForm extends React.Component {
   }
 
 
-  //finish user sign up on client and server*/
   render() {
-    // console.log(this.state)
     return (
       <form onSubmit={(e) => this.props.handleSubmitUser(e, this.state)} className="new-user-form">
         {this.props.children}

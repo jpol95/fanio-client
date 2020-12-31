@@ -17,29 +17,12 @@ export default class ReviewMain extends React.Component {
   subId = Number(this.props.match.params.subId)
   isLoggedInUser = this.context.loggedInUser === this.userId;
   getReview() {
-    // console.log(this.props)
     return this.context.reviewList.find(
       (review) => review.id === this.reviewId
     );
   }
 
-  // getSection() {
-  //   const section = this.context.sectionList.find(section => section.reviewiewId === this.reviewId)
-  //   const sub = this.context.subList.find(sub => sub.reviewId === this.reviewId)
-  //   return sub || section
-  // }
-
-  // getInstallment() {
-  //   const sec = this.getSection()
-  //   if (Object.keys(sec).includes("installmentId")){
-  //     return this.context.installmentList.find(installment => installment.id === sec.installmentId)
-  //   }
-  //   return this.context.installmentList.find(installment => installment.id === installment.sectionId)
-  // }
-
-  // getFandom() {
-  //   return this.context.fandomlist.find(fandom => fandom.id === this.getInstallment().fandomId)
-  // }
+  
 
   handleDeleteReview = () => {
     if (this.isLoggedInUser){

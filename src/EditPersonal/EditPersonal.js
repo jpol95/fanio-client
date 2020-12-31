@@ -26,7 +26,6 @@ export default class EditPersonal extends React.Component {
   }
 
 
-  //finish user sign up on client and server*/
   render() {
       const user = this.context.currentLoadedUser
       if (!user) return null

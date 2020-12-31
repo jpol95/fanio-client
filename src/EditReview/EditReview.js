@@ -22,7 +22,6 @@ export default class EditReview extends React.Component {
         : `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/review/${this.reviewId}`;
     const {title, content, rating} = reviewObject
     const reviewToPost = {title, content, rating, id: this.reviewId }
-    // console.log(reviewToPost)
     const review = await FetchService.patchReview(reviewToPost);
     await FetchService.deleteTrelsByReview(review.id)
     const trelsToPost = reviewObject.tags.map(tag => {return {tagId: tag, reviewId: review.id}} )

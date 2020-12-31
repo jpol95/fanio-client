@@ -11,14 +11,12 @@ export default class EditFandom extends React.Component{
   static contextType = FanioContext
 
   getFandomById(){
-      console.log(this.context)
       return this.context.fandomList.find(fandom => fandom.id === this.fandomId)
   }
  
   handleSubmit = async (e, fandom) => {
     e.preventDefault()
     const fandomResult = await FetchService.patchFandom({...fandom, userId: this.userId}, this.fandomId)
-    // console.log(fandom)
     this.props.history.push(`/users/${this.userId}/fandom-view/${fandomResult.id}`)
     this.context.handleEditFandom(fandomResult)
   }
@@ -33,6 +31,5 @@ export default class EditFandom extends React.Component{
       <FandomForm {...startInfo} handleSubmit={this.handleSubmit} />
       </>
       )
-      //YOU ARE HERE. FIGURE OUT WHY THIS PROP IS NOT COMING THROUGH
   }
 }

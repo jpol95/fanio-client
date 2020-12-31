@@ -12,7 +12,6 @@ export default class InstallmentView extends React.Component {
   isLoggedInUser = this.context.loggedInUser === this.userId
 
 
-//change type to user lower case
 
   getInstallment = () => {
     return this.context.installmentList.find(
@@ -21,12 +20,10 @@ export default class InstallmentView extends React.Component {
   };
 
   getType = () => {
-    // console.log(this.getInstallment())
     return typeList[this.getInstallment().type]
   };
 
   getSections() {
-    // console.log(this.context)
     const sectionsArray = this.context.sectionList
       .filter((section) => {
         return section.installmentId === Number(this.props.match.params.installmentId);

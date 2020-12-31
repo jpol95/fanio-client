@@ -66,7 +66,6 @@ export default class CreateReview extends React.Component {
 
   handleTagAdd = (e) => {
     e.preventDefault()
-    // console.log(this.state.tag.value)
     const tag = this.getTagByTitle(this.state.tag.value)
     if (!tag || this.state.tags.value.includes(tag.id)) return 
     this.setState({
@@ -76,7 +75,6 @@ export default class CreateReview extends React.Component {
   }
 
   handleContentChange = (content) => {
-    // console.log(this.state.content)
     const newContent = { value: content, touched: true };
     this.setState({
       ...this.state,
@@ -119,7 +117,6 @@ export default class CreateReview extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <form onSubmit={(e) => this.props.handleSubmit(e, this.createReviewObject())} className="create">
         <label htmlFor="title">Title</label>

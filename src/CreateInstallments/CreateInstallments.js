@@ -10,8 +10,6 @@ export default class CreateInstallments extends React.Component {
   state = {
     numInstallments: 0,
     installmentList: [],
-    // title: "",
-    // sectionList: []
   };
 
   userId = Number(this.props.match.params.userId)
@@ -43,7 +41,6 @@ export default class CreateInstallments extends React.Component {
       ...installment,
       fandomId: Number(this.props.match.params.fandomId)
     };
-    // console.log(installmentListCopy)
     this.setState({
       ...this.state, installmentList: installmentListCopy,
     });
@@ -59,8 +56,6 @@ export default class CreateInstallments extends React.Component {
     this.context.handleSubmitInstallments(installments)
   }
 
-  //see how you want to handle submitting installments, whether handle the array here or on
-  //serverside, would be easier on serverside but i want to make sure that's good practice
 
 
   preventSubmit = () => {
@@ -73,7 +68,6 @@ export default class CreateInstallments extends React.Component {
 
 
   render() {
-    // console.log("creating installment forms")
     return (
       <form className="add-installments" onSubmit={this.handleSubmitInstallments}>
         <label htmlFor={`installment-title-${this.props.installId}`}>
@@ -92,35 +86,3 @@ export default class CreateInstallments extends React.Component {
 }
 
 
-// addSection = (sectionObject) => {
-  //   const {sectionId} = sectionObject
-  //   const stateSectionsCopy = [...this.state.sectionList]
-  //   stateSectionsCopy[sectionId] = {...sectionObject, installId: this.props.sectionId}
-  //   this.setState({
-  //       ...this.state, sectionList: [...stateSubsCopy]
-  //   })
-  // }
-
-  //   createSections() {
-  //     const subName = props.type.subName;
-  //     const sectionInputArray = [];
-
-  //     for (let i = 0; i < this.state.numSections; i++) {
-  //       sectionInputArray.push(<CreateSection {...props} sectionId={i} addSection={this.addSection} />);
-  //     }
-  //     return sectionInputArray;
-  //   }
-
-  // handleTitle = (e) => {
-  //   const title = e.target.value
-  //   this.setState({
-  //       title
-  //   })
-  // }
-
-  // state = {
-  //   numInstallments: 0,
-  //   installmentList: [],
-  //   // title: "",
-  //   // sectionList: []
-  // };

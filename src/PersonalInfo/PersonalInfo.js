@@ -19,7 +19,6 @@ export default class PersonalInfo extends React.Component {
     if (!this.context.currentLoadedUser) return null;
     const isLoggedInUser = this.context.loggedInUser === this.userId;
     const user = this.context.currentLoadedUser;
-    console.log(this.getInterests())
     return (
       <div className="personal">
         <h1>{user.username}</h1>

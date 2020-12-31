@@ -13,9 +13,7 @@ export default class NavBar extends React.Component {
   picArray = [bg11, bg15]
   chosenPic = this.picArray[Math.round(Math.random())]
   handleDeleteAccount = () => {
-    // console.log("hello")
-    // console.log("kjrenflkrejnfrewljknf")
-    // console.log(this.context)
+
     const userId = this.context.loggedInUser
     FetchService.deleteUser(userId)
     .then(() =>{
