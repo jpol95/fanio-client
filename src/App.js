@@ -22,9 +22,9 @@ import PublicRoute from "./Utils/PublicRoute";
 import CheckUser from "./Utils/CheckUser";
 import TokenService from "./Services/token-service";
 import EditFandom from "./EditFandom/EditFandom";
-import EditSection from './EditSection/EditSection'
-import EditInstallment from './EditInstallment/EditInstallment'
-import EditPersonal from './EditPersonal/EditPersonal'
+import EditSection from "./EditSection/EditSection";
+import EditInstallment from "./EditInstallment/EditInstallment";
+import EditPersonal from "./EditPersonal/EditPersonal";
 
 class App extends React.Component {
   state = {
@@ -38,8 +38,6 @@ class App extends React.Component {
     reviewTagList: [],
     installmentList: [],
   };
-
- 
 
   componentDidMount() {
     this.setLoggedInUser();
@@ -57,8 +55,6 @@ class App extends React.Component {
       loggedInUser: { loaded: true, userId },
     });
   };
-
-  
 
   handleDeleteSub = (subId) => {
     const newSubList = this.state.subList.filter((sub) => sub.id !== subId);
@@ -82,7 +78,7 @@ class App extends React.Component {
       if (section.reviewId === reviewId) {
         section.reviewId = null;
       }
-      return section
+      return section;
     });
 
     this.setState({
@@ -133,13 +129,13 @@ class App extends React.Component {
   };
 
   handleEditSection = (editedSection, tableName) => {
-    const sectionListCopy = this.state[tableName].map(section => {
-      if(section.id === editedSection.id) section = editedSection
-      return section
-    })
+    const sectionListCopy = this.state[tableName].map((section) => {
+      if (section.id === editedSection.id) section = editedSection;
+      return section;
+    });
     this.setState({
-      [tableName]: sectionListCopy
-    })
+      [tableName]: sectionListCopy,
+    });
   };
 
   handleEditReview = (newReview, trelList) => {
@@ -157,14 +153,17 @@ class App extends React.Component {
     });
   };
   handleEditInstallment = (editedInstallment) => {
-    const installmentListCopy = this.state.installmentList.map(installment => {
-      if (installment.id === editedInstallment.id) installment = editedInstallment 
-      return installment
-    })
+    const installmentListCopy = this.state.installmentList.map(
+      (installment) => {
+        if (installment.id === editedInstallment.id)
+          installment = editedInstallment;
+        return installment;
+      }
+    );
 
     this.setState({
-      installmentList: installmentListCopy
-    })
+      installmentList: installmentListCopy,
+    });
   };
   handleEditFandom = (editedFandom) => {
     const newFandomList = this.state.fandomList.map((fandom) => {
@@ -178,20 +177,17 @@ class App extends React.Component {
 
   handleEditPersonal = (editedPersonal) => {
     this.setState({
-      currentLoadedUser: editedPersonal
-    })
-  }
+      currentLoadedUser: editedPersonal,
+    });
+  };
 
   handleSubmitReview = async (newReview, trelList, tableName, parentId) => {
     const section = this.state[`${tableName}List`].find(
       (section) => section.id === Number(parentId)
     );
     const newSection = { ...section, reviewId: newReview.id };
-    const link = `/sections/${tableName}/${newSection.id}`
-    const updatedSection = await FetchService.patchSection(
-      newSection,
-      link
-    );
+    const link = `/sections/${tableName}/${newSection.id}`;
+    const updatedSection = await FetchService.patchSection(newSection, link);
     await FetchService.postTrels(trelList);
     this.patchSection(updatedSection, `${tableName}List`);
     this.setState({
@@ -212,10 +208,10 @@ class App extends React.Component {
     });
   };
 
-  handleEditPersonal
+  handleEditPersonal;
 
   loadData = async (userId) => {
-    const user = await FetchService.fetchUser(userId)
+    const user = await FetchService.fetchUser(userId);
     const stateChange = new Promise((resolve, reject) =>
       resolve(
         this.setState({
@@ -291,7 +287,6 @@ class App extends React.Component {
     return sectionArr;
   };
 
-
   postReview = (review) => {
     this.setState({
       ...this.state,
@@ -343,7 +338,7 @@ class App extends React.Component {
           handleDeleteSection: this.handleDeleteSection,
           handleDeleteReview: this.handleDeleteReview,
           handleDeleteInstallment: this.handleDeleteInstallment,
-          handleEditPersonal: this.handleEditPersonal, 
+          handleEditPersonal: this.handleEditPersonal,
           handleDeleteFandom: this.handleDeleteFandom,
           handleEditSection: this.handleEditSection,
           handleEditReview: this.handleEditReview,
@@ -353,125 +348,125 @@ class App extends React.Component {
       >
         <NavBar />
         <main>
-        <Route
-          path="/users/:userId"
-          render={(props) => (
-            <CheckUser
-              {...props}
-              currentLoadedUser={this.state.currentLoadedUser.id}
-              loadData={this.loadData}
-            >
-              <Route
-                exact
-                path="/users/:userId/profile/"
-                render={(props) => <Profile {...props} />}
-              />
-              <Route
-                exact
-                path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/review/:reviewId/",
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId",
-                ]}
-                component={ReviewMain}
-              />
-              <Route
-                exact
-                path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/edit-section",
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/edit-sub",
-                ]}
-                component={EditSection}
-              />
-              <Route
-                exact
-                path="/users/:userId/fandom-view/:fandomId"
-                render={(props) => <FandomView {...props} />}
-              />
-              <Route
-                exact
-                path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
-                render={(props) => <InstallmentView {...props} />}
-              />
+          <Route
+            path="/users/:userId"
+            render={(props) => (
+              <CheckUser
+                {...props}
+                currentLoadedUser={this.state.currentLoadedUser.id}
+                loadData={this.loadData}
+              >
+                <Route
+                  exact
+                  path="/users/:userId/profile/"
+                  render={(props) => <Profile {...props} />}
+                />
+                <Route
+                  exact
+                  path={[
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/review/:reviewId/",
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/review/:reviewId",
+                  ]}
+                  component={ReviewMain}
+                />
+                <Route
+                  exact
+                  path={[
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/edit-section",
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/edit-sub",
+                  ]}
+                  component={EditSection}
+                />
+                <Route
+                  exact
+                  path="/users/:userId/fandom-view/:fandomId"
+                  render={(props) => <FandomView {...props} />}
+                />
+                <Route
+                  exact
+                  path="/users/:userId/fandoms/:fandomId/installment-view/:installmentId"
+                  render={(props) => <InstallmentView {...props} />}
+                />
 
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/create-review",
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/create-review",
-                ]}
-                component={CreateReview}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/:reviewId/edit-review",
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/:reviewId/edit-review",
-                ]}
-                component={EditReview}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/create-fandom"
-                component={CreateFandom}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/edit-user"
-                component={EditPersonal}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/fandoms/:fandomId/edit-fandom"
-                component={EditFandom}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/fandoms/:fandomId/installments/:installmentId/edit-installment"
-                component={EditInstallment}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path="/users/:userId/fandoms/:fandomId/add-installments-form"
-                component={CreateInstallments}
-              />
-              <PrivateOnlyRoute
-                exact
-                loggedInUser={this.state.loggedInUser.userId}
-                path={[
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form",
-                  "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/add-subs-form",
-                ]}
-                component={CreateSections}
-              />
-            </CheckUser>
-          )}
-        />
-        <PublicRoute
-          exact
-          path="/"
-          loggedInUser={this.state.loggedInUser.userId}
-          component={Landing}
-        />
-        <PublicRoute
-          exact
-          path="/signup"
-          loggedInUser={this.state.loggedInUser.userId}
-          component={SignUp}
-        />
-        <PublicRoute
-          exact
-          path="/login"
-          loggedInUser={this.state.loggedInUser.userId}
-          component={LoginPage}
-        />
-        <Route exact path="/landing" component={Landing} />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path={[
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/create-review",
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/create-review",
+                  ]}
+                  component={CreateReview}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path={[
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/reviews/:reviewId/edit-review",
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/subs/:subId/reviews/:reviewId/edit-review",
+                  ]}
+                  component={EditReview}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path="/users/:userId/create-fandom"
+                  component={CreateFandom}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path="/users/:userId/edit-user"
+                  component={EditPersonal}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path="/users/:userId/fandoms/:fandomId/edit-fandom"
+                  component={EditFandom}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path="/users/:userId/fandoms/:fandomId/installments/:installmentId/edit-installment"
+                  component={EditInstallment}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path="/users/:userId/fandoms/:fandomId/add-installments-form"
+                  component={CreateInstallments}
+                />
+                <PrivateOnlyRoute
+                  exact
+                  loggedInUser={this.state.loggedInUser.userId}
+                  path={[
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/add-sections-form",
+                    "/users/:userId/fandoms/:fandomId/installments/:installmentId/sections/:sectionId/add-subs-form",
+                  ]}
+                  component={CreateSections}
+                />
+              </CheckUser>
+            )}
+          />
+          <PublicRoute
+            exact
+            path="/"
+            loggedInUser={this.state.loggedInUser.userId}
+            component={Landing}
+          />
+          <PublicRoute
+            exact
+            path="/signup"
+            loggedInUser={this.state.loggedInUser.userId}
+            component={SignUp}
+          />
+          <PublicRoute
+            exact
+            path="/login"
+            loggedInUser={this.state.loggedInUser.userId}
+            component={LoginPage}
+          />
+          <Route exact path="/landing" component={Landing} />
         </main>
         <Footer />
       </FanioContext.Provider>
@@ -480,4 +475,3 @@ class App extends React.Component {
 }
 
 export default App;
-

@@ -8,7 +8,7 @@ export default class CreateReview extends React.Component {
     title: { value: this.props.title, touched: false },
     rating: { value: this.props.rating, touched: false },
     content: { value: this.props.content, touched: false },
-    tag: { value: "", touched: false},
+    tag: { value: "", touched: false },
     tags: { value: this.props.tags, touched: false },
     errorString: "",
   };
@@ -23,10 +23,7 @@ export default class CreateReview extends React.Component {
 
   displayTagList = () => {
     return this.context.tagList.map((tag) => {
-      return (
-        <option value={tag.title} key={tag.id} id={tag.id}>
-        </option>
-      );
+      return <option value={tag.title} key={tag.id} id={tag.id}></option>;
     });
   };
 
@@ -39,8 +36,8 @@ export default class CreateReview extends React.Component {
   };
 
   invalidTitle = () => {
-    return !this.state.title.value
-  }
+    return !this.state.title.value;
+  };
 
   handleRatingChange = (rating) => {
     const newRating = { value: rating, touched: true };
@@ -51,11 +48,12 @@ export default class CreateReview extends React.Component {
   };
 
   invalidRating = () => {
-    const isInteger = Number.isInteger(Number(this.state.rating.value))
-    const isProvided = this.state.rating.value
-    const isInRange = this.state.rating.value > 0 && this.state.rating.value <= 5
-    return !isInteger || !isProvided || !isInRange 
-  }
+    const isInteger = Number.isInteger(Number(this.state.rating.value));
+    const isProvided = this.state.rating.value;
+    const isInRange =
+      this.state.rating.value > 0 && this.state.rating.value <= 5;
+    return !isInteger || !isProvided || !isInRange;
+  };
 
   handleTagChange = (title) => {
     this.setState({
@@ -65,14 +63,14 @@ export default class CreateReview extends React.Component {
   };
 
   handleTagAdd = (e) => {
-    e.preventDefault()
-    const tag = this.getTagByTitle(this.state.tag.value)
-    if (!tag || this.state.tags.value.includes(tag.id)) return 
+    e.preventDefault();
+    const tag = this.getTagByTitle(this.state.tag.value);
+    if (!tag || this.state.tags.value.includes(tag.id)) return;
     this.setState({
       ...this.state,
       tags: { value: [...this.state.tags.value, tag.id], touched: true },
     });
-  }
+  };
 
   handleContentChange = (content) => {
     const newContent = { value: content, touched: true };
@@ -83,25 +81,38 @@ export default class CreateReview extends React.Component {
   };
 
   invalidContent = () => {
-    const isProvided = this.state.content.value
-    const sufficientLength = this.state.content.value.length > 100
-    return !isProvided || !sufficientLength
-  }
+    const isProvided = this.state.content.value;
+    const sufficientLength = this.state.content.value.length > 100;
+    return !isProvided || !sufficientLength;
+  };
 
   displayTags = () => {
     return this.state.tags.value.map((tag) => (
-      <span key={tag}> <div className="tag-list-el"><button id={tag} onClick={(e) => this.handleRemoveTag(e)} className="tag-cancel">x</button>{this.getTagById(tag).title}</div></span>
+      <span key={tag}>
+        {" "}
+        <div className="tag-list-el">
+          <button
+            id={tag}
+            onClick={(e) => this.handleRemoveTag(e)}
+            className="tag-cancel"
+          >
+            x
+          </button>
+          {this.getTagById(tag).title}
+        </div>
+      </span>
     ));
   };
 
   handleRemoveTag = (e) => {
-    e.preventDefault()
-    const newTags = this.state.tags.value.filter(tag => tag !== Number(e.target.id))
+    e.preventDefault();
+    const newTags = this.state.tags.value.filter(
+      (tag) => tag !== Number(e.target.id)
+    );
     this.setState({
-      tags: {value: newTags, touched: true}
-    })
-
-  }
+      tags: { value: newTags, touched: true },
+    });
+  };
 
   createReviewObject = () => {
     return {
@@ -113,14 +124,19 @@ export default class CreateReview extends React.Component {
   };
 
   preventSubmit = () => {
-    return this.invalidTitle() || this.invalidRating() || this.invalidRating()
-  }
+    return this.invalidTitle() || this.invalidRating() || this.invalidRating();
+  };
 
   render() {
     return (
-      <form onSubmit={(e) => this.props.handleSubmit(e, this.createReviewObject())} className="create">
+      <form
+        onSubmit={(e) => this.props.handleSubmit(e, this.createReviewObject())}
+        className="create"
+      >
         <label htmlFor="title">Title</label>
-        {(this.invalidTitle() && this.state.title.touched) && <div class="error">Review title is required</div>}
+        {this.invalidTitle() && this.state.title.touched && (
+          <div class="error">Review title is required</div>
+        )}
         <input
           defaultValue={this.state.title.value}
           onChange={(e) => this.handleTitleChange(e.target.value)}
@@ -128,7 +144,9 @@ export default class CreateReview extends React.Component {
           type="text"
         />
         <label htmlFor="rating">Rating</label>
-        {(this.invalidRating() && this.state.rating.touched) && <div class="error">Rating must be a number from 0 to 5</div>}
+        {this.invalidRating() && this.state.rating.touched && (
+          <div class="error">Rating must be a number from 0 to 5</div>
+        )}
         <input
           defaultValue={this.state.rating.value}
           onChange={(e) => this.handleRatingChange(e.target.value)}
@@ -136,7 +154,9 @@ export default class CreateReview extends React.Component {
           type="text"
         />
         <label htmlFor="content">Review</label>
-        {(this.invalidContent() && this.state.content.touched) && <div class="error">Review body must be at least 100 characters</div>}
+        {this.invalidContent() && this.state.content.touched && (
+          <div class="error">Review body must be at least 100 characters</div>
+        )}
         <textarea
           defaultValue={this.state.content.value}
           onChange={(e) => this.handleContentChange(e.target.value)}
@@ -144,17 +164,26 @@ export default class CreateReview extends React.Component {
           type="text"
         ></textarea>
         <label htmlFor="tag-input">Tags</label>
-        <input onChange={(e) => this.handleTagChange(e.target.value)} list="tags" id="tag-input" />
-        <button className="add-tag-button" onClick={this.handleTagAdd}>Add Tag</button>
-        <datalist
-          id="tags"
-          type="text"
-          >
+        <input
+          onChange={(e) => this.handleTagChange(e.target.value)}
+          list="tags"
+          id="tag-input"
+        />
+        <button className="add-tag-button" onClick={this.handleTagAdd}>
+          Add Tag
+        </button>
+        <datalist id="tags" type="text">
           {this.displayTagList()}
         </datalist>
         <br />
         <div className="tag-list">{this.displayTags()}</div>
-        <button disabled={this.preventSubmit()} className="submit-review-button" type="submit">Submit</button>
+        <button
+          disabled={this.preventSubmit()}
+          className="submit-review-button"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     );
   }

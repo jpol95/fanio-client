@@ -1,18 +1,17 @@
 import React from "react";
 import CreateSingleInstallment from "../CreateSingleInstallment/CreateSingleInstallment";
-import FanioContext from '../FanioContext'
-import './CreateInstallments.css'
-import FetchService from '../FetchService'
+import FanioContext from "../FanioContext";
+import "./CreateInstallments.css";
+import FetchService from "../FetchService";
 
 export default class CreateInstallments extends React.Component {
-
-  static contextType = FanioContext
+  static contextType = FanioContext;
   state = {
     numInstallments: 0,
     installmentList: [],
   };
 
-  userId = Number(this.props.match.params.userId)
+  userId = Number(this.props.match.params.userId);
 
   handleNumInstallments = (e) => {
     const installmentList = [];
@@ -22,54 +21,70 @@ export default class CreateInstallments extends React.Component {
     }
     this.setState({
       numInstallments,
-      installmentList
+      installmentList,
     });
   };
 
   createInstallmentForms() {
     const installFormArray = [];
     for (let i = 0; i < this.state.numInstallments; i++) {
-      installFormArray.push(<CreateSingleInstallment handleAddInstallment={this.handleAddInstallment} installId={i} />);
+      installFormArray.push(
+        <CreateSingleInstallment
+          handleAddInstallment={this.handleAddInstallment}
+          installId={i}
+        />
+      );
     }
-    return installFormArray
+    return installFormArray;
   }
 
   handleAddInstallment = (installment) => {
     const installmentListCopy = [...this.state.installmentList];
-    
+
     installmentListCopy[installment.installId] = {
       ...installment,
-      fandomId: Number(this.props.match.params.fandomId)
+      fandomId: Number(this.props.match.params.fandomId),
     };
     this.setState({
-      ...this.state, installmentList: installmentListCopy,
+      ...this.state,
+      installmentList: installmentListCopy,
     });
   };
 
   handleSubmitInstallments = async (e) => {
-    e.preventDefault()
-    const installCopy = [...this.state.installmentList].map(installment => {
-      return {...installment, title: installment.title.value, type: installment.type.value}
-    })
-    const installments = await FetchService.postInstallments(installCopy, this.props.match.params.fandomId)
-    this.props.history.push(`/users/${this.userId}/fandom-view/${this.props.match.params.fandomId}`)
-    this.context.handleSubmitInstallments(installments)
-  }
-
-
+    e.preventDefault();
+    const installCopy = [...this.state.installmentList].map((installment) => {
+      return {
+        ...installment,
+        title: installment.title.value,
+        type: installment.type.value,
+      };
+    });
+    const installments = await FetchService.postInstallments(
+      installCopy,
+      this.props.match.params.fandomId
+    );
+    this.props.history.push(
+      `/users/${this.userId}/fandom-view/${this.props.match.params.fandomId}`
+    );
+    this.context.handleSubmitInstallments(installments);
+  };
 
   preventSubmit = () => {
-    if (!this.state.installmentList || this.state.installmentList.length === 0) return true
-    for (let section of this.state.installmentList){
-      if (!section.canSubmit) return true
+    if (!this.state.installmentList || this.state.installmentList.length === 0)
+      return true;
+    for (let section of this.state.installmentList) {
+      if (!section.canSubmit) return true;
     }
     return false;
-  }
-
+  };
 
   render() {
     return (
-      <form className="add-installments" onSubmit={this.handleSubmitInstallments}>
+      <form
+        className="add-installments"
+        onSubmit={this.handleSubmitInstallments}
+      >
         <label htmlFor={`installment-title-${this.props.installId}`}>
           How many installments would you like to add?
         </label>
@@ -79,10 +94,14 @@ export default class CreateInstallments extends React.Component {
           onChange={this.handleNumInstallments}
         />
         {this.createInstallmentForms()}
-        <button disabled={this.preventSubmit()} className="submit-installments-button" type="submit">Create Installments</button>
+        <button
+          disabled={this.preventSubmit()}
+          className="submit-installments-button"
+          type="submit"
+        >
+          Create Installments
+        </button>
       </form>
     );
   }
 }
-
-

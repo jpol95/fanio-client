@@ -1,17 +1,19 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import TokenService from '../Services/token-service'
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import TokenService from "../Services/token-service";
 
 export default function PublicOnlyRoute({ component, ...props }) {
-  const Component = component
+  const Component = component;
   return (
     <Route
       {...props}
-      render={componentProps => (
-        TokenService.hasAuthToken()
-          ? <Redirect to={`/users/${props.loggedInUser}/profile`} />
-          : <Component {...componentProps} />
-      )}
+      render={(componentProps) =>
+        TokenService.hasAuthToken() ? (
+          <Redirect to={`/users/${props.loggedInUser}/profile`} />
+        ) : (
+          <Component {...componentProps} />
+        )
+      }
     />
-  )
+  );
 }

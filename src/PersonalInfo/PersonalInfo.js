@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default class PersonalInfo extends React.Component {
   userId = this.props.userId;
   getInterests() {
-    if (this.context.currentLoadedUser.interests.length === 0) return null
+    if (this.context.currentLoadedUser.interests.length === 0) return null;
     return this.context.currentLoadedUser.interests
       .split(",")
       .map((interest, index) => {

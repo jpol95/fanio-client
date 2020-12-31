@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import LoginForm from "../LoginForm/LoginForm";
-import FanioContext from '../FanioContext'
+import FanioContext from "../FanioContext";
 
 export default class LoginPage extends Component {
-
-  static contextType = FanioContext
+  static contextType = FanioContext;
   static defaultProps = {
     location: {},
     history: {
@@ -14,9 +13,10 @@ export default class LoginPage extends Component {
 
   handleLoginSuccess = (userId) => {
     const { location, history } = this.props;
-    const destination = (location.state || {}).from || `/users/${userId}/profile`;
+    const destination =
+      (location.state || {}).from || `/users/${userId}/profile`;
     history.push(destination);
-    this.context.setLoggedInUser()
+    this.context.setLoggedInUser();
   };
 
   render() {

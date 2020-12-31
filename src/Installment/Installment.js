@@ -19,9 +19,12 @@ export default class Installment extends React.Component {
   };
 
   handleEditInstallment = (e) => {
-    e.preventDefault()
-    window.open(`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/edit-installment`, "_self")
-  }
+    e.preventDefault();
+    window.open(
+      `/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/edit-installment`,
+      "_self"
+    );
+  };
 
   render() {
     return (
