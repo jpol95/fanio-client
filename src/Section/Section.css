@@ -66,7 +66,7 @@ padding: 5px;
 .create-fandom-button, .create-installments-link, .submit-installments-button, 
 .submit-fandom-button, .submit-sections-button, .login-link, .login-button, .create-account-link, 
 .landing-page-link, .submit-review-button, .submit-account-button, .edit-section-button, .edit-installment-button, 
-.edit-personal-link {
+.edit-personal-link, .go-back {
     color: black;
     border: 2px solid black;
     text-decoration: none;
