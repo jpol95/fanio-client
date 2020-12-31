@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import CreateFandom from './CreateFandom';
 
-describe('Messages component', () => {
+describe('Create fandom component', () => {
     const props ={
     match: {
         params: {

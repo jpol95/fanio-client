@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import CreateSections from './CreateSections';
 import FanioContext from '../FanioContext'
 
-describe('Create Installment component', () => {
+describe('Create Sections component', () => {
     const props = {
     match: {
         params: {

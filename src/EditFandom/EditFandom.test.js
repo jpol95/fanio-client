@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import EditFandom from './EditFandom';
 import FanioContext from '../FanioContext'
 
-describe('Create Installment component', () => {
+describe('Edit fandom component', () => {
     const props = {
     match: {
         params: {

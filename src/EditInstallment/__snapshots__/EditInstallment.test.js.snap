@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create Installment component renders the UI as expected 1`] = `
+exports[`Edit Installment component renders the UI as expected 1`] = `
 Array [
   " ",
   <form
@@ -11,6 +11,11 @@ Array [
     >
       What type of installment is this?
     </label>
+    <div
+      className="error"
+    >
+      Type is required
+    </div>
     <select
       id="type-1"
       onChange={[Function]}
@@ -42,12 +47,20 @@ Array [
       
       ?
     </label>
+    <div
+      className="error"
+    >
+      Title is required
+    </div>
     <input
       defaultValue=""
       onChange={[Function]}
       type="text"
     />
+    <br />
     <button
+      className="edit-installment-button"
+      disabled={true}
       type="submit"
     >
       Submit

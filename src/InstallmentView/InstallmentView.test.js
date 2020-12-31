@@ -6,7 +6,7 @@ import FanioContext from '../FanioContext'
 import dummyStore from '../dummy-store'
 import {BrowserRouter} from 'react-router-dom'
 
-describe('Create Installment component', () => {
+describe('Installment view component', () => {
     const props = {
     match: {
         params: {

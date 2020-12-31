@@ -81,8 +81,8 @@ export default class ReviewMain extends React.Component {
     if (!review) return null;
     const tags = this.getTags(review.id);
     const displayArray = review.content.split(/\n\r?/g)
-    const displayContent = displayArray.map(line => {
-      return <p>{line}</p>
+    const displayContent = displayArray.map((line, index) => {
+      return <p key={index}>{line}</p>
     })
     return (
       <div className="review-full">

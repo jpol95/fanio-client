@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import Landing from './Landing';
 
-describe('Create Installment component', () => {
+describe('Landing component', () => {
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Landing /> , div);

@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import EditPersonal from './EditPersonal';
 import FanioContext from '../FanioContext'
 
-describe('Create Installment component', () => {
+describe('Edit personal component', () => {
     const props = {
     match: {
         params: {

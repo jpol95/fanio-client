@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import LoginPage from './LoginPage';
 
-describe('Create Installment component', () => {
+describe('Login page component', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');

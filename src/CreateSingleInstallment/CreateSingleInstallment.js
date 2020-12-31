@@ -47,8 +47,8 @@ export default class CreateSingleInstallment extends React.Component {
         {(this.invalidType() && this.state.type.touched) && <div class="error">Installment type is required</div>}
         <select onChange = {this.handleTypeChange} id={`type-${this.props.installId}`}>
           <option></option>
-          {this.types && this.types.map((type) => (
-            <option value={type}>{type}</option>
+          {this.types && this.types.map((type, index) => (
+            <option key={index} value={type}>{type}</option>
           ))}
         </select>
         {this.state.type.value !== "" &&

@@ -5,7 +5,7 @@ import EditSection from './EditSection';
 import FanioContext from '../FanioContext'
 import dummyStore from '../dummy-store'
 
-describe('Create Installment component', () => {
+describe('Edit section component', () => {
     const props = {
     match: {
         params: {

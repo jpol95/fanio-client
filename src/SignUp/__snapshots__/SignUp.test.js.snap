@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create Installment component renders the UI as expected 1`] = `
+exports[`SignUp component renders the UI as expected 1`] = `
 Array [
   " ",
   <form

@@ -17,6 +17,7 @@ exports[`Create Installment component renders the UI as expected 1`] = `
   />
   <button
     className="submit-installments-button"
+    disabled={true}
     type="submit"
   >
     Create Installments

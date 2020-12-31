@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create Installment component renders the UI as expected 1`] = `
+exports[`Create Sections component renders the UI as expected 1`] = `
 Array [
   " ",
   <form
@@ -21,6 +21,7 @@ Array [
     />
     <button
       className="submit-sections-button"
+      disabled={true}
       type="submit"
     >
       Add 
