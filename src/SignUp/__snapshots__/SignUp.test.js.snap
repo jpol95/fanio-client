@@ -63,7 +63,7 @@ Array [
       <label
         htmlFor="interests"
       >
-        Interests
+        Interests(comma separated list)
       </label>
       <input
         defaultValue=""

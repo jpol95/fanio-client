@@ -51,7 +51,7 @@ export default class SignupForm extends React.Component {
           <p>Tell us about yourself</p>
           <label htmlFor="fullname">Full Name</label>
           <input defaultValue={this.state.fullname.value} id="fullname" onChange={this.handleFullnameChange} type="text" />
-          <label htmlFor="interests">Interests</label>
+          <label htmlFor="interests">Interests(comma separated list)</label>
           <input defaultValue={this.state.interests.value} id="interests" onChange={this.handleInterestsChange} type="text" />
           <label htmlFor="city">City</label>
           <input defaultValue={this.state.city.value} id="city" onChange={this.handleCityChange} type="text" />
