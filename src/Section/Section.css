@@ -107,7 +107,7 @@ padding: 5px;
 
 .edit-review-link:hover, .add-subs-link:hover, .create-fandom-button:hover, 
 .create-installments-link:hover, .submit-installments-button:hover, 
-.submit-fandom-button:hover, .submit-sections-button:hover, .submit-review-button:hover, .edit-installment-button:hover {
+.submit-fandom-button:hover, .submit-sections-button:hover, .submit-review-button:hover, .edit-installment-button:hover, .go-back:hover {
     color: white;
     background-color: black;
     cursor:pointer;

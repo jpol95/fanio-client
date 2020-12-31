@@ -6,7 +6,7 @@
     margin: 0px 15%;
 }
 
-.edit-review-link {
+.edit-review-link, .go-back {
     padding: 8px 25px 8px 25px !important;
     border-radius: 30px !important;
     margin-right: 20px;

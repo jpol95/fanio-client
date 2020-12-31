@@ -75,6 +75,7 @@ export default class ReviewMain extends React.Component {
         {displayContent}
         {this.isLoggedInUser && (
           <>
+            <Link className="go-back" to={`/users/${this.userId}/fandoms/${this.fandomId}/installment-view/${this.installmentId}`}>Back to installment</Link>
             <Link className="edit-review-link" to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/${this.subId ? `subs/${this.subId}/` : ``}reviews/${this.reviewId}/edit-review`}>Edit Review </Link>
             <button className="delete-review-button" onClick={this.handleDeleteReview}>Delete Review</button>
           </>
