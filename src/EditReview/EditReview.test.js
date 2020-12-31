@@ -5,7 +5,7 @@ import EditReview from './EditReview';
 import FanioContext from '../FanioContext'
 import dummyStore from '../dummy-store'
 
-describe('Create Installment component', () => {
+describe('Edit Review component', () => {
     const props = {
     match: {
         params: {
@@ -13,10 +13,11 @@ describe('Create Installment component', () => {
             fandomId: 1, 
             installmentId: 1, 
             sectionId: 1, 
-            subId: 1
+            subId: 1, 
+            reviewId: 13
         }
     }, 
-    installId: 1
+    installId: 1, 
 }
 
 

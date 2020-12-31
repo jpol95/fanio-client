@@ -25,6 +25,8 @@ Array [
         type="text"
       />
       <button
+        className="submit-fandom-button"
+        disabled={false}
         type="submit"
       >
         Submit

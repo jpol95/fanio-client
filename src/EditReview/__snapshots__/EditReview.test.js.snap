@@ -121,3 +121,131 @@ Array [
   " ",
 ]
 `;
+
+exports[`Edit Review component renders the UI as expected 1`] = `
+Array [
+  " ",
+  <h3>
+    Edit review
+  </h3>,
+  <form
+    className="create"
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <input
+      defaultValue="Supernatural season 2 Episode 7 Review"
+      id="title"
+      onChange={[Function]}
+      type="text"
+    />
+    <label
+      htmlFor="rating"
+    >
+      Rating
+    </label>
+    <input
+      defaultValue={4}
+      id="rating"
+      onChange={[Function]}
+      type="text"
+    />
+    <label
+      htmlFor="content"
+    >
+      Review
+    </label>
+    <textarea
+      defaultValue="Omg this is the worst episode ever!"
+      id="content"
+      onChange={[Function]}
+      type="text"
+    />
+    <label
+      htmlFor="tag-input"
+    >
+      Tags
+    </label>
+    <input
+      id="tag-input"
+      list="tags"
+      onChange={[Function]}
+    />
+    <button
+      className="add-tag-button"
+      onClick={[Function]}
+    >
+      Add Tag
+    </button>
+    <datalist
+      id="tags"
+      type="text"
+    >
+      <option
+        id={1}
+        value="science-fiction"
+      />
+      <option
+        id={2}
+        value="comedy"
+      />
+      <option
+        id={3}
+        value="drama"
+      />
+      <option
+        id={4}
+        value="period"
+      />
+      <option
+        id={5}
+        value="romance"
+      />
+      <option
+        id={6}
+        value="historical-fiction"
+      />
+      <option
+        id={7}
+        value="fantasy"
+      />
+      <option
+        id={8}
+        value="raunchy"
+      />
+      <option
+        id={9}
+        value="family"
+      />
+      <option
+        id={10}
+        value="corny"
+      />
+      <option
+        id={11}
+        value="violent"
+      />
+      <option
+        id={12}
+        value="horror"
+      />
+    </datalist>
+    <br />
+    <div
+      className="tag-list"
+    />
+    <button
+      className="submit-review-button"
+      disabled={false}
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+  " ",
+]
+`;

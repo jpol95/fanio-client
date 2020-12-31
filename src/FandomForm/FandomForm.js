@@ -1,7 +1,6 @@
 import React from "react";
 import "./FandomForm.css";
 import FanioContext from "../FanioContext";
-import FetchService from '../FetchService'
 
 //rename type attribute to title
 

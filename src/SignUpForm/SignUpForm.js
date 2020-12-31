@@ -1,6 +1,5 @@
 import React from "react";
 import "./SignUpForm.css";
-import FetchService from '../FetchService'
 
 
 export default class SignupForm extends React.Component {

@@ -31,7 +31,7 @@ Array [
       <input
         id="pw"
         onChange={[Function]}
-        type="text"
+        type="password"
       />
       <label
         htmlFor="pw-confirm"
@@ -41,7 +41,7 @@ Array [
       <input
         id="pw-confirm"
         onChange={[Function]}
-        type="text"
+        type="password"
       />
     </div>
     <div
@@ -95,6 +95,14 @@ Array [
       />
     </div>
     <button
+      className="submit-account-button"
+      disabled={
+        <div
+          className="error"
+        >
+          Password must be longer than 8 characters 
+        </div>
+      }
       type="submit"
     >
       Submit

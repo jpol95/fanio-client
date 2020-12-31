@@ -92,6 +92,7 @@ class App extends React.Component {
       if (section.reviewId === reviewId) {
         section.reviewId = null;
       }
+      return section
     });
 
     this.setState({
@@ -378,6 +379,7 @@ class App extends React.Component {
         }}
       >
         <NavBar />
+        <main>
         <Route
           path="/users/:userId"
           render={(props) => (
@@ -497,6 +499,7 @@ class App extends React.Component {
           component={LoginPage}
         />
         <Route exact path="/landing" component={Landing} />
+        </main>
         <Footer />
       </FanioContext.Provider>
     );

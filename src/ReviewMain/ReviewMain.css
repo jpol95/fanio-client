@@ -1,15 +1,29 @@
 .review-full{
-    border: 2px solid black;
-    display: flex;
+    /* border: 2px solid black; */
     align-items: center;
-    background-color: #edfafc
+    /* background-color: #e0e8e9; */
+    padding-bottom: 20px;
+    margin: 0px 15%;
 }
 
-.review-body {
-    flex: 3
-}
-.review-full img {
-    flex: 1;
-    height: 100px;
+.edit-review-link {
+    padding: 8px 25px 8px 25px !important;
+    border-radius: 30px !important;
+    margin-right: 20px;
 }
 
+.single-tag {
+    border: 2px solid black;
+    padding: 0px 5px;
+    color: white;
+    background-color: black;
+    margin-right: 5px;
+}
+
+.star {
+    height: 3em;
+}
+
+.review-title {
+    font-size: 45px;
+}

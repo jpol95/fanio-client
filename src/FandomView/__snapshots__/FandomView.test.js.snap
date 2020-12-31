@@ -3,9 +3,16 @@
 exports[`Create Installment component renders the UI as expected 1`] = `
 Array [
   " ",
-  <h3>
+  <h1
+    className="fandom-label"
+  >
     Harry Potter
-  </h3>,
+  </h1>,
+  <div
+    className="installment-label"
+  >
+    INSTALLMENTS
+  </div>,
   <a
     className="fandom-view"
     href="/users/1/fandoms/5/installment-view/6"
@@ -26,6 +33,7 @@ Array [
     </button>
   </a>,
   <a
+    className="create-installments-link"
     href="/users/1/fandoms/5/add-installments-form"
     onClick={[Function]}
   >

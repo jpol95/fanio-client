@@ -16,6 +16,7 @@ export default class CreateReview extends React.Component{
  handleSubmit = async (e, reviewObject) => {
     e.preventDefault()
     const {title, content, rating} = reviewObject
+    console.log(content.match(/\n/))
     const reviewToPost = {title, content, rating}
     const {tags} = reviewObject
     const review = await FetchService.postReview(reviewToPost, this.installmentId)

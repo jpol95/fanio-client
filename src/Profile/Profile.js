@@ -1,13 +1,11 @@
 import React from "react";
 import PersonalInfo from "../PersonalInfo/PersonalInfo";
-import Reviews from "../Reviews/Reviews";
 import Fandom from "../Fandom/Fandom";
 import FanioContext from "../FanioContext";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import divider2 from '../dividers/divider2.PNG'
-import fandomLabel from '../labels/fandom-label.PNG'
-import profileLabel from '../labels/profile-label.PNG'
+
 
 export default class Profile extends React.Component {
   static contextType = FanioContext;
@@ -27,11 +25,11 @@ export default class Profile extends React.Component {
     const isLoggedInUser = this.context.loggedInUser === this.userId
     return (
       <React.Fragment>
-        <img className="label" src={profileLabel} />
+        <div className="profile-label">PROFILE</div>
         <PersonalInfo userId={this.userId} />
         {/* <Reviews /> */}
-        <img className="label" src={fandomLabel} />
-        <img className="divider" src={divider2} />
+        <div className="profile-label">FANDOMS</div>
+        <img alt="superhero divider" className="divider" src={divider2} />
         {this.getFandoms()}
         {isLoggedInUser && <Link className="create-fandom-button" to={`/users/${this.userId}/create-fandom`}>Create Fandom</Link>}
       </React.Fragment>

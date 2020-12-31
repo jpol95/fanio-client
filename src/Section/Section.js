@@ -3,8 +3,6 @@ import "./Section.css";
 import FanioContext from "../FanioContext";
 import { Link } from "react-router-dom";
 import FetchService from "../FetchService";
-import decoration1 from '../deocrations/decoration1.jpg'
-import decoration2 from '../deocrations/decoration2.PNG'
 
 export default class Section extends React.Component {
   state = {
@@ -105,6 +103,8 @@ export default class Section extends React.Component {
               <p> {subReview.content.substring(0, 100)}</p>
             ) : (
               this.isLoggedInUser ? 
+              <>
+              <br />
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -118,6 +118,7 @@ export default class Section extends React.Component {
                 {" "}
                 Write Review{" "}
               </button>
+              </>
               :
               ""
             )}

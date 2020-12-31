@@ -1,6 +1,10 @@
-.installment-label {
-    height: 30px;
-    display: block;
-    margin: auto;
-    margin-bottom: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+
+.installment-label{
+    font-family: 'Audiowide', cursive;
+    font-size: 20px
+}
+.fandom-label {
+    font-size: 40px;
 }

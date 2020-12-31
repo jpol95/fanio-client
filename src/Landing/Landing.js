@@ -4,7 +4,7 @@ import './Landing.css'
 export default class Landing extends React.Component{
     render() {
         return(
-            <div class="landing">
+            <div className="landing">
             <h1>How to use the website</h1>
             <p>Welcome to Fanio! In order to create an account, go to the account
                 page. This idea of this website is for folk who are fans of books, tv shows, movies, etc. to 

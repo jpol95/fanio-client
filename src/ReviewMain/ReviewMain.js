@@ -3,7 +3,8 @@ import "./ReviewMain.css";
 import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
 import {Link} from 'react-router-dom'
-import decoration4 from '../deocrations/decoration4.jpg'
+import whiteStar from '../decorations/whitestar.png'
+import blackStar from '../decorations/blackstar.png'
 
 export default class ReviewMain extends React.Component {
   static contextType = FanioContext;
@@ -55,8 +56,7 @@ export default class ReviewMain extends React.Component {
     return this.context.reviewTagList
       .filter((tag) => reviewId === tag.reviewId)
       .map((tag) => (
-        <span key={tag.tagId}>
-          #
+        <span className="single-tag" key={tag.tagId}>
           {
             this.context.tagList.find((tListTag) => tListTag.id === tag.tagId)
               .title
@@ -64,25 +64,38 @@ export default class ReviewMain extends React.Component {
         </span>
       ));
   }
+
+  getStars = (rating) => {
+    let starArray = []
+    let i;
+    for (i = 0; i < rating; i++){
+      starArray.push(<img alt="black star" className="star" src={blackStar}/>)
+    }
+    for (i = 0;i < 5 - rating; i++){
+      starArray.push(<img alt="white star" className="star" src={whiteStar}/>)
+    }
+    return starArray
+  }
   render() {
     const review = this.getReview();
     if (!review) return null;
     const tags = this.getTags(review.id);
+    const displayArray = review.content.split(/\n\r?/g)
+    const displayContent = displayArray.map(line => {
+      return <p>{line}</p>
+    })
     return (
       <div className="review-full">
-        <div className="review-body">
-        <h2>{review.title}</h2>
-        <p>{review.rating} stars</p>
+        <h1 className="review-title">{review.title}</h1>
+        {this.getStars(review.rating)}
         <p>{tags}</p>
-        <p>{review.content}</p>
+        {displayContent}
         {this.isLoggedInUser && (
           <>
             <Link className="edit-review-link" to={`/users/${this.userId}/fandoms/${this.fandomId}/installments/${this.installmentId}/sections/${this.sectionId}/${this.subId ? `subs/${this.subId}/` : ``}reviews/${this.reviewId}/edit-review`}>Edit Review </Link>
-            <br />
             <button className="delete-review-button" onClick={this.handleDeleteReview}>Delete Review</button>
           </>
         )}
-        </div>
       </div>
     );
   }

@@ -40,3 +40,7 @@ select{
     color:white;
     cursor: pointer;
 }
+
+textarea {
+    height: 30em;
+}

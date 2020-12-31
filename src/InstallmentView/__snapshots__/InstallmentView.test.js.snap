@@ -3,12 +3,16 @@
 exports[`Create Installment component renders the UI as expected 1`] = `
 Array [
   " ",
+  <h1>
+    Harry Potter Books
+  </h1>,
   <div
     className="fandom-view"
   >
-    <h4>
-      Harry Potter Books
-    </h4>
+    <h3>
+      Book
+      s
+    </h3>
     <div
       className="fandom-comp"
     >
@@ -16,8 +20,11 @@ Array [
         className="section"
         onClick={[Function]}
       >
-        Book 1
-        <br />
+        <div
+          className="label"
+        >
+          Book 1
+        </div>
         Harry Potter and the Philosopher's Stone
         <br />
         <p>
@@ -30,6 +37,7 @@ Array [
         >
           View Full Review
         </a>
+        <br />
         <button
           onClick={[Function]}
         >
@@ -49,8 +57,11 @@ Array [
         className="section"
         onClick={[Function]}
       >
-        Book 1
-        <br />
+        <div
+          className="label"
+        >
+          Book 1
+        </div>
         Harry Potter and the Case of Jesse's Missing Serotonin
         <br />
         <a
@@ -62,6 +73,7 @@ Array [
           Write Review
            
         </a>
+        <br />
         <button
           onClick={[Function]}
         >
@@ -81,8 +93,11 @@ Array [
         className="section"
         onClick={[Function]}
       >
-        Book 2
-        <br />
+        <div
+          className="label"
+        >
+          Book 2
+        </div>
         Harry Potter and the Chamber of Secrets
         <br />
         <a
@@ -94,6 +109,7 @@ Array [
           Write Review
            
         </a>
+        <br />
         <button
           onClick={[Function]}
         >
@@ -113,8 +129,11 @@ Array [
         className="section"
         onClick={[Function]}
       >
-        Book 3
-        <br />
+        <div
+          className="label"
+        >
+          Book 3
+        </div>
         Harry Potter and the Prisoner of Azkaban
         <br />
         <p>
@@ -127,6 +146,7 @@ Array [
         >
           View Full Review
         </a>
+        <br />
         <button
           onClick={[Function]}
         >
@@ -140,6 +160,7 @@ Array [
       </div>
     </div>
     <a
+      className="add-sections-link"
       href="/users/1/fandoms/5/installments/6/add-sections-form"
       onClick={[Function]}
     >

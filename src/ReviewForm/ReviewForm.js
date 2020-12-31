@@ -1,8 +1,6 @@
 import React from "react";
 import "./ReviewForm.css";
 import FanioContext from "../FanioContext";
-import FetchService from "../FetchService";
-
 export default class CreateReview extends React.Component {
   static contextType = FanioContext;
 

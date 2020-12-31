@@ -42,6 +42,7 @@ Array [
       />
     </div>
     <button
+      className="login-button"
       type="submit"
     >
       Login

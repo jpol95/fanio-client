@@ -1,5 +1,4 @@
 import React from "react";
-import Installment from '../Installment/Installment'
 import './Fandom.css'
 import {Link} from 'react-router-dom'
 import FetchService from "../FetchService";

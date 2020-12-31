@@ -48,7 +48,8 @@ padding: 5px;
     text-decoration: none;
     color: black;
     display: block;
-    /* background-color: #A3B2E9; */
+    background-color: #e0e8e9;
+    margin: 0px 15%;
 }
 
 .full-page-link{
@@ -78,13 +79,13 @@ padding: 5px;
 
 }
  
-.login-button, .submit-review-button, .submit-account-button, .submit-sections-button, .submit-installments-button, .edit-section-button, .edit-installment-button {
+.login-button, .submit-review-button, .submit-account-button, .submit-sections-button, .submit-installments-button, .edit-section-button, .edit-installment-button, .delete-review-button {
     padding: 10px 25px 25px 25px;
     border-radius: 40px;
 }
 
 .create-fandom-button, .create-installments-link, .login-link, .create-account-link, 
-.landing-page-link, .edit-personal-link{
+.landing-page-link, .edit-personal-link {
     padding: 10px 25px 10px 25px;
     border-radius: 30px;
 }

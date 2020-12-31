@@ -4,26 +4,20 @@ exports[`Create Installment component renders the UI as expected 1`] = `
 Array [
   " ",
   <div
-    className="review"
+    className="profile-label"
   >
-    <p>
-       Review Section 
-    </p>
-    <p
-      className="review-comp"
-    >
-      This is an example of the latest review this person posted. They watched a show and wrote their feelings about it. You can click here and it'll go to the review.
-      <br />
-       5 stars
-    </p>
-    <p
-      className="review-comp"
-    >
-      Here, have another. This is another show. Maybe better? Maybe worse? Who knows. 
-      <br />
-      3 stars
-    </p>
+    PROFILE
   </div>,
+  <div
+    className="profile-label"
+  >
+    FANDOMS
+  </div>,
+  <img
+    alt="superhero divider"
+    className="divider"
+    src="divider2.PNG"
+  />,
   <a
     className="fandom-view"
     href="/users/1/fandom-view/1"
@@ -139,6 +133,7 @@ Array [
     </button>
   </a>,
   <a
+    className="create-fandom-button"
     href="/users/1/create-fandom"
     onClick={[Function]}
   >

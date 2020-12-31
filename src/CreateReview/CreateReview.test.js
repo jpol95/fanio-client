@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import CreateReview  from './CreateReview';
 
-describe('Create Installment component', () => {
+describe('Create Review component', () => {
     const props ={
     match: {
         params: {
@@ -13,7 +13,7 @@ describe('Create Installment component', () => {
             sectionId: 1
         }
     }, 
-    installId: 1
+    installId: 1, 
 }
   it('renders without crashing', () => {
     const div = document.createElement('div');

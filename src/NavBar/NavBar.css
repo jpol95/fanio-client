@@ -1,9 +1,4 @@
-/* .navbar, footer{
-    background-color: black;
-    color: white;
-} */
-
-.navbar img {
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');.navbar img {
     height: 65px;
     margin-left: 15%;
 }
@@ -42,6 +37,16 @@
 .login-link {
     margin-top: 10px;
     margin-right: 10px;
+}
+
+
+.logo{
+    font-family: 'Bangers', cursive;
+    margin-left:30px;
+    margin-top: 5px;
+}
+.logo {
+    font-size: 60px;
 }
 
 /* .navbar .navbar-buttons .navbar-home-link {

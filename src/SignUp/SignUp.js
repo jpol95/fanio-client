@@ -36,26 +36,26 @@ export default class Signup extends React.Component {
 
   invalidUsername = () => {
     if (!this.state.username.value)
-      return <div class="error">Username is required</div>
+      return <div className="error">Username is required</div>
   }
 
   invalidPassword = () => {
     if (this.state.password.value.length < 8) {
-      return <div class="error">Password must be longer than 8 characters </div>
+      return <div className="error">Password must be longer than 8 characters </div>
     }
     if (this.state.password.value.length > 72) {
-      return <div class="error">Password must be less than 72 characters</div>
+      return <div className="error">Password must be less than 72 characters</div>
     }
    if (this.state.password.value.startsWith(' ')) {
-     return <div class="error">Password must not start or end with empty spaces</div>
+     return <div className="error">Password must not start or end with empty spaces</div>
    }
    if (!this.state.password.value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/))
-    return <div class="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
+    return <div className="error">Password must contain a lower case character, an upper case character, a number and a special character</div>
   }
   
   invalidPasswordConfirm = () => {
     if (this.state.password.value !== this.state.passwordConfirm.value)
-      return <div class="error">Must match password</div>
+      return <div className="error">Must match password</div>
   }
 
 //   handleNameChange = (e) => {
@@ -102,10 +102,10 @@ export default class Signup extends React.Component {
           <input id="username" onChange={this.handleUsernameChange} type="text" />
           <label htmlFor="pw">Password</label>
           {this.state.password.touched && this.invalidPassword()}
-          <input id="pw" onChange={this.handlePasswordChange} type="text" />
+          <input id="pw" onChange={this.handlePasswordChange} type="password" />
           <label htmlFor="pw-confirm">Confirm Password</label>
           {this.state.passwordConfirm.touched && this.invalidPasswordConfirm()}
-          <input id="pw-confirm" onChange={this.handlePasswordConfirmChange} type="text" />
+          <input id="pw-confirm" onChange={this.handlePasswordConfirmChange} type="password" />
         </div>
              </SignUpForm>
     );

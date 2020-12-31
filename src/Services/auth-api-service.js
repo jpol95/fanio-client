@@ -1,5 +1,4 @@
 import config from '../config'
-import TokenService from './token-service'
 
 const AuthApiService = {
   postLogin({ username, password }) {

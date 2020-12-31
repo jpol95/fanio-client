@@ -2,7 +2,6 @@ import React from 'react'
 import FanioContext from '../FanioContext'
 import Installment from '../Installment/Installment'
 import {Link} from 'react-router-dom'
-import installmentsLabel from '../labels/installments-label.PNG'
 import './FandomView.css'
 
 export default class FandomView extends React.Component{
@@ -30,8 +29,8 @@ export default class FandomView extends React.Component{
       // console.log(this.context.loggedInUser)
       return( 
         <React.Fragment>
-      <h1>{this.getFandom() && this.getFandom().title}</h1>
-      <img className="installment-label" src={installmentsLabel} />
+      <h1 className="fandom-label">{this.getFandom() && this.getFandom().title}</h1>
+      <div className="installment-label" >INSTALLMENTS</div>
       {this.getInstallments()}
       {this.isLoggedInUser && <Link className="create-installments-link" to={`/users/${this.userId}/fandoms/${this.props.match.params.fandomId}/add-installments-form`}>Add Installments</Link>}
       </React.Fragment>
