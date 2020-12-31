@@ -1,5 +1,5 @@
 import TokenService from './Services/token-service'
-const base_url = `http://localhost:8000/api`;
+const base_url = `https://murmuring-taiga-68517.herokuapp.com/api`;
 const FetchService = {
   fetchFandoms: (userId) => {
     return fetch(`${base_url}/fandoms/users/${userId}`).then((res) => res.json());
