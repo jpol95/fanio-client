@@ -3,7 +3,7 @@ import FanioContext from "../FanioContext";
 import FetchService from "../FetchService";
 import typeList from "../type-list";
 
-export default class InstallDropDown extends React.Component {
+export default class EditInstallment extends React.Component {
   static contextType = FanioContext;
 
   types = Object.keys(typeList);
@@ -78,19 +78,20 @@ export default class InstallDropDown extends React.Component {
         </label>
         {this.invalidType() && <div className="error">Type is required</div>}
         <select
+          key={this.installmentId}
           onChange={this.handleTypeChange}
           id={`type-${this.installmentId}`}
         >
           <option></option>
           {this.types &&
-            this.types.map((type) => {
+            this.types.map((type, index) => {
               if (type === this.getInstallment().type)
                 return (
-                  <option value={type} selected>
+                  <option key={index} value={type} selected>
                     {type}
                   </option>
                 );
-              return <option value={type}>{type}</option>;
+              return <option key={index} value={type}>{type}</option>;
             })}
         </select>
         {this.state.type !== "" && (
