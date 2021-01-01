@@ -90,6 +90,8 @@ api/users/user/:userId DELETE: deletes user with specified id. Happy path return
 
 api/users/ POST: posts new user. Happy path returns 201 and created user minus the hashed password
 
+Link to live site: https://fanio-client.vercel.app/
+
 Screenshots: 
 
 ![alt text](public/ss1.PNG)
