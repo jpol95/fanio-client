@@ -92,6 +92,6 @@ api/users/ POST: posts new user. Happy path returns 201 and created user minus t
 
 Screenshots: 
 
-![alt text](ss1.PNG)
-![alt text](ss2.PNG)
-![alt text](ss3.PNG)
+![alt text](public/ss1.PNG)
+![alt text](public/ss2.PNG)
+![alt text](public/ss3.PNG)
