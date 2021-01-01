@@ -92,4 +92,6 @@ api/users/ POST: posts new user. Happy path returns 201 and created user minus t
 
 Screenshots: 
 
-![alt text]("C:\Users\19548\Downloads\ss3.PNG")
+![alt text](ss1.PNG)
+![alt text](ss2.PNG)
+![alt text](ss3.PNG)
