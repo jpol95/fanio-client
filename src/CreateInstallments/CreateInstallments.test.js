@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import CreateInstallments from "./CreateInstallments";
 
-describe("Create Installment component", () => {
+describe("Create Installments component", () => {
   const props = {
     match: {
       params: {
